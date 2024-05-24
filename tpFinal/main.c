@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "domicilio.h"
+#include <string.h>
+#include <conio.h>
+
 
 int main()
 {
-    printf("Prueba\n");
+
     return 0;
+
+
 }

@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1716332093 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+
+1716150719 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.h
+
+1716332120 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+
