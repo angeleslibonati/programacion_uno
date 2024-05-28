@@ -11,4 +11,9 @@ typedef struct
 
 }stDomicilio;
 
+stDomicilio cargaUnDomicilio();
+void muestraUnDomicilio(stDomicilio d);
+
+
+
 #endif // DOMICILIO_H_INCLUDED

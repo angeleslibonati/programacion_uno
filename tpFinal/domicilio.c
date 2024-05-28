@@ -4,20 +4,33 @@
 #include <string.h>
 #include <conio.h>
 
-void getCalle(char calle[])
-{
-    char calles[][30] = {"Avenida Colón", "Avenida Independencia", "Avenida Juan B. Justo","San Martín", "Avenida Luro", "Güemes", "Rivadavia",
-                       "Avenida Constitución", "Alberti", "Alem","Castelli", "Rawson","Moreno","Córdoba","Jujuy","Avenida Juan José Paso", "Gascón", "Falucho",
-                       "Avenida Mario Bravo","Olavarría","Mitre","Salta","La Rioja","Buenos Aires","Hipólito Yrigoyen","Alvarado","Balcarce",
-                       "Peña","Garay","Primera Junta","Brandsen","Ayacucho","Tripulantes del Fournier","French","3 de Febrero","11 de Septiembre","9 de Julio",
-                       "25 de Mayo","Bolívar","Brown","San Luis","Catamarca","Santiago del Estero","Avellaneda","Formosa","Vieytes","Gascón","Bermejo","Las Heras"
-                      };
 
-    strcpy(calle,calles[rand()%(sizeof(calles)/30)]);
+
+stDomicilio cargaUnDomicilio(){
+    stDomicilio d;
+
+    printf("\n Ingrese una Calle:  ");
+    fflush(stdin);
+    gets(d.calle);
+    printf("\n Ingrese un Nro.:  ");
+    gets(d.nro);
+    printf("\n Ingrese una Localidad: ");
+    gets(d.localidad);
+    printf("\n Ingrese una Provincia: ");
+    gets(d.provincia);
+    printf("\n Codigo Postal: ");
+    gets(d.cpos);
+
+    return d;
 }
 
-int getNro()
-{
-return (rand()%9000)+1;
-}
+void muestraUnDomicilio(stDomicilio d){
 
+printf("\n Calle:..........: %s", d.calle);
+printf("\n Nro:............: %s", d.nro);
+printf("\n Localidad:......: %s", d.localidad);
+printf("\n Provincia:......: %s", d.provincia);
+printf("\n Codigo Postal:..: %s", d.cpos);
+printf("\n =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=* \n");
+
+}

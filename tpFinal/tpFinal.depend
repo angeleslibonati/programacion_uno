@@ -1,17 +1,28 @@
 # depslib dependency file v1.0
-1716332093 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
+1716828773 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+	<time.h>
+	"mockDomicilio.h"
+
+1716740876 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.h
+
+1716862205 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.c
 	<stdio.h>
 	<stdlib.h>
 	"domicilio.h"
 	<string.h>
 	<conio.h>
 
-1716150719 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.h
-
-1716332120 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.c
+1716864942 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockdomicilio.c
 	<stdio.h>
 	<stdlib.h>
 	"domicilio.h"
 	<string.h>
 	<conio.h>
+
+1716828773 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockdomicilio.h
 
