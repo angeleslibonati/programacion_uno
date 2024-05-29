@@ -38,6 +38,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="mockCliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mockCliente.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
