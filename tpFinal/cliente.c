@@ -28,9 +28,11 @@ stCliente cargaCliente(){
     printf("\nIngrese el EMAIL: ");
     fflush(stdin);
     gets(a.email);
-    printf("\nIngrese el Telefono");
+    printf("\nIngrese el Telefono: ");
     fflush(stdin);
     gets(a.telefono);
+
+    return a;
 }
 
 void muestraCliente(stCliente a){
@@ -42,7 +44,7 @@ void muestraCliente(stCliente a){
     printf("\nDNI:.................. %s", a.dni);
     printf("\nEMAIL:................ %s", a.email);
     printf("\nTelefono:............. %s", a.telefono);
-    printf("........................................");
+    printf("\n........................................");
 }
 
 void cargaArchClientesRandom(char nombreArchivo[], int cant)

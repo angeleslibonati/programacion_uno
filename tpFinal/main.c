@@ -13,8 +13,14 @@ int main()
     stCliente clientesAr[DIM];
     int vClientes = 0;
 
+//    stCliente aye;
+//    aye = cargaCliente();
+//    muestraCliente(aye);
+
+
     cargaArchClientesRandom(clientesAr, 10);
     printf("Listado de clientes: \n");
     muestraArchivoClientes(clientesAr);
+
     return 0;
 }

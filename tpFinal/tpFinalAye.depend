@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1717093089 source:c:\users\pc\desktop\programacion_uno\tpfinal\cliente.c
+1717106918 source:c:\users\pc\desktop\programacion_uno\tpfinal\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	"cliente.h"
@@ -10,13 +10,13 @@
 
 1717093057 c:\users\pc\desktop\programacion_uno\tpfinal\cliente.h
 
-1717093057 source:c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.c
+1717094073 source:c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"cliente.h"
 
-1717094041 source:c:\users\pc\desktop\programacion_uno\tpfinal\main.c
+1717106823 source:c:\users\pc\desktop\programacion_uno\tpfinal\main.c
 	<stdio.h>
 	<stdlib.h>
 	"cliente.h"
