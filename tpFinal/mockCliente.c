@@ -39,16 +39,22 @@ char* getNamePro()
     return name;
 }
 
-void getDNI(char dni[])
-{
-    char dnis[][10] =
-    {
-        "40.099.124", "32.765.543", "45.876.321", "50.123.987", "33.456.789",
-        "29.876.543", "44.321.654", "41.987.230", "36.543.210", "39.654.987"
-    };
-    strcpy(dni, dnis[rand() % (sizeof(dnis) / sizeof(dnis[0]))]);
+//Generador de DNIS randoms
+void getDNI(char dniNumbers[]) {
+
+    for (int i = 0; i < 10; i++) {
+        dniNumbers[i] = rand() % 100000000; // Genera un número de hasta 8 dígitos (0-99999999)
+    }
 }
 
+//Muestra de DNI randoms
+void muestraDNIsRandom(char nombreArchivo[]) {
+    for (int i = 0; i < 10; i++) {
+        printf("%08d\n", nombreArchivo[i]); // Imprime con ceros a la izquierda si es necesario
+    }
+}
+
+//Emails no tan randoms
 void getEmail(char email[])
 {
     char emails[][30] =
@@ -62,16 +68,26 @@ void getEmail(char email[])
     strcpy(email, emails[rand() % (sizeof(emails) / sizeof(emails[10]))]);
 }
 
-void getTelefono(char telefono[])
-{
-    char telefonos[][12] =
-    {
-        "2235376766", "2234567894", "2234235697", "2231234523", "2237896543",
-        "2236789763", "2234354657", "2235348129", "2235876124", "2234546023",
-        "2234365678", "2234536578"
-    };
-    strcpy(telefono, telefonos[rand() % (sizeof(telefonos) / sizeof(telefonos[12]))]);
+//Telefonos randoms
+void getTelefono(char nombreArchivo[]) {
+
+    for (int i = 0; i < 12; i++) {
+        int areaCode = rand() % 900 + 100;       // Genera un código de área de 3 dígitos (100-999)
+        int centralCode = rand() % 900 + 100;  // Genera los siguientes 3 dígitos (100-999)
+        int endCode = rand() % 10000;         // Genera los últimos 4 dígitos (0000-9999)
+
+        // Guarda el número de teléfono en el array de cadenas
+        sprintf(nombreArchivo[i], "%03d-%03d-%04d", areaCode, centralCode, endCode);
+    }
 }
+
+//Muestra de Telefonos Randoms
+void mostrarTelefonosRandoms(char nombreArchivo[]) {
+    for (int i = 0; i < 12; i++) {
+        printf("%s\n", nombreArchivo[i]);
+    }
+}
+
 
 stCliente getClienteRandom()
 {
@@ -86,3 +102,15 @@ stCliente getClienteRandom()
 
     return a;
 }
+
+
+
+
+
+
+
+
+
+
+
+
