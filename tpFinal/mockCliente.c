@@ -3,58 +3,59 @@
 #include <string.h>
 #include "cliente.h"
 
-int getFileNumber()
+int getID()
 {
     return (rand()%900)+100;
 }
 
-void getName(char name[])
+void getNombre(char nombre[])
 {
-    char names[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
+    char nombres[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
                        "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
                        "Camilo","Diana"
                       };
-    strcpy(name,names[rand()%(sizeof(names)/30)]);
+    strcpy(nombre,nombres[rand()%(sizeof(nombres)/30)]);
 }
 
-void getLastName(char lastName[])
+void getApellido(char apellido[])
 {
-    char lastNames[][30]=
+    char apellidos[][30]=
     {
         "García","Martínez","Rodríguez","López","Hernández","González","Pérez","Sánchez","Ramírez","Cruz","Flores","Rivera",
         "Gómez","Torres","Díaz","Álvarez","Jiménez","Morales","Ortiz","Reyes","Ruiz","Vargas","Mendoza","Castillo","Romero","Fernández",
         "Silva","Ramos","Chávez","Herrera"
     };
-    strcpy(lastName, lastNames[rand()%(sizeof(lastNames)/30)]);
+    strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-char* getNamePro()
-{
-    char* name = (char*) malloc(sizeof(char)*30);
-    char names[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
-                       "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
-                       "Camilo","Diana"
-                      };
-    strcpy(name,names[rand()%(sizeof(names)/30)]);
-    return name;
-}
+//char* getNamePro()
+//{
+//    char* name = (char*) malloc(sizeof(char)*30);
+//    char names[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
+//                       "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
+//                       "Camilo","Diana"
+//                      };
+//    strcpy(name,names[rand()%(sizeof(names)/30)]);
+//    return name;
+//}
 
 //Generador de DNIS randoms
-void getDNI(char dniNumbers[]) {
+void getDNI(char numerosDeDNI[]) {
 
     for (int i = 0; i < 10; i++) {
-        dniNumbers[i] = rand() % 100000000; // Genera un número de hasta 8 dígitos (0-99999999)
+        numerosDeDNI[i] = rand() % 46000000; // Genera un número de hasta 8 dígitos (0-99999999)
+    }
+}///pasar dni a char
+
+
+//Muestra de DNI
+void muestraDNI(char nombreArchivo[], stCliente a[]) {
+    for (int i = 0; i < 10; i++) {
+        printf("%00d\n", a[i]); // Imprime con ceros a la izquierda si es necesario
     }
 }
 
-//Muestra de DNI randoms
-void muestraDNIsRandom(char nombreArchivo[]) {
-    for (int i = 0; i < 10; i++) {
-        printf("%08d\n", nombreArchivo[i]); // Imprime con ceros a la izquierda si es necesario
-    }
-}
-
-//Emails no tan randoms
+//Emails
 void getEmail(char email[])
 {
     char emails[][30] =
@@ -77,14 +78,14 @@ void getTelefono(char nombreArchivo[]) {
         int endCode = rand() % 10000;         // Genera los últimos 4 dígitos (0000-9999)
 
         // Guarda el número de teléfono en el array de cadenas
-        sprintf(nombreArchivo[i], "%03d-%03d-%04d", areaCode, centralCode, endCode);
+        sprintf(nombreArchivo[i], "%0d-%d-%d", areaCode, centralCode, endCode);
     }
-}
+}///pasar telefonos a char
 
-//Muestra de Telefonos Randoms
-void mostrarTelefonosRandoms(char nombreArchivo[]) {
+//Muestra de Telefonos
+void mostrarTelefonos(char telefonos[]) {
     for (int i = 0; i < 12; i++) {
-        printf("%s\n", nombreArchivo[i]);
+        printf("%s\n", telefonos[i]);
     }
 }
 
@@ -92,10 +93,9 @@ void mostrarTelefonosRandoms(char nombreArchivo[]) {
 stCliente getClienteRandom()
 {
     stCliente a;
-    a.id = getFileNumber();
-    getName(a.nombre);
-    strcpy(a.nombre,getNamePro());
-    getLastName(a.apellido);
+    a.id = getID();
+    getNombre(a.nombre);
+    getApellido(a.apellido);
     getDNI(a.dni);
     getEmail(a.email);
     getTelefono(a.telefono);

@@ -18,9 +18,14 @@ int main()
 //    muestraCliente(aye);
 
 
-    cargaArchClientesRandom(clientesAr, 10);
+  /*  cargaArchClientesRandom(clientesAr, 10);
     printf("Listado de clientes: \n");
     muestraArchivoClientes(clientesAr);
+    */
+    stCliente clientePrueba;
+
+
+    clientePrueba = getClienteRandom();
 
     return 0;
 }
