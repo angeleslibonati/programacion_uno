@@ -3,20 +3,23 @@
 #include <string.h>
 #include "cliente.h"
 
-int getID()
+//Numero de cliente
+int getNumeroCliente()
 {
     return (rand()%900)+100;
 }
 
+//Nombre
 void getNombre(char nombre[])
 {
-    char nombres[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
-                       "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
-                       "Camilo","Diana"
-                      };
+    char nombres[][30]= {"Ayelen","Angeles","Dario","Federico","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
+                         "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
+                         "Camilo","Diana"
+                        };
     strcpy(nombre,nombres[rand()%(sizeof(nombres)/30)]);
 }
 
+//Apellido
 void getApellido(char apellido[])
 {
     char apellidos[][30]=
@@ -28,32 +31,15 @@ void getApellido(char apellido[])
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-//char* getNamePro()
-//{
-//    char* name = (char*) malloc(sizeof(char)*30);
-//    char names[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
-//                       "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
-//                       "Camilo","Diana"
-//                      };
-//    strcpy(name,names[rand()%(sizeof(names)/30)]);
-//    return name;
-//}
+//Generador de DNI
+void getDNI(char numerosDeDNI[])
+{
 
-//Generador de DNIS randoms
-void getDNI(char numerosDeDNI[]) {
-
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++)
+    {
         numerosDeDNI[i] = rand() % 46000000; // Genera un número de hasta 8 dígitos (0-99999999)
     }
 }///pasar dni a char
-
-
-//Muestra de DNI
-void muestraDNI(char nombreArchivo[], stCliente a[]) {
-    for (int i = 0; i < 10; i++) {
-        printf("%00d\n", a[i]); // Imprime con ceros a la izquierda si es necesario
-    }
-}
 
 //Emails
 void getEmail(char email[])
@@ -70,30 +56,57 @@ void getEmail(char email[])
 }
 
 //Telefonos randoms
-void getTelefono(char nombreArchivo[]) {
+void getTelefono(stCliente cliente[])
+{
+    int dim = 12;
+    int enteroDni[12];
+    int vEnteroDni = 12;
+    char nTelefono[dim];
+    int i;
+    stCliente nuevoCliente;
 
-    for (int i = 0; i < 12; i++) {
-        int areaCode = rand() % 900 + 100;       // Genera un código de área de 3 dígitos (100-999)
-        int centralCode = rand() % 900 + 100;  // Genera los siguientes 3 dígitos (100-999)
-        int endCode = rand() % 10000;         // Genera los últimos 4 dígitos (0000-9999)
-
-        // Guarda el número de teléfono en el array de cadenas
-        sprintf(nombreArchivo[i], "%0d-%d-%d", areaCode, centralCode, endCode);
+    for(i=0; i< vEnteroDni; i++)
+    {
+        if(i == 0)
+        {
+            enteroDni[i] = 2;
+        }
+        else if(i == 1)
+        {
+            enteroDni[i] = 2;
+        }
+        else if(i == 2)
+        {
+            enteroDni[i] = (rand()%3)+1;
+        }
+        else if(i == 4)
+        {
+            //Para que el "15" del telefono no sea diferente a 4, 5 o 6.
+            enteroDni[i] = (rand()%3)+4;
+        }
+        else
+        {
+            enteroDni[i] = rand()%9;
+        }
     }
-}///pasar telefonos a char
-
-//Muestra de Telefonos
-void mostrarTelefonos(char telefonos[]) {
-    for (int i = 0; i < 12; i++) {
-        printf("%s\n", telefonos[i]);
+    for(i = 0; i < dim; i++)
+    {
+        nTelefono[i] = enteroDni[i] + '0';
     }
+    //Pasando a char
+    nTelefono[i] = '\0';
+    //Pisando valores para que haya guiones
+    nTelefono[3] = '-';
+    nTelefono[7] = '-';
+
+    strcpy(cliente, nTelefono);
 }
 
 
 stCliente getClienteRandom()
 {
     stCliente a;
-    a.id = getID();
+    getNumeroCliente(a.nroCliente);
     getNombre(a.nombre);
     getApellido(a.apellido);
     getDNI(a.dni);

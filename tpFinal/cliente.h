@@ -20,6 +20,8 @@ stCliente cargaCliente();
 void muestraCliente(stCliente a);
 void cargaArchClientesRandom(char nombreArchivo[], int cant);
 void muestraArchivoClientes(char nombreArchivo[]);
+void mostrarTelefonos(char telefonos[]);
+void muestraDNI(char nombreArchivo[], stCliente a[]);
 
 
 #endif // CLIENTE_H_INCLUDED

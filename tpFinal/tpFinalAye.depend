@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1717106918 source:c:\users\pc\desktop\programacion_uno\tpfinal\cliente.c
+1717458586 source:c:\users\pc\desktop\programacion_uno\tpfinal\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	"cliente.h"
@@ -8,19 +8,19 @@
 	<conio.h>
 	"mockCliente.h"
 
-1717093057 c:\users\pc\desktop\programacion_uno\tpfinal\cliente.h
+1717458586 c:\users\pc\desktop\programacion_uno\tpfinal\cliente.h
 
-1717094073 source:c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.c
+1717459393 source:c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"cliente.h"
 
-1717188148 source:c:\users\pc\desktop\programacion_uno\tpfinal\main.c
+1717458657 source:c:\users\pc\desktop\programacion_uno\tpfinal\main.c
 	<stdio.h>
 	<stdlib.h>
 	"cliente.h"
 	"mockCliente.h"
 
-1717001044 c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.h
+1717459253 c:\users\pc\desktop\programacion_uno\tpfinal\mockcliente.h
 

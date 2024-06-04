@@ -35,6 +35,7 @@ stCliente cargaCliente(){
     return a;
 }
 
+//Muestra de cliente modularizada
 void muestraCliente(stCliente a){
     printf("........................................");
     printf("\nID:................... %d", a.id);
@@ -47,6 +48,7 @@ void muestraCliente(stCliente a){
     printf("\n........................................");
 }
 
+//Carga el Archivo con clientes randoms generados en el get
 void cargaArchClientesRandom(char nombreArchivo[], int cant)
 {
     FILE* archi = fopen(nombreArchivo, "ab");
@@ -56,6 +58,7 @@ void cargaArchClientesRandom(char nombreArchivo[], int cant)
     {
         while(i<cant)
         {
+            //Funcion final del mockCliente
             cliente = getClienteRandom();
             fwrite(&cliente, sizeof(stCliente), 1, archi);
             i++;
@@ -64,6 +67,7 @@ void cargaArchClientesRandom(char nombreArchivo[], int cant)
     }
 }
 
+//Muestra la funcion anterior
 void muestraArchivoClientes(char nombreArchivo[])
 {
     stCliente cliente;
@@ -75,6 +79,24 @@ void muestraArchivoClientes(char nombreArchivo[])
             muestraCliente(cliente);
         }
         fclose(archi);
+    }
+}
+
+//Muestra de Telefonos
+void mostrarTelefonos(char telefonos[])
+{
+    for (int i = 0; i < 12; i++)
+    {
+        printf("%s\n", telefonos[i]);
+    }
+}
+
+//Muestra de DNI
+void muestraDNI(char nombreArchivo[], stCliente a[])
+{
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%00d\n", a[i]); // Imprime con ceros a la izquierda si es necesario
     }
 }
 
