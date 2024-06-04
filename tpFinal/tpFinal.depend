@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1716215598 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
+	<stdio.h>
+	<stdlib.h>
+	"movimiento.h"
+
+1716215611 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
+
+1716251965 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
+	"mockMovimiento.h"
+
+1716219316 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.h
+	<stdio.h>
+	<stdlib.h>
+	"time.h"
+
+1716992020 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1716989874 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.h
+
