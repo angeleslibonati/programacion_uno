@@ -53,23 +53,18 @@ void getCalleSantaClaraDelMar(char santaClaraDelMar[])
 //funcion getNro genera un char a partir de una secuencia random de enteros.
 void getNro(char calle[])
 {
-    int num[6];
-    int vnum = 5;
-    char letra[6];
+
+    int random = (rand()%3)+2;
+    char letra[random];
+    int vletra = random;
     int i;
-    // El siguiente (for) asigna una variable a un arreglo de dimension 6;
-    for(i = 0; i<vnum;i++)
+
+    for(i = 0; i < vletra;i++)
     {
-     num[i] = (rand()%9)+1;
-    }
-    // el siguiente (for) pasa el arrelo de enteros a un arreglo de char. La suma + '0' asegura que el int se transforme en un char
-    // para poder insignarlo al arreglo de char;
-    for(i = 0; i < vnum-1;i++)
-    {
-        letra[i] = num[i] + '0';
+        letra[i] = ((rand()%8)+1 )+'0';
     }
     // asigna en el ultimo caracter un \0 para transformar el arreglo de char en una cadena de caracteres;
-    num[i] = '\0';
+    letra[i] = '\0';
 
     return strcpy(calle,letra);
 }

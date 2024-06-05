@@ -9,16 +9,16 @@
 stDomicilio cargaUnDomicilio(){
     stDomicilio d;
 
-    printf("\n Ingrese una Calle:  ");
+    printf("\nIngrese una Calle:  ");
     fflush(stdin);
     gets(d.calle);
-    printf("\n Ingrese un Nro.:  ");
+    printf("\nIngrese un Nro.:  ");
     gets(d.nro);
-    printf("\n Ingrese una Localidad: ");
+    printf("\nIngrese una Localidad: ");
     gets(d.localidad);
-    printf("\n Ingrese una Provincia: ");
+    printf("\nIngrese una Provincia: ");
     gets(d.provincia);
-    printf("\n Codigo Postal: ");
+    printf("\nCodigo Postal: ");
     gets(d.cpos);
 
     return d;
@@ -26,11 +26,10 @@ stDomicilio cargaUnDomicilio(){
 
 void muestraUnDomicilio(stDomicilio d){
 
-printf("\n Calle:..........: %s", d.calle);
-printf("\n Nro:............: %s", d.nro);
-printf("\n Localidad:......: %s", d.localidad);
-printf("\n Provincia:......: %s", d.provincia);
-printf("\n Codigo Postal:..: %s", d.cpos);
-printf("\n =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=* \n");
+printf("\nCalle:................: %s", d.calle);
+printf("\nNro:..................: %s", d.nro);
+printf("\nLocalidad:............: %s", d.localidad);
+printf("\nProvincia:............: %s", d.provincia);
+printf("\nCodigo Postal:........: %s", d.cpos);
 
 }

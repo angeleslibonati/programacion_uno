@@ -5,15 +5,18 @@
 #include <conio.h>
 #include <time.h>
 #include "mockDomicilio.h"
+#include "mockCliente.h"
+#include "cliente.h"
+#include "domicilio.h"
 
 int main()
 {
     srand(time(NULL));
 
+stCliente cliente;
 
-    stDomicilio d;
-    d = getDomicilioRandom();
-    muestraUnDomicilio(d);
+cliente = cargaCliente();
+muestraCliente(cliente);
 
 
 
