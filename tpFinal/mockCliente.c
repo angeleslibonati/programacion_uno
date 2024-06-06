@@ -3,6 +3,8 @@
 #include <string.h>
 #include "cliente.h"
 #include "domicilio.h"
+#include "mockDomicilio.h"
+#include <ctype.h>
 
 int getId(int id)
 {
@@ -10,35 +12,57 @@ int getId(int id)
 
     return id;
 }
-void getNombre(char nombre[])
+void getNombre(char nombre[]) // OKKKK
 {
     char nombres[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
-                         "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofía","Tomás","Úrsula","Víctor","Wendy","Ximena","Yago","Zulema","Andrés","Belén",
+                         "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofia","Tomas","Ursula","Victor","Wendy","Ximena","Yago","Zulema","Andres","Belen",
                          "Camilo","Diana"
                         };
     strcpy(nombre,nombres[rand()%(sizeof(nombres)/30)]);
 }
 
-void getApellido(char apellido[])
+void getApellido(char apellido[]) //OKKKKK
 {
     char apellidos[][30]=
     {
-        "García","Martínez","Rodríguez","López","Hernández","González","Pérez","Sánchez","Ramírez","Cruz","Flores","Rivera",
-        "Gómez","Torres","Díaz","Álvarez","Jiménez","Morales","Ortiz","Reyes","Ruiz","Vargas","Mendoza","Castillo","Romero","Fernández",
-        "Silva","Ramos","Chávez","Herrera"
+        "Garcia","Martinez","Rodríguez","López","Hernandez","Gonzalez","Perez","Sanchez","Ramirez","Cruz","Flores","Rivera",
+        "Gomez","Torres","Diaz","Alvarez","Jimenez","Morales","Ortiz","Reyes","Ruiz","Vargas","Mendoza","Castillo","Romero","Fernandez",
+        "Silva","Ramos","Chavez","Herrera"
     };
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
+void getEmail(stCliente c)
+{
+    int i;
 
-//Generador de DNIS randoms
-void getDNI(char numerosDeDNI[])
+    char correos[][30]= {"@mail.com.ar"};
+    strcat(c.nombre, c.apellido);
+
+    char mail[30];
+
+
+
+
+}
+
+
+//Generador de DNIS randoms OKKK
+void getDNI(char dni[])
 {
 
-    for (int i = 0; i < 10; i++)
+    char dniChar[8];
+    int vletra = 8;
+    int i;
+
+    for(i = 0; i < vletra;i++)
     {
-        numerosDeDNI[i] = (rand() % 38000000) + 8000000; // Genera un número de hasta 8 dígitos (0-99999999)
+        dniChar[i] = rand()%9 + '0';
     }
+    // asigna en el ultimo caracter un \0 para transformar el arreglo de char en una cadena de caracteres;
+    dniChar[i] = '\0';
+
+    return strcpy(dni,dniChar);
 }
 
 
@@ -46,43 +70,37 @@ void getDNI(char numerosDeDNI[])
 //Telefonos randoms FUNCIONANDO !!!!
 void getTelefono(stCliente cliente[])
 {
-    int dim = 12;
-    int enteroDni[12];
-    int vEnteroDni = 12;
-    char nTelefono[dim];
+    int vTelefono = 11;
+    char nTelefono[12];
 
 
     int i;
     stCliente nuevoCliente;
-    for(i=0; i<vEnteroDni; i++)
+    for(i=0; i<vTelefono; i++)
     {
         if(i == 0)
         {
-            enteroDni[i] = 2;
+            nTelefono[i] = 2 + '0';
         }
         else if(i == 1)
         {
-            enteroDni[i] = 2;
+            nTelefono[i] = 2+ '0';
         }
         else if(i == 2)
         {
-            enteroDni[i] = (rand()%3)+1;
+            nTelefono[i] = ((rand()%3)+1)+ '0';
         }
         else if(i == 4)
         {
-            enteroDni[i] = (rand()%3)+4;
+            nTelefono[i] = ((rand()%3)+4)+ '0';
         }else
         {
-        enteroDni[i] = rand()%9;
+        nTelefono[i] = (rand()%9)+ '0';
         }
-    }
-    for(i = 0; i < dim; i++)
-    {
-        nTelefono[i] = enteroDni[i] + '0';
     }
     nTelefono[i] = '\0';
     nTelefono[3] = '-';
-    nTelefono[7] = '-';
+   // nTelefono[7] = '-';
 
     strcpy(cliente, nTelefono);
 }
@@ -102,16 +120,18 @@ stCliente getClienteRandom()
 {
     stCliente a;
 
-//    getNombre(a.nombre);
-//    getApellido(a.apellido);
+
+    getId(a.id);
+    getNombre(a.nombre);
+    getApellido(a.apellido);
     getDNI(a.dni);
-//    getEmail(a.email);
-    getTelefono(a.telefono);  //ok
+    getTelefono(a.telefono);
+    //getEmail(a);
+    a.domicilio = getDomicilioRandom();
+
 
     return a;
 }
-
-
 
 
 

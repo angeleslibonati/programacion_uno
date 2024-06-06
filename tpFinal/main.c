@@ -15,10 +15,13 @@ int main()
 
 stCliente cliente;
 
-cliente = cargaCliente();
+
+cliente = getClienteRandom();
+//domi = getDomicilioRandom();
+//muestraUnDomicilio(domi);
 muestraCliente(cliente);
 
-
+getEmail(cliente);
 
 
 

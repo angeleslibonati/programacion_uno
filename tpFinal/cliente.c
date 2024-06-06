@@ -14,6 +14,7 @@
 //Cargar un cliente   OKKKKK
 stCliente cargaCliente(){
     stCliente a;
+
     printf("\nIngrese el ID: ");
     scanf("%d", &a.id);
     printf("\nIngrese el numero del Cliente: ");
@@ -37,16 +38,16 @@ stCliente cargaCliente(){
 
     return a;
 }
-// OK
-void muestraCliente(stCliente a){
+// OKKKKK
+void muestraCliente(stCliente c){
     printf("........................................");
-    printf("\nID:...................: %d", a.id);
-    printf("\nNroCliente:...........: %d", a.nroCliente);
-    printf("\nNombre:...............: %s", a.nombre);
-    printf("\nApellido:.............: %s", a.apellido);
-    printf("\nDNI:..................: %s", a.dni);
-    printf("\nEMAIL:................: %s", a.email);
-    muestraUnDomicilio(a.domicilio);
-    printf("\nTelefono:.............: %s", a.telefono);
+    printf("\nID:...................: %d", c.id);
+    printf("\nNroCliente:...........: %d", c.nroCliente);
+    printf("\nNombre:...............: %s", c.nombre);
+    printf("\nApellido:.............: %s", c.apellido);
+    printf("\nDNI:..................: %s", c.dni);
+    printf("\nEMAIL:................: %s", c.email);
+    printf("\nTelefono:.............: %s", c.telefono);
+    muestraUnDomicilio(c.domicilio);
     printf("\n........................................");
 }
