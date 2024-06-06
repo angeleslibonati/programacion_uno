@@ -1,5 +1,6 @@
 #ifndef CLIENTE_H_INCLUDED
 #define CLIENTE_H_INCLUDED
+#include "domicilio.h"
 
 typedef struct
 {
@@ -9,19 +10,15 @@ typedef struct
     char apellido[30];
     char dni[10];
     char email[30];
-//  stDomicilio domicilio; /// Falta archivo de domicilio
+    stDomicilio domicilio;
     char telefono[12];
     int eliminado; /// 0 si está activo - 1 si está eliminado
-    //Falta hacer
+
 
 }stCliente;
 
 stCliente cargaCliente();
 void muestraCliente(stCliente a);
-void cargaArchClientesRandom(char nombreArchivo[], int cant);
-void muestraArchivoClientes(char nombreArchivo[]);
-void mostrarTelefonos(char telefonos[]);
-void muestraDNI(char nombreArchivo[], stCliente a[]);
 
 
 #endif // CLIENTE_H_INCLUDED

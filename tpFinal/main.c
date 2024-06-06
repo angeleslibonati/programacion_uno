@@ -1,14 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cliente.h"
+#include "domicilio.h"
+#include <string.h>
+#include <conio.h>
+#include <time.h>
+#include "mockDomicilio.h"
 #include "mockCliente.h"
-
-#define DIM 100
-#define AR_CLIENTE "cliente.dat"
+#include "cliente.h"
+#include "domicilio.h"
 
 int main()
 {
-    srand(time(NULL)); // Inicializa la semilla del generador de números aleatorios
+    srand(time(NULL));//Generador de semilla random
+
+    stCliente cliente;
+
+
+    cliente = getClienteRandom();
+//  domi = getDomicilioRandom();
+//  muestraUnDomicilio(domi);
+    muestraCliente(cliente);
+
+    getEmail(cliente);
 
     return 0;
 }
+
