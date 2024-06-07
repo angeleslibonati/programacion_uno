@@ -21,9 +21,9 @@ cliente = getClienteRandom();
 //muestraUnDomicilio(domi);
 muestraCliente(cliente);
 
+
+
 getEmail(cliente);
-
-
 
 
 

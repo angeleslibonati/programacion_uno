@@ -32,17 +32,29 @@ void getApellido(char apellido[]) //OKKKKK
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-void getEmail(stCliente c)
+void getEmail(stCliente cliente)
 {
-    int i;
+    char dominio[20];
+    printf("ingrese mail");
+    fflush(stdin);
+    gets(dominio);
 
-    char correos[][30]= {"@mail.com.ar"};
-    strcat(c.nombre, c.apellido);
-
+    char nombres[9];
+    char apellidos[9];
     char mail[30];
+    char completo[30];
+    printf("%s",nombres);
+    strcpy(nombres,cliente.nombre);
+    strcpy(apellidos,cliente.apellido);
+    printf("%s",nombres);
+    printf("%s",apellidos);
+    strcpy(mail,strcat(nombres,apellidos));
+    printf("-%s-",mail);    strcpy(completo,strcat(mail,dominio));
+    printf("|%s|",completo);
+    printf("-|%s|-",dominio);
 
 
-
+    //strcpy(cliente->email,mail);
 
 }
 
@@ -55,7 +67,7 @@ void getDNI(char dni[])
     int vletra = 8;
     int i;
 
-    for(i = 0; i < vletra;i++)
+    for(i = 0; i < vletra; i++)
     {
         dniChar[i] = rand()%9 + '0';
     }
@@ -93,14 +105,15 @@ void getTelefono(stCliente cliente[])
         else if(i == 4)
         {
             nTelefono[i] = ((rand()%3)+4)+ '0';
-        }else
+        }
+        else
         {
-        nTelefono[i] = (rand()%9)+ '0';
+            nTelefono[i] = (rand()%9)+ '0';
         }
     }
     nTelefono[i] = '\0';
     nTelefono[3] = '-';
-   // nTelefono[7] = '-';
+    // nTelefono[7] = '-';
 
     strcpy(cliente, nTelefono);
 }
@@ -120,13 +133,12 @@ stCliente getClienteRandom()
 {
     stCliente a;
 
-
     getId(a.id);
     getNombre(a.nombre);
     getApellido(a.apellido);
     getDNI(a.dni);
     getTelefono(a.telefono);
-    //getEmail(a);
+    getEmail(a);
     a.domicilio = getDomicilioRandom();
 
 
