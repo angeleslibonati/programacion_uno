@@ -9,7 +9,7 @@ int getFileNumber();
 void getNombre(char nombre[]);
 void getApellido(char apellido[]);
 void getDNI(char dni[]);
-void getEmail(stCliente c);
+void getEmailRandom(stCliente* a);
 void getTelefono(char telefono[]);
 stCliente getClienteRandom();
 

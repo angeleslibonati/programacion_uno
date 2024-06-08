@@ -36,16 +36,17 @@ void getApellido(char apellido[])
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-//Falta realizar la carga random de emails para utilizar con esta funcion.
-void getEmail(stCliente c)
+//Falta realizar la carga random de emails para utilizar con esta funcion.//PROBANDO
+//Genera un mail a partir del nombre y apellido del cliente
+void getEmailRandom(stCliente* a)
 {
-    int i;
+    char mail[50] = "";
+    char dominio[] = "@gmail.com";
+    strcat(mail, a->nombre);
+    strcat(mail, a->apellido);
+    //strcat(mail, dominio);
 
-    char correos[][30]= {"@mail.com.ar"};
-    strcat(c.nombre, c.apellido);
-
-    char mail[30];
-
+    strcpy(a->email, mail);
 }
 
 
@@ -112,13 +113,12 @@ stCliente getClienteRandom()
 {
     stCliente a;
 
-
     getId(a.id);
     getNombre(a.nombre);
     getApellido(a.apellido);
     getDNI(a.dni);
     getTelefono(a.telefono);
-    //getEmail(a);
+    getEmailRandom(a.email);
     a.domicilio = getDomicilioRandom();
 
 

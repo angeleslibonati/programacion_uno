@@ -40,7 +40,6 @@ stCliente cargaCliente(){
 }
 //Muestra de un cliente
 void muestraCliente(stCliente c){
-    printf("........................................");
     printf("\nID:...................: %d", c.id);
     printf("\nNroCliente:...........: %d", c.nroCliente);
     printf("\nNombre:...............: %s", c.nombre);
@@ -49,7 +48,7 @@ void muestraCliente(stCliente c){
     printf("\nEMAIL:................: %s", c.email);
     printf("\nTelefono:.............: %s", c.telefono);
     muestraUnDomicilio(c.domicilio);
-    printf("\n........................................");
+    printf("\n같같같같같같같같같같같같같같같같같같같같같같");
 }
 
 //Muestra de Telefonos
@@ -58,5 +57,38 @@ void mostrarTelefonos(char telefonos[])
     for (int i = 0; i < 12; i++)
     {
         printf("%s\n", telefonos[i]);
+    }
+}
+
+//Cargas el archivo con clientes randoms segun la cantidad pasada por parametro
+void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad)
+{
+    FILE* archi = fopen(nombreArchivo, "ab");
+    stCliente cliente;
+    int i = 0;
+    if(archi)
+    {
+        while(i<cantidad)
+        {
+            cliente = getClienteRandom();
+            fwrite(&cliente, sizeof(stCliente), 1, archi);
+            i++;
+        }
+        fclose(archi);
+    }
+}
+
+//Mostras el archivo con clientes random de la funcion anterior
+void muestraArchivoClientes(char nombreArchivo[])
+{
+    stCliente cliente;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi)
+    {
+        while(fread(&cliente, sizeof(stCliente), 1, archi)>0)
+        {
+            muestraCliente(cliente);
+        }
+        fclose(archi);
     }
 }

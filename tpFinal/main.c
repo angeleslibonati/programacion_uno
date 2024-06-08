@@ -9,19 +9,23 @@
 #include "cliente.h"
 #include "domicilio.h"
 
+#define AR_CLIENTE "clientes.dat"
+
 int main()
 {
     srand(time(NULL));//Generador de semilla random
 
     stCliente cliente;
 
+    cargaArchivoClientesRandoms(AR_CLIENTE, 2);//FUNCIONANDO
+    muestraArchivoClientes(AR_CLIENTE); //FUNCIONANDO
 
-    cliente = getClienteRandom();
-//  domi = getDomicilioRandom();
-//  muestraUnDomicilio(domi);
-    muestraCliente(cliente);
 
-    getEmail(cliente);
+//    cliente = getClienteRandom();
+//    domi = getDomicilioRandom();
+//    muestraUnDomicilio(domi);
+//    muestraCliente(cliente);
+
 
     return 0;
 }

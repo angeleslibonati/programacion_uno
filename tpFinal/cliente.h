@@ -19,6 +19,9 @@ typedef struct
 
 stCliente cargaCliente();
 void muestraCliente(stCliente a);
+void mostrarTelefonos(char telefonos[]);
+void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad);
+void muestraArchivoClientes(char nombreArchivo[]);
 
 
 #endif // CLIENTE_H_INCLUDED
