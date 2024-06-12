@@ -6,17 +6,55 @@
 #include "mockDomicilio.h"
 #include <ctype.h>
 
-int getId(int id)
+#define AR_CLIENTE "archivoClientes.dat"
+
+
+
+int getId (FILE * archi)
 {
-    id += 1;
+    stCliente cliente;
+    int id;
+    fseek(archi, 0, 2);
+    int cant = ftell(archi)/sizeof(stCliente);
+
+    if(cant > 0)
+    {
+        id = cant + 1;
+    }
+    else
+    {
+        id = 1;
+    }
 
     return id;
 }
+
+
+int getNroCliente(FILE* archi, int id, char dni[])
+{
+
+    int nCliente;
+    stCliente cliente;
+
+
+    if(archi)
+    {
+
+
+        nCliente = atoi(dni) + id;
+
+    }
+
+    return nCliente;
+}
+
+
 void getNombre(char nombre[]) // OKKKK
 {
-    char nombres[][30]= {"Alejandro","Beatriz","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
+
+    char nombres[][30]= {"Alejandro","Carlos","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
                          "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofia","Tomas","Ursula","Victor","Wendy","Ximena","Yago","Zulema","Andres","Belen",
-                         "Camilo","Diana"
+                         "Camilo","Juana"
                         };
     strcpy(nombre,nombres[rand()%(sizeof(nombres)/30)]);
 }
@@ -25,38 +63,14 @@ void getApellido(char apellido[]) //OKKKKK
 {
     char apellidos[][30]=
     {
-        "Garcia","Martinez","Rodríguez","López","Hernandez","Gonzalez","Perez","Sanchez","Ramirez","Cruz","Flores","Rivera",
+        "Garcia","Martinez","Rodriguez","Lopez","Hernandez","Gonzalez","Perez","Sanchez","Ramirez","Cruz","Flores","Rivera",
         "Gomez","Torres","Diaz","Alvarez","Jimenez","Morales","Ortiz","Reyes","Ruiz","Vargas","Mendoza","Castillo","Romero","Fernandez",
         "Silva","Ramos","Chavez","Herrera"
     };
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-void getEmail(stCliente cliente)
-{
-    char dominio[20];
-    printf("ingrese mail");
-    fflush(stdin);
-    gets(dominio);
 
-    char nombres[9];
-    char apellidos[9];
-    char mail[30];
-    char completo[30];
-    printf("%s",nombres);
-    strcpy(nombres,cliente.nombre);
-    strcpy(apellidos,cliente.apellido);
-    printf("%s",nombres);
-    printf("%s",apellidos);
-    strcpy(mail,strcat(nombres,apellidos));
-    printf("-%s-",mail);    strcpy(completo,strcat(mail,dominio));
-    printf("|%s|",completo);
-    printf("-|%s|-",dominio);
-
-
-    //strcpy(cliente->email,mail);
-
-}
 
 
 //Generador de DNIS randoms OKKK
@@ -128,17 +142,34 @@ void mostrarTelefonos(char telefonos[])
     }
 }
 
+void getEmail(char mail[],char nombre[], char apellido[])
+{
+    char mailCompleto[30];
+    char dominio[] = {"@mail.com"};
+    strcat(mail,tolower(nombre));
+    strcat(mail,apellido);
+    strcat(mail,dominio);
+    for(int i = 0; i < strlen(mail); i++)
+    {
+        mailCompleto[i] = tolower(mail[i]);
 
-stCliente getClienteRandom()
+    }
+    mailCompleto[strlen(mail)] = '\0';
+    strcpy(mail,mailCompleto);
+}
+
+stCliente getClienteRandom(FILE * archi)
 {
     stCliente a;
 
-    getId(a.id);
+
+    a.id = getId(archi);
     getNombre(a.nombre);
     getApellido(a.apellido);
     getDNI(a.dni);
+    a.nroCliente = getNroCliente(archi,a.id,a.dni);
     getTelefono(a.telefono);
-    getEmail(a);
+    getEmail(a.email,a.nombre,a.apellido);
     a.domicilio = getDomicilioRandom();
 
 

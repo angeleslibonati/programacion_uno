@@ -19,6 +19,8 @@ typedef struct
 
 stCliente cargaCliente(); // OK
 void muestraCliente(stCliente a); // OK
+void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad);
+void muestraArchivoClientes(char nombreArchivo[]);
 
 
 
