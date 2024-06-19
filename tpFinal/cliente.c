@@ -243,11 +243,6 @@ void modificaCliente(char archivo[], int numCliente)
             {
                 printf("\nIngresa el nuevo numero de cliente:");
                 scanf("%i", &dato);
-                while(verificaNroCliente(AR_CLIENTE, dato) == 1)
-                {
-                    printf("\nNro de cliente ya existente, intente otro: ");
-                    scanf("%i", &dato);
-                }
                 a.nroCliente = dato;
             }
             opcion = 0;
@@ -261,12 +256,6 @@ void modificaCliente(char archivo[], int numCliente)
                 printf("\nIngresa el nuevo nombre:");
                 fflush(stdin);
                 gets(aux);
-                while(validarPalabra(aux) == 1)
-                {
-                    printf("\nLo ingresado no es un nombre, intente de nuevo:");
-                    fflush(stdin);
-                    gets(aux);
-                }
                 strcpy(a.nombre, aux);
             }
             opcion = 0;
@@ -294,13 +283,6 @@ void modificaCliente(char archivo[], int numCliente)
                 printf("\nIngrese el nuevo dni:");
                 fflush(stdin);
                 gets(aux);
-
-                while(verificaDniCliente(AR_CLIENTE, aux) == 1)
-                {
-                    printf("\nDNI ya existente, intente ingresar otro: ");
-                    fflush(stdin);
-                    gets(aux);
-                }
                 strcpy(a.dni, aux);
             }
             opcion = 0;
@@ -315,13 +297,6 @@ void modificaCliente(char archivo[], int numCliente)
                 fflush(stdin);
                 gets(aux);
                 strcat(aux, "@gmail.com");
-                while(verificaEmailCliente(AR_CLIENTE, aux) == 1)
-                {
-                    printf("\nEmail ya existente, intente ingresar otro: ");
-                    fflush(stdin);
-                    gets(aux);
-                    strcat(aux, "@gmail.com");
-                }
                 strcpy(a.email, aux);
             }
             opcion = 0;
@@ -335,13 +310,6 @@ void modificaCliente(char archivo[], int numCliente)
                 printf("\nIngrese el nuevo telefono:");
                 fflush(stdin);
                 gets(aux);
-
-                while(verificaTelCliente(AR_CLIENTE, aux) == 1)
-                {
-                    printf("\nTelefono ya existente, intente ingresar otro: ");
-                    fflush(stdin);
-                    gets(aux);
-                }
                 strcpy(a.telefono, aux);
             }
             fseek(archi, -1*sizeof(stCliente), SEEK_CUR);
@@ -367,7 +335,7 @@ void consultaCliente(char archivo[], int numCliente)
         {
             fseek(archi, (buscaIdCliente(archivo, numCliente) - 1)*sizeof(stCliente), SEEK_SET);
             fread(&a, sizeof(stCliente), 1, archi);
-            muestraUnCliente(a);
+            muestraCliente(a);
         }
         else
         {
