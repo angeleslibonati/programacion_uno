@@ -4,13 +4,13 @@
 #include "domicilio.h"
 
 
-int getId(int id);
-int getFileNumber();
+int id (FILE * archi);
+void getNumeroCliente(char dni, int id);
 void getNombre(char nombre[]);
 void getApellido(char apellido[]);
 void getDNI(char dni[]);
-void getEmailRandom(stCliente* a);
+void getEmail(char mail[],char nombre[], char apellido[]);
 void getTelefono(char telefono[]);
-stCliente getClienteRandom();
+stCliente getClienteRandom(FILE* archi);
 
 #endif // MOCKCLIENTE_H_INCLUDED

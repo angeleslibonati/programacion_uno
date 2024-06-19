@@ -22,6 +22,7 @@ void muestraCliente(stCliente a);
 void mostrarTelefonos(char telefonos[]);
 void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad);
 void muestraArchivoClientes(char nombreArchivo[]);
+int cuentaRegistroArchivo(char nombreArchivo[], int tamEstructura);
 
 
 #endif // CLIENTE_H_INCLUDED

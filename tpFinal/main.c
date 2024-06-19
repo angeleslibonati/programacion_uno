@@ -17,16 +17,22 @@ int main()
 
     stCliente cliente;
 
-    cargaArchivoClientesRandoms(AR_CLIENTE, 2);//FUNCIONANDO
+    cargaArchivoClientesRandoms(AR_CLIENTE, 5);//FUNCIONANDO
     muestraArchivoClientes(AR_CLIENTE); //FUNCIONANDO
 
+    //probando las cantidades
+//    printf("La cantidad es: %d", cuentaRegistroArchivo(AR_CLIENTE, sizeof(stCliente)));
 
-//    cliente = getClienteRandom();
-//    domi = getDomicilioRandom();
-//    muestraUnDomicilio(domi);
-//    muestraCliente(cliente);
+
+
 
 
     return 0;
 }
+
+
+
+
+
+
 

@@ -6,10 +6,23 @@
 #include "mockDomicilio.h"
 #include <ctype.h>
 
-//Funcion para ser utilizada en otra, generador de id
-int getId(int id)
+
+//ID autoincremental
+int id (FILE * archi)
 {
-    id += 1;
+    stCliente cliente;
+    int id;
+    fseek(archi, 0, 2);
+    int cant = ftell(archi)/sizeof(stCliente);
+
+    if(cant > 0)
+    {
+        id = cant + 1;
+    }
+    else
+    {
+        id = 1;
+    }
 
     return id;
 }
@@ -29,25 +42,44 @@ void getApellido(char apellido[])
 {
     char apellidos[][30]=
     {
-        "Garcia","Martinez","Rodríguez","López","Hernandez","Gonzalez","Perez","Sanchez","Ramirez","Cruz","Flores","Rivera",
+        "Garcia","Martinez","Rodríguez","Lopez","Hernandez","Gonzalez","Perez","Sanchez","Ramirez","Cruz","Flores","Rivera",
         "Gomez","Torres","Diaz","Alvarez","Jimenez","Morales","Ortiz","Reyes","Ruiz","Vargas","Mendoza","Castillo","Romero","Fernandez",
         "Silva","Ramos","Chavez","Herrera"
     };
     strcpy(apellido, apellidos[rand()%(sizeof(apellidos)/30)]);
 }
 
-//Falta realizar la carga random de emails para utilizar con esta funcion.//PROBANDO
-//Genera un mail a partir del nombre y apellido del cliente
-void getEmailRandom(stCliente* a)
-{
-    char mail[50] = "";
-    char dominio[] = "@gmail.com";
-    strcat(mail, a->nombre);
-    strcat(mail, a->apellido);
-    //strcat(mail, dominio);
 
-    strcpy(a->email, mail);
+//Genera un mail a partir del nombre y apellido del cliente
+void getEmail(char mail[],char nombre[], char apellido[])
+{
+    char mailCompleto[30];
+    char dominio[] = {"@mail.com"};
+    strcat(mail,tolower(nombre));
+    strcat(mail,apellido);
+    strcat(mail,dominio);
+    for(int i = 0; i < strlen(mail); i++)
+    {
+        mailCompleto[i] = tolower(mail[i]);
+
+    }
+    mailCompleto[strlen(mail)] = '\0';
+    strcpy(mail, mailCompleto);
 }
+
+
+
+// Función que genera el número de cliente
+void getNumeroCliente(char dni, int id) {
+    char numeroCliente[50];
+
+    // Concatenamos "DNI-ID"
+    strcpy(numeroCliente, dni);
+    strcat(numeroCliente, "-");
+    strcat(numeroCliente, id);
+
+}
+
 
 
 //Generador de DNIS randoms
@@ -58,7 +90,7 @@ void getDNI(char dni[])
     int vletra = 8;
     int i;
 
-    for(i = 0; i < vletra;i++)
+    for(i = 0; i < vletra; i++)
     {
         dniChar[i] = rand()%9 + '0';
     }
@@ -95,9 +127,10 @@ void getTelefono(stCliente cliente[])
         else if(i == 4)
         {
             nTelefono[i] = ((rand()%3)+4)+ '0';
-        }else
+        }
+        else
         {
-        nTelefono[i] = (rand()%9)+ '0';
+            nTelefono[i] = (rand()%9)+ '0';
         }
     }
     nTelefono[i] = '\0';
@@ -109,16 +142,16 @@ void getTelefono(stCliente cliente[])
 
 
 
-stCliente getClienteRandom()
+stCliente getClienteRandom(FILE* archi)
 {
     stCliente a;
 
-    getId(a.id);
-    getNombre(a.nombre);
+    a.id = id(archi);
+    getNumeroCliente(a.dni, a.id);
     getApellido(a.apellido);
     getDNI(a.dni);
     getTelefono(a.telefono);
-    getEmailRandom(a.email);
+    getEmail(a.email, a.nombre, a.apellido);
     a.domicilio = getDomicilioRandom();
 
 
