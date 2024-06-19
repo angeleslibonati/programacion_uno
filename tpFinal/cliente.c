@@ -9,6 +9,7 @@
 #include "mockDomicilio.h"
 
 #define DIM 100
+#define AR_CLIENTE
 
 //Cargar un cliente
 stCliente cargaCliente()
@@ -102,85 +103,85 @@ int cuentaRegistroArchivo(char nombreArchivo[], int tamEstructura)
 }
 
 
-void muestraMenuClientes()
-{
-    printf("\nMenu Clientes: ");
-    printf("\n1 - Listado de clientes");
-    printf("\n2 - Consultar un cliente");
-    printf("\n3 - Dar de alta un cliente nuevo");
-    printf("\n4 - Dar de baja un cliente existente");
-    printf("\n5 - Modificar un cliente existente");
-    printf("\n\n\n");
-    printf("ESC para salir o cualquier tecla para continuar");
-}
-
-switch(opcion)
-{
-case 49:
-    system("cls");
-    muestraMenuClientes();
-
-    opcion = getch();
-
-    switch(opcion)
-    {
-    case 49:
-        system("cls");
-        printf("\nLISTADO DE CLIENTES: ");
-        muestraArchivoClientes(AR_CLIENTE);
-        getch();
-        break;
-    case 50:
-        system("cls");
-        printf("Ingrese el numero del cliente a consultar:");
-        scanf("%i", &dato);
-        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
-        {
-            printf("El cliente no existe, intente de nuevo:");
-            scanf("%i", &dato);
-        }
-        consultaCliente(AR_CLIENTE, dato);
-        getch();
-        break;
-    case 51:
-        system("cls");
-        altaCliente(AR_CLIENTE);
-        system("cls");
-        printf("Cliente dado de alta satisfactoriamente!!!");
-        getch();
-        break;
-    case 52:
-        system("cls");
-        printf("Ingrese el numero del cliente a dar de baja:");
-        scanf("%i", &dato);
-        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
-        {
-            printf("El cliente no existe, intente de nuevo:");
-            scanf("%i", &dato);
-        }
-        bajaCliente(AR_CLIENTE, dato);
-        system("cls");
-        printf("Cliente dado de baja satisfactoriamente!!!");
-        getch();
-        break;
-    case 53:
-        system("cls");
-        printf("Ingrese el numero del cliente a modificar:");
-        scanf("%i", &dato);
-        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
-        {
-            printf("El cliente no existe, intente de nuevo:");
-            scanf("%i", &dato);
-        }
-        modificaCliente(AR_CLIENTE, dato);
-        system("cls");
-        printf("Cliente modificado satisfactoriamente!!!");
-        getch();
-        break;
-    }
-    break;
-
-}
+//void muestraMenuClientes()
+//{
+//    printf("\nMenu Clientes: ");
+//    printf("\n1 - Listado de clientes");
+//    printf("\n2 - Consultar un cliente");
+//    printf("\n3 - Dar de alta un cliente nuevo");
+//    printf("\n4 - Dar de baja un cliente existente");
+//    printf("\n5 - Modificar un cliente existente");
+//    printf("\n\n\n");
+//    printf("ESC para salir o cualquier tecla para continuar");
+//}
+//
+//switch(opcion)
+//{
+//case 49:
+//    system("cls");
+//    muestraMenuClientes();
+//
+//    opcion = getch();
+//
+//    switch(opcion)
+//    {
+//    case 49:
+//        system("cls");
+//        printf("\nLISTADO DE CLIENTES: ");
+//        muestraArchivoClientes(AR_CLIENTE);
+//        getch();
+//        break;
+//    case 50:
+//        system("cls");
+//        printf("Ingrese el numero del cliente a consultar:");
+//        scanf("%i", &dato);
+//        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
+//        {
+//            printf("El cliente no existe, intente de nuevo:");
+//            scanf("%i", &dato);
+//        }
+//        consultaCliente(AR_CLIENTE, dato);
+//        getch();
+//        break;
+//    case 51:
+//        system("cls");
+//        altaCliente(AR_CLIENTE);
+//        system("cls");
+//        printf("Cliente dado de alta satisfactoriamente!!!");
+//        getch();
+//        break;
+//    case 52:
+//        system("cls");
+//        printf("Ingrese el numero del cliente a dar de baja:");
+//        scanf("%i", &dato);
+//        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
+//        {
+//            printf("El cliente no existe, intente de nuevo:");
+//            scanf("%i", &dato);
+//        }
+//        bajaCliente(AR_CLIENTE, dato);
+//        system("cls");
+//        printf("Cliente dado de baja satisfactoriamente!!!");
+//        getch();
+//        break;
+//    case 53:
+//        system("cls");
+//        printf("Ingrese el numero del cliente a modificar:");
+//        scanf("%i", &dato);
+//        while(verificaNroCliente(AR_CLIENTE, dato) == 0)
+//        {
+//            printf("El cliente no existe, intente de nuevo:");
+//            scanf("%i", &dato);
+//        }
+//        modificaCliente(AR_CLIENTE, dato);
+//        system("cls");
+//        printf("Cliente modificado satisfactoriamente!!!");
+//        getch();
+//        break;
+//    }
+//    break;
+//
+//}
 
 //Carga un cliente al archivo por teclado
 void altaCliente(char archivo[])
@@ -394,7 +395,7 @@ int verificaNroCliente(char archivo[], int dato)
         }
         fclose(archi);
     }
-    return flag;
+    return flag;
 }
 
 //Recibe el numero de cliente y devuelve 0 si no existe y el id del cliente si existe
