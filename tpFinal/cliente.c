@@ -12,43 +12,51 @@
 #define AR_CLIENTE "archivoClientes.dat"
 
 //Cargar un cliente   OKKKKK
-stCliente cargaCliente(){
-    stCliente a;
+stCliente cargaCliente()
+{
+    stCliente cliente;
 
-    printf("\nIngrese el ID: ");
-    scanf("%d", &a.id);
-    printf("\nIngrese el numero del Cliente: ");
-    scanf("%d", &a.nroCliente);
+//   printf("\nIngrese el ID: ");
+//   scanf("%d", &cliente.id);
+
+//    printf("\nIngrese el numero del Cliente: ");
+//    scanf("%d", &cliente.nroCliente);
+
+
+
     printf("\nIngrese el Nombre: ");
     fflush(stdin);
-    gets(a.nombre);
+    gets(cliente.nombre);
     printf("\nIngrese el Apellido: ");
     fflush(stdin);
-    gets(a.apellido);
+    gets(cliente.apellido);
     printf("\nIngrese el DNI: ");
     fflush(stdin);
-    gets(a.dni);
+    gets(cliente.dni);
     printf("\nIngrese el EMAIL: ");
     fflush(stdin);
-    gets(a.email);
-    a.domicilio = cargaUnDomicilio();
+    gets(cliente.email);
+    cliente.domicilio = cargaUnDomicilio();
     printf("\nIngrese el Telefono: ");
     fflush(stdin);
-    gets(a.telefono);
+    gets(cliente.telefono);
+    cliente.eliminado = 0;
 
-    return a;
+    return cliente;
 }
 // OKKKKK
-void muestraCliente(stCliente c){
+void muestraCliente(stCliente cliente)
+{
     printf("........................................");
-    printf("\nID:...................: %d", c.id);
-    printf("\nNroCliente:...........: %d", c.nroCliente);
-    printf("\nNombre:...............: %s", c.nombre);
-    printf("\nApellido:.............: %s", c.apellido);
-    printf("\nDNI:..................: %s", c.dni);
-    printf("\nEMAIL:................: %s", c.email);
-    printf("\nTelefono:.............: %s", c.telefono);
-    muestraUnDomicilio(c.domicilio);
+    printf("\nID:...................: %d", cliente.id);
+    printf("\nNroCliente:...........: %d", cliente.nroCliente);
+    printf("\nNombre:...............: %s", cliente.nombre);
+    printf("\nApellido:.............: %s", cliente.apellido);
+    printf("\nDNI:..................: %s", cliente.dni);
+    printf("\nEMAIL:................: %s", cliente.email);
+    printf("\nTelefono:.............: %s", cliente.telefono);
+    muestraUnDomicilio(cliente.domicilio);
+    printf("\nELiminado:............: %d", cliente.eliminado);
     printf("\n........................................");
 }
 
@@ -79,8 +87,326 @@ void muestraArchivoClientes(char nombreArchivo[])
     {
         while(fread(&cliente, sizeof(stCliente), 1, archi)>0)
         {
-            muestraCliente(cliente);
+            if(cliente.eliminado == 1)
+            {
+                muestraCliente(cliente);
+            }
         }
         fclose(archi);
     }
 }
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<algoritmo de Ayelen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+void altaCliente(char archivo[])
+{
+    FILE* archi = fopen(archivo, "ab");
+    stCliente cliente;
+    if(archi)
+    {
+        cliente = cargaCliente();
+        cliente.id = getId(archi);
+        cliente.nroCliente = getNroCliente(archivo,cliente.dni);
+        fwrite(&cliente, sizeof(stCliente), 1, archi);
+        fclose(archi);
+    }
+}
+
+
+int bajaCliente (char nombreArchivo[], int numId) {
+    stCliente cliente;
+    int posId;
+    int flag = 0;
+    cliente = buscarClientePorId(nombreArchivo, numId);
+    posId = sizeof(stCliente) * (cliente.id - 1) ;
+
+    FILE * archi = fopen(nombreArchivo, "r+b");
+
+    if (archi) {
+        if (cliente.id > 0) {
+            if(cliente.eliminado == 0){
+                cliente.eliminado = 1;
+            } else {
+                cliente.eliminado = 0;
+            }
+            fseek(archi, posId, SEEK_SET);
+            fwrite(&cliente, sizeof(stCliente), 1, archi);
+            flag = 1;
+        }
+        fclose(archi);
+    }
+
+    return flag;
+}
+
+
+//Busca cuenta por ID. Si cuenta.id == 0, la cuenta no existe
+stCliente buscarClientePorId(char nombreArchivo [], int numId) {
+    stCliente cliente;
+    cliente.id = 0;
+    int flag = 0;
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    if (archi) {
+        while (flag == 0 && fread(&cliente, sizeof(stCliente), 1, archi) > 0) {
+            if (cliente.id == numId) {
+                flag = 1;
+            }
+        }
+        fclose(archi);
+    }
+    return cliente;
+}
+
+int  modificaNombre(FILE * archi,int id, char nombre[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+        cliente = buscarClientePorId(archi,id);
+        strcpy(cliente.nombre, nombre);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+    }
+}
+
+int  modificaMail(FILE * archi,int id, char mail[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+        cliente = buscarClientePorId(archi,id);
+        strcpy(cliente.email, mail);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+    }
+}
+
+int  modificaApellido(FILE * archi,int id, char apellido[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+
+        cliente = buscarClientePorId(archi,id);
+        strcpy(cliente.apellido, apellido);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+    }
+}
+
+int  modificaDni(FILE * archi,int id, char dni[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+        cliente = buscarClientePorId(archi,id);
+        if(buscaClientePorDni(archi,dni)==1)
+        {
+            printf("El dni ya existe en la Base de datos");
+
+        }else
+        {
+            strcpy(cliente.dni, dni);
+            fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+            fwrite(&cliente,sizeof(stCliente),1,archi);
+        }
+
+    }
+}
+
+int  modificaDomicilio(FILE * archi,int id, char domicilio[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+
+        cliente = buscarClientePorId(archi,id);
+        strcpy(cliente.domicilio.calle,domicilio);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+
+    }
+}
+
+int  modificaTelefono(FILE *archi,int id, char telefono[])
+{
+    stCliente cliente;
+    if(archi)
+    {
+        cliente = buscarClientePorId(archi,id);
+        strcpy(cliente.telefono, telefono);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+    }
+}
+
+
+// Busca Cliente por dni
+int buscaClientePorDni (FILE * archi, char dni[])
+{
+    int flag = 0;
+    stCliente cliente;
+
+    if (archi != NULL){
+
+        while (fread(&cliente,sizeof(stCliente),1, archi) > 0){
+
+            if (strcmp(cliente.dni, dni) == 0){
+
+                flag = 1;
+            }
+        }
+    }
+
+    return flag;
+}
+
+
+
+void modificaCliente(char nombreArchivo[], int id, int opcion)
+{
+    stCliente cliente;
+    FILE * archi = fopen(nombreArchivo, "r+b");
+    if(archi)
+    {
+        swithcSubMenuModificarCliente(archi, id,opcion);
+        fclose(archi);
+    }
+
+}
+
+void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
+{
+    do
+    {
+
+
+        switch (opcion)
+        {
+        case 0:
+
+            //volver al menu anterior
+            system ("cls");
+            imprimirCabecera("CLIENTE");
+            printf("\n\n");
+//            imprimeOpcionSubMenu();
+//            switchSubMenuClientes();
+            break;
+
+        case 1:
+
+            //MODIFICA EL NOMBRE DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("NOMBRE");
+            printf("\n\n");
+            printf("Ingrese el nuevo Nombre: \n");
+            char nuevoNombre[30];
+            fflush(stdin);
+            gets(nuevoNombre);
+            system("pause");
+            printf("Estoy aca \n");
+            modificaNombre(archi,id,nuevoNombre);
+
+            break;
+
+        case 2:
+
+            //MODIFICA EL APELLIDO DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("APELLIDO");
+            printf("\n\n");
+            printf("Ingrese el nuevo Apellido: \n");
+            char nuevoApellido[30];
+            fflush(stdin);
+            gets(nuevoApellido);
+            modificaApellido(archi,id,nuevoApellido);
+            break;
+
+       case 3:
+
+            //MODIFICA DNI DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("DNI");
+            printf("\n\n");
+            printf("Ingrese el nuevo DNI: \n");
+            char nuevoDni[10];
+            fflush(stdin);
+            gets(nuevoDni);
+            modificaDni(archi,id,nuevoDni);
+            break;
+
+        case 4:
+
+            //MODIFICA EMAIL
+            system ("cls");
+            imprimirCabecera("EMAIL");
+            printf("\n\n");
+            printf("Ingrese el nuevo Mail: \n");
+            char nuevoMail[30];
+            fflush(stdin);
+            gets(nuevoMail);
+            modificaMail(archi,id,nuevoMail);
+            break;
+
+        case 5:
+
+            //MODIFICA DOMICILIO
+            system ("cls");
+            imprimirCabecera("DOMICILIO");
+            printf("\n\n");
+            printf("Ingrese el nuevo Domicilio: \n");
+            char nuevoDomicilio[30];
+            fflush(stdin);
+            gets(nuevoDomicilio);
+            modificaDomicilio(archi,id,nuevoDomicilio);
+            break;
+
+        case 6:
+
+            //MODIFICA TELEFONO
+            system("cls");
+            imprimirCabecera("TELEFONO");
+            printf("\n\n");
+             printf("Ingrese el nuevo Telefono: \n");
+            char nuevoTelefono[12];
+            fflush(stdin);
+            gets(nuevoTelefono);
+            modificaTelefono(archi,id,nuevoTelefono);
+            break;
+
+        default:
+
+            printf("No podemos procesar la opcion ingresada.\n");
+        }
+    }while(opcion !=0);
+}
+
+
+void imprimirCabecera(char cabecera[])
+{
+    int i;
+    printf("%c", 201);
+    for(i=0; i<50; i++)
+    {
+        printf("%c",205);
+    }
+    printf("%c\n", 187);
+    printf("%c%32s%19c\n", 186,cabecera,186);
+    printf("%c", 200);
+    for(i=0; i<50; i++)
+    {
+        printf("%c",205);
+    }
+    printf("%c", 188);
+}
+
+
+
+
+
+
+
+
+

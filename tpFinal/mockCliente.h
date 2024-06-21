@@ -4,7 +4,7 @@
 #include "domicilio.h"
 #include "mockCliente.h"
 
-int getNroCliente(FILE* archi, int id, char dni[]);
+int getNroCliente(FILE* archi, char dni[]);
 int getId (char nombreArchivo[]);
 int getNroCliente();
 void getNombre(char nombre[]);

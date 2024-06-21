@@ -30,7 +30,7 @@ int getId (FILE * archi)
 }
 
 
-int getNroCliente(FILE* archi, int id, char dni[])
+int getNroCliente(FILE* archi, char dni[])
 {
 
     int nCliente;
@@ -41,7 +41,7 @@ int getNroCliente(FILE* archi, int id, char dni[])
     {
 
 
-        nCliente = atoi(dni) + id;
+        nCliente = atoi(dni);
 
     }
 
@@ -160,20 +160,20 @@ void getEmail(char mail[],char nombre[], char apellido[])
 
 stCliente getClienteRandom(FILE * archi)
 {
-    stCliente a;
+    stCliente cliente;
 
 
-    a.id = getId(archi);
-    getNombre(a.nombre);
-    getApellido(a.apellido);
-    getDNI(a.dni);
-    a.nroCliente = getNroCliente(archi,a.id,a.dni);
-    getTelefono(a.telefono);
-    getEmail(a.email,a.nombre,a.apellido);
-    a.domicilio = getDomicilioRandom();
+    cliente.id = getId(archi);
+    getNombre(cliente.nombre);
+    getApellido(cliente.apellido);
+    getDNI(cliente.dni);
+    cliente.nroCliente = getNroCliente(archi,cliente.dni);
+    getTelefono(cliente.telefono);
+    getEmail(cliente.email,cliente.nombre,cliente.apellido);
+    cliente.domicilio = getDomicilioRandom();
 
 
-    return a;
+    return cliente;
 }
 
 

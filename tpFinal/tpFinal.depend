@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1718153123 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
+1718934980 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
 	<stdio.h>
 	<stdlib.h>
 	"domicilio.h"
@@ -29,7 +29,7 @@
 
 1716828773 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockdomicilio.h
 
-1718148297 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.c
+1718934863 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	"cliente.h"
@@ -40,15 +40,15 @@
 	"domicilio.h"
 	"mockDomicilio.h"
 
-1718065632 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.h
+1718934301 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.h
 	"domicilio.h"
 
-1718150764 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.h
+1718836678 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.h
 	"cliente.h"
 	"domicilio.h"
 	"mockCliente.h"
 
-1718153093 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.c
+1718901086 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
