@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1718934980 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+	<time.h>
+	"mockDomicilio.h"
+	"mockCliente.h"
+	"cliente.h"
+	"domicilio.h"
+
+1716740876 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.h
+
+1717555324 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\domicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+
+1717554173 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockdomicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+
+1716828773 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockdomicilio.h
+
+1718934863 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	"cliente.h"
+	<string.h>
+	<time.h>
+	<conio.h>
+	"mockCliente.h"
+	"domicilio.h"
+	"mockDomicilio.h"
+
+1718934301 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\cliente.h
+	"domicilio.h"
+
+1718836678 c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.h
+	"cliente.h"
+	"domicilio.h"
+	"mockCliente.h"
+
+1718901086 source:c:\users\dari_\onedrive\desktop\tpfinal\programacion_uno\tpfinal\mockcliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cliente.h"
+	"domicilio.h"
+	"mockDomicilio.h"
+	<ctype.h>
+
