@@ -31,9 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cuenta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cuenta.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="mockCuenta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mockCuenta.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

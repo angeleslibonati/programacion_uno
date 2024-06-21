@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1718066664 source:c:\users\feder\onedrive\documentos\tup\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718063360 source:c:\users\feder\onedrive\documentos\tup\tpfinal\mockcuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718065980 source:c:\users\feder\onedrive\documentos\tup\tpfinal\cuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718066679 c:\users\feder\onedrive\documentos\tup\tpfinal\cuenta.h
+
+1718064317 c:\users\feder\onedrive\documentos\tup\tpfinal\mockcuenta.h
+
+1718932436 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718933048 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.h
+
+1718930983 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockcuenta.h
+
+1718929220 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718932439 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockcuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+
