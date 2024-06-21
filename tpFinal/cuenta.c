@@ -205,8 +205,28 @@ float costoMantenimiento(int tipoCuenta) {
     return costoMant;
 }
 
-//Consulta cuenta por id
+//Modificacion tipo de cuenta// retorna 1 si tuvo exito 0 si no
+int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
+    int flag = 0;
+    stCuenta cuenta;
+    cuenta = buscaCuentaPorId(nombreArchivo, id);
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
+    if(archi) {
+        cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
+        cuenta.tipoDeCuenta = tipoCuenta;
+        fseek(archi, sizeof(stCuenta) * (id-1), 0);
+        fwrite(&cuenta, sizeof(stCuenta), 1, archi);
+        flag = 1;
+
+        fclose(archi);
+    }
+
+    return flag;
+}
+
+
+//Consulta cuenta por id
 void consultaCuentaPorId(char nombreArchivo [], int id) {
     stCuenta cuenta;
     cuenta = buscaCuentaPorId(nombreArchivo, id);
