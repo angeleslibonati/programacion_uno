@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "movimiento.h"
+#include "domicilio.h"
+#include "cliente.h"
+#include "mockCliente.h"
+#include "mockDomicilio.h"
+#include "menu.h"
 #include "cuenta.h"
+#include "mockCuenta.h"
 
+
+#define AR_MOVIMIENTO "movimiento.dat"
 
 //AMBL MOVIMIENTO
 
@@ -11,7 +19,6 @@
 void extraccionDepositoDinero (char nombreArchivo[],stMovimiento movBancario, float importe, int idCuenta)
 {
 
-    //stMovimiento movBancario;
     int flag = 0;
 
     FILE * archi = fopen(nombreArchivo, "ab");
@@ -60,7 +67,7 @@ void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int 
         {
             cuenta.saldo = (float) cuenta.saldo - monto;
 
-            extraccionDepositoDinero(archi,movBancario,importe,idCuenta);
+            extraccionDepositoDinero(nombreArchivo,movBancario,importe,idCuenta);
 
         }
         else
@@ -83,7 +90,7 @@ void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int 
         {
             cuenta.saldo = (float) cuenta.saldo + monto;
 
-            extraccionDepositoDinero(archi,movBancario,importe,idCuenta);
+            extraccionDepositoDinero(nombreArchivo,movBancario,importe,idCuenta);
         }
         break;
 
@@ -157,68 +164,76 @@ stMovimiento buscaMovimiento (int id, FILE * archi)
 
 //Baja de Movimiento (cambia estado de activo "0" o eliminado "1")
 
-int bajaMovimiento (int id, char nombreArchivo[])
+int cambioEstadoMovimientoPorId (char nombreArchivo [], int id)
 {
-    int flag = 0;
     stMovimiento movBancario;
+    int posMovBancario;
+    int flag = 0;
 
-    FILE * archi = fopen(nombreArchivo, "ab");
+    movBancario = buscaMovimientoPorId(nombreArchivo, id);
+    posMovBancario = sizeof (stMovimiento) * (movBancario.id - 1) ;
 
-    if(archi)
-    {
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
-        movBancario = consultaMovimiento(id,nombreArchivo);
+    if (archi) {
 
-        if (movBancario.id == id)
-        {
+        if (movBancario.id > 0) {
+            if(movBancario.eliminado == 0){
+                movBancario.eliminado = 1;
+            }
+            else {
+                movBancario.eliminado = 0;
+            }
+            fseek(archi, posMovBancario, SEEK_SET);
+            fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
 
             flag = 1;
         }
-
         fclose(archi);
     }
 
     return flag;
 }
 
+//Busca movimiento por ID. Si movBancario.id == 0, el movimiento no existe
 
 //Consulta de Movimiento
 
-stMovimiento consultaMovimiento (int id, char nombreArchivo[])
+stMovimiento buscaMovimientoPorId (char nombreArchivo [], int id)
 {
     stMovimiento movBancario;
-    FILE * archi = fopen(nombreArchivo, "rb");
-
+    movBancario.id = 0;
     int flag = 0;
 
-    if(archi)
-    {
-        while (flag == 0 && fread(&movBancario,sizeof(stMovimiento),1, archi)>0)
-        {
+    FILE * archi = fopen(nombreArchivo, "rb");
 
-            if (movBancario.id == id)
-            {
+    if (archi) {
+
+        while (flag == 0 && fread(&movBancario, sizeof(stMovimiento), 1, archi) > 0) {
+            if (movBancario.id == id) {
                 flag = 1;
             }
         }
         fclose(archi);
     }
-
     return movBancario;
 }
+
 
 //Listado de Movimientos (Por cuenta)
 void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[])
 {
     stMovimiento movBancario;
-    FILE * archi = fopen(nombreArchivo, "rb");
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
         while(fread(&movBancario,sizeof(stMovimiento),1, archi) > 0)
         {
+            if (movBancario.idCuenta){
 
-            muestraUnMovimiento(movBancario);
+                muestraUnMovimiento(movBancario);
+            }
         }
         fclose(archi);
     }
@@ -227,23 +242,23 @@ void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[])
 
 
 //Listado de Movimentos(Por mes)
-void listadoMovimientoMes (int idCuenta, int dia, int mes, int anio, char nombreArchivo[])
+void listadoMovimientoMes (int mes, char nombreArchivo[])
 {
     stMovimiento movBancario;
-    FILE * archi = fopen(nombreArchivo, "rb");
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
-
         while(fread(&movBancario, sizeof(stMovimiento),1, archi) >0)
         {
+            if(movBancario.mes == mes){
 
-            muestraUnMovimiento(movBancario);
+                muestraUnMovimiento(movBancario);
+            }
 
         }
         fclose(archi);
     }
-
 
 }
 
@@ -261,13 +276,3 @@ void muestraUnMovimiento (stMovimiento movBancario)
 }
 
 
-
-//Auto incremento id
-
-int autoIncrementoId ()
-{
-    int id = 0;
-
-
-    return id;
-}

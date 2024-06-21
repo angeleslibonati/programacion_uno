@@ -1,6 +1,7 @@
 #ifndef MOVIMIENTO_H_INCLUDED
 #define MOVIMIENTO_H_INCLUDED
 
+#include "cuenta.h"
 
 typedef struct
 {
@@ -19,12 +20,14 @@ typedef struct
 
 void extraccionDepositoDinero (char nombreArchivo[],stMovimiento movBancario, float importe, int idCuenta);
 void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int idCuenta);
-int modificacionImporte (int importe, char nombreArchivo[], int id);
+int modificacionImporte (float importe, char nombreArchivo[], int id);
+int cambioEstadoMovimientoPorId (char nombreArchivo [], int id);
 stMovimiento buscaMovimiento (int id, FILE * archi);
+stMovimiento buscaMovimientoPorId (char nombreArchivo [], int id);
 int bajaMovimiento (int id, char nombreArchivo[]);
 stMovimiento consultaMovimiento (int id, char nombreArchivo[]);
 void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[]);
-void listadoMovimientoMes (int idCuenta, int dia, int mes, int anio, char nombreArchivo[]);
+void listadoMovimientoMes (int mes, char nombreArchivo[]);
 void muestraUnMovimiento (stMovimiento movBancario);
 
 

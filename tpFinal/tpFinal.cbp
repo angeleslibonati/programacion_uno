@@ -31,6 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cliente.h" />
+		<Unit filename="cuenta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cuenta.h" />
+		<Unit filename="domicilio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="domicilio.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -38,6 +50,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
+		<Unit filename="mockCliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mockCliente.h" />
+		<Unit filename="mockCuenta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mockCuenta.h" />
+		<Unit filename="mockDomicilio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mockDomicilio.h" />
 		<Unit filename="mockMovimiento.c">
 			<Option compilerVar="CC" />
 		</Unit>

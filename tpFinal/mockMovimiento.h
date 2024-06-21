@@ -8,6 +8,7 @@
 int getDia ();
 int getMes ();
 int getAnio ();
+int id (FILE * archi);
 
 
 

@@ -1,27 +1,167 @@
 # depslib dependency file v1.0
-1584205420 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\main.c
+1719013596 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+	"cuenta.h"
+	"mockCuenta.h"
 
-1716215598 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
+1718945826 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
 	<stdio.h>
 	<stdlib.h>
 	"movimiento.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"cuenta.h"
+	"mockCuenta.h"
 
-1716215611 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
+1718947137 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
+	"cuenta.h"
 
-1716251965 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
+1718947883 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
 	"mockMovimiento.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"cuenta.h"
+	"mockCuenta.h"
 
-1716219316 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.h
+1718947854 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.h
 	<stdio.h>
 	<stdlib.h>
 	"time.h"
 
-1716992020 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
+1719013206 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"mockMovimiento.h"
+	"movimiento.h"
+	"cuenta.h"
+	"mockCuenta.h"
 
-1716989874 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.h
+1718948553 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.h
+	"cliente.h"
+
+1718948099 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	"cliente.h"
+	"mockCliente.h"
+	"domicilio.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"cuenta.h"
+	"mockCuenta.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+
+1718935327 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.h
+	"domicilio.h"
+
+1718935363 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\domicilio.h
+
+1718947656 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcliente.h
+	"cliente.h"
+	"domicilio.h"
+	"mockCliente.h"
+
+1718935418 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockdomicilio.h
+
+1718940792 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cuenta.h
+
+1718940809 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.h
+
+1718945224 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+	"mockMovimiento.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+
+1718946418 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\domicilio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+	"cuenta.h"
+	"mockCuenta.h"
+
+1718945444 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.c
+	<stdio.h>
+	<stdlib.h>
+	"cuenta.h"
+	"mockCuenta.h"
+	"mockMovimiento.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+
+1718947137 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockdomicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"domicilio.h"
+	<string.h>
+	<conio.h>
+	"mockMovimiento.h"
+	"domicilio.h"
+	"cliente.h"
+	"mockCliente.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"movimiento.h"
+	"mockMovimiento.h"
+	"cuenta.h"
+	"mockCuenta.h"
+
+1719013821 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cliente.h"
+	<ctype.h>
+	"mockCliente.h"
+	"domicilio.h"
+	"mockDomicilio.h"
+	"menu.h"
+	"cuenta.h"
+	"mockCuenta.h"
 

@@ -1,10 +1,30 @@
 #include "mockMovimiento.h"
+#include "domicilio.h"
+#include "cliente.h"
+#include "mockCliente.h"
+#include "mockDomicilio.h"
+#include "menu.h"
+#include "movimiento.h"
 #include "cuenta.h"
+#include "mockCuenta.h"
 
 //campo unico autoincrementable
-int id (int id)
+int id2 (FILE * archi)
 {
-    id += 1;
+    int id;
+
+    fseek(archi, 0, 2);
+
+    int cant = ftell(archi)/sizeof(stMovimiento);
+
+    if(cant > 0)
+    {
+        id = cant + 1;
+    }
+    else
+    {
+        id = 1;
+    }
 
     return id;
 }
@@ -50,7 +70,7 @@ int getAnio ()
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta)
 {
     int saldoRand = (rand()% 1000) + 1;
-    extraccionDepositoDinero(archi,movBancario, saldoRand,idCuenta);
+    extraccionDepositoDinero(nombreArchivo,movBancario, saldoRand,idCuenta);
 
     return saldoRand;
 }
