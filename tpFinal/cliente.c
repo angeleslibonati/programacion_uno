@@ -46,7 +46,7 @@ stCliente cargaCliente()
 //Muestr un cliente
 void muestraCliente(stCliente cliente)
 {
-    printf("........................................");
+    printf("_______________________________________\n");
     printf("\nID:...................: %d", cliente.id);
     printf("\nNroCliente:...........: %d", cliente.nroCliente);
     printf("\nNombre:...............: %s", cliente.nombre);
@@ -55,8 +55,8 @@ void muestraCliente(stCliente cliente)
     printf("\nEMAIL:................: %s", cliente.email);
     printf("\nTelefono:.............: %s", cliente.telefono);
     muestraUnDomicilio(cliente.domicilio);
-    printf("\nELiminado:............: %d", cliente.eliminado);
-    printf("\n........................................");
+    printf("\nEstado:...............: %d", cliente.eliminado);
+    printf("\n_______________________________________\n");
 }
 
 //Cargas el archivo con clientes randoms segun la cantidad pasada por parametro
@@ -146,10 +146,12 @@ stCliente buscarClientePorId(char nombreArchivo [], int numId)
     stCliente cliente;
     cliente.id = 0;
     int flag = 0;
+
     FILE * archi = fopen(nombreArchivo, "rb");
 
     if (archi) {
         while (flag == 0 && fread(&cliente, sizeof(stCliente), 1, archi) > 0) {
+
             if (cliente.id == numId) {
                 flag = 1;
             }
@@ -160,111 +162,120 @@ stCliente buscarClientePorId(char nombreArchivo [], int numId)
 }
 
 //modificacion datos
-int  modificaNombre(FILE * archi,int id, char nombre[])
+int  modificaNombre(char nombreArchivo [], stCliente cliente, char nombre[])
 {
     int flag = 0;
-    stCliente cliente;
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
-        cliente = buscarClientePorId(archi,id);
         strcpy(cliente.nombre, nombre);
-        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),0);
         fwrite(&cliente,sizeof(stCliente),1,archi);
         flag = 1;
+
+        fclose(archi);
     }
     return flag;
 }
 
-int  modificaMail(FILE * archi,int id, char mail[])
+int  modificaApellido(char nombreArchivo [], stCliente cliente, char apellido[])
 {
     int flag = 0;
-    stCliente cliente;
-    if(archi)
-    {
-        cliente = buscarClientePorId(archi,id);
-        strcpy(cliente.email, mail);
-        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
-        fwrite(&cliente,sizeof(stCliente),1,archi);
-
-        flag = 1;
-    }
-    return flag;
-}
-
-int  modificaApellido(FILE * archi,int id, char apellido[])
-{
-    int flag = 0;
-    stCliente cliente;
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
-
-        cliente = buscarClientePorId(archi,id);
         strcpy(cliente.apellido, apellido);
-        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
-        fwrite(&cliente,sizeof(stCliente),1,archi);
 
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),0);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
         flag = 1;
+
+        fclose(archi);
+    }
+    return flag;
+}
+int  modificaMail(char nombreArchivo [], stCliente cliente, char email[])
+{
+    int flag = 0;
+    FILE * archi = fopen(nombreArchivo, "r+b");
+
+    if(archi)
+    {
+        strcpy(cliente.email, email);
+
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),0);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
+        flag = 1;
+
+        fclose(archi);
     }
     return flag;
 }
 
-int  modificaDni(FILE * archi,int id, char dni[])
+int  modificaDni(char nombreArchivo [], stCliente cliente, char dni[])
 {
     int flag = 0;
-    stCliente cliente;
+
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
-        cliente = buscarClientePorId(archi,id);
         if(buscaClientePorDni(archi,dni)==1)
         {
-            printf("El dni ya existe en la Base de datos.\n");
+            printf("\nEl dni ya existe en la Base de datos.\n");
 
         }else
         {
             strcpy(cliente.dni, dni);
+            cliente.nroCliente = atoi(dni);
             fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
             fwrite(&cliente,sizeof(stCliente),1,archi);
-
             flag = 1;
         }
+
+        fclose(archi);
     }
     return flag;
 }
 
-int  modificaDomicilio(FILE * archi,int id, char domicilio[])
+int  modificaDomicilio(char nombreArchivo [], stCliente cliente, char domicilio[])
 {
     int flag = 0;
-    stCliente cliente;
+
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
+        strcpy(cliente.domicilio.calle, domicilio);
 
-        cliente = buscarClientePorId(archi,id);
-        strcpy(cliente.domicilio.calle,domicilio);
-        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),0);
         fwrite(&cliente,sizeof(stCliente),1,archi);
-
         flag = 1;
+
+        fclose(archi);
     }
     return flag;
 }
 
-int  modificaTelefono(FILE *archi,int id, char telefono[])
+
+int  modificaTelefono(char nombreArchivo [], stCliente cliente, char telefono[])
 {
     int flag = 0;
-    stCliente cliente;
+
+    FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi)
     {
-        cliente = buscarClientePorId(archi,id);
         strcpy(cliente.telefono, telefono);
-        fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
-        fwrite(&cliente,sizeof(stCliente),1,archi);
 
+        fseek(archi,sizeof(stCliente)*(cliente.id-1),0);
+        fwrite(&cliente,sizeof(stCliente),1,archi);
         flag = 1;
+
+        fclose(archi);
     }
     return flag;
 }
@@ -288,168 +299,6 @@ int buscaClientePorDni (FILE * archi, char dni[])
 
     return flag;
 }
-
-//FUNCION PRINCIPAL PARA MODIFICAR CLIENTE: LLAMA A OTRAS
-void modificaCliente(char nombreArchivo[], int id, int opcion)
-{
-    stCliente cliente;
-    FILE * archi = fopen(nombreArchivo, "r+b");
-
-    if(archi)
-    {
-        swithcSubMenuModificarCliente(archi, id,opcion);
-        fclose(archi);
-    }
-
-}
-
-//Switch para ingreso a la modificacion.
-void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
-{
-    do
-    {
-        int flag = 0;
-
-        switch (opcion)
-        {
-        case 0:
-
-            //volver al menu anterior
-            system ("cls");
-            imprimirCabecera("CLIENTE");
-            printf("\n\n");
-            imprimeOpcionesSubMenu();
-            switchSubMenuCliente();
-
-            break;
-
-        case 1:
-
-            //MODIFICA EL NOMBRE DEL CLIENTE
-            system ("cls");
-            imprimirCabecera("NOMBRE");
-            printf("\n\n");
-            printf("Ingrese el nuevo Nombre: \n");
-            char nuevoNombre[30];
-            fflush(stdin);
-            gets(nuevoNombre);
-            system("pause");
-            flag = modificaNombre(archi,id,nuevoNombre);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-            break;
-
-        case 2:
-
-            //MODIFICA EL APELLIDO DEL CLIENTE
-            system ("cls");
-            imprimirCabecera("APELLIDO");
-            printf("\n\n");
-            printf("Ingrese el nuevo Apellido: \n");
-            char nuevoApellido[30];
-            fflush(stdin);
-            gets(nuevoApellido);
-            flag = modificaApellido(archi,id,nuevoApellido);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-            break;
-
-       case 3:
-
-            //MODIFICA DNI DEL CLIENTE
-            system ("cls");
-            imprimirCabecera("DNI");
-            printf("\n\n");
-            printf("Ingrese el nuevo DNI: \n");
-            char nuevoDni[10];
-            fflush(stdin);
-            gets(nuevoDni);
-            flag = modificaDni(archi,id,nuevoDni);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-
-            break;
-
-        case 4:
-
-            //MODIFICA EMAIL
-            system ("cls");
-            imprimirCabecera("EMAIL");
-            printf("\n\n");
-            printf("Ingrese el nuevo Mail: \n");
-            char nuevoMail[30];
-            fflush(stdin);
-            gets(nuevoMail);
-            flag = modificaMail(archi,id,nuevoMail);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-
-            break;
-
-        case 5:
-
-            //MODIFICA DOMICILIO
-            system ("cls");
-            imprimirCabecera("DOMICILIO");
-            printf("\n\n");
-            printf("Ingrese el nuevo Domicilio: \n");
-            char nuevoDomicilio[30];
-            fflush(stdin);
-            gets(nuevoDomicilio);
-            flag = modificaDomicilio(archi,id,nuevoDomicilio);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-
-            break;
-
-        case 6:
-
-            //MODIFICA TELEFONO
-            system("cls");
-            imprimirCabecera("TELEFONO");
-            printf("\n\n");
-            printf("Ingrese el nuevo Telefono: \n");
-            char nuevoTelefono[12];
-            fflush(stdin);
-            gets(nuevoTelefono);
-            flag = modificaTelefono(archi,id,nuevoTelefono);
-            if (flag == 1){
-                printf("\nDato modificado con Exito.\n");
-            }
-            else{
-                printf("\nEl dato no pudo ser modificado.\n");
-            }
-
-            break;
-
-        default:
-
-            printf("No podemos procesar la opcion ingresada.\n");
-        }
-    }while(opcion !=0);
-}
-
-
 //LISTADO DE CLIENTES
 
 void mostrarClientesDesdeArch(char nombreArchivo [])

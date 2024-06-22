@@ -14,7 +14,7 @@
 stCuenta altaCuentaRandom(FILE * archi) {///modificar cabecera nombre archivo cliente
     stCuenta cuenta;
 
-    cuenta.id = id(archi) + 1;
+    cuenta.id = id(archi);
     cuenta.idCliente = 1; ///cuando esté unido utilizar funcion int randomIdCliente(char nombreArchivo [])
     cuenta.tipoDeCuenta = randomTipoCuenta();
     cuenta.nroCuenta = randomNroCuenta(archi, cuenta.tipoDeCuenta);

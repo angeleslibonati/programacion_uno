@@ -25,7 +25,7 @@ void swithcSubMenuCuenta ();
 void switchSubMenuMovimiento ();
 void imprimirOpcionListado();
 void switSubMenuListado();
-
+void swithcSubMenuModificarCliente (stCliente cliente);
 
 
 #endif // MENU_H_INCLUDED

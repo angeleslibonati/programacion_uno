@@ -18,10 +18,9 @@
 
 int main()
 {
-    cargaArchivoCuentaRandom(AR_CUENTA,5);
+
     printf("\n\n");
-
-
+    cargaArchivoClientesRandoms(AR_CLIENTE,5);
     iniciarMenu();
 
     return 0;

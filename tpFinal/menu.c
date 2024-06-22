@@ -138,7 +138,7 @@ int switchMenuPrincipal ()
 void imprimeOpcionesSubMenu ()
 {
     printf("\n1. Alta\n");
-    printf("2. Baja\n");
+    printf("2. Eliminar - Activar\n");
     printf("3. Modificacion\n");
     printf("4. Consultar\n");
     printf("5. Listado\n");
@@ -182,13 +182,15 @@ void switchSubMenuCliente ()
 
             //BAJA CLIENTE
             system ("cls");
-            imprimirCabecera("BAJA DE CLIENTE");
+            imprimirCabecera("ESTADO CLIENTE");
             printf("\n\n");
 
             int numId = ingresaID();
 
             int flag = bajaCliente(AR_CLIENTE,numId);
+
             if(flag){
+                printf("\n");
                 imprimirCabecera("CLIENTE ELIMINADO");
             } else {
                 imprimirCabecera("ERROR AL ELIMINAR");
@@ -208,12 +210,9 @@ void switchSubMenuCliente ()
             stCliente cliente;
             cliente = buscarClientePorId(AR_CLIENTE,numId);
             muestraCliente(cliente);
-            imprimeOpcionSubMenuModificar ();
-            opcion = ingresaOpcion ();
-            modificaCliente(AR_CLIENTE,id, opcion);
-            system ("cls");
-            muestraCliente(cliente);
-            system ("pause");   //prestar atencion por si tenemos q sacarlo.
+            swithcSubMenuModificarCliente(cliente);
+
+            system ("pause");
 
             break;
 
@@ -248,7 +247,7 @@ void switchSubMenuCliente ()
 
 void imprimeOpcionSubMenuModificar ()
 {
-    printf("1. NOMBRE\n");
+    printf("\n1. NOMBRE\n");
     printf("2. APELLIDO\n");
     printf("3. DNI\n");
     printf("4. EMAIL\n");
@@ -257,6 +256,170 @@ void imprimeOpcionSubMenuModificar ()
     printf("0. VOLVER ATRAS\n");
 }
 
+//Switch para ingreso a la modificacion.
+void swithcSubMenuModificarCliente (stCliente cliente)
+{
+    int opcion;
+    do
+    {
+        imprimeOpcionSubMenuModificar ();
+        opcion = ingresaOpcion ();
+        int flag = 0;
+
+        switch (opcion)
+        {
+        case 0:
+
+            //volver al menu anterior
+            system ("cls");
+            imprimirCabecera("CLIENTE");
+            printf("\n\n");
+            switchSubMenuCliente();
+
+            break;
+
+        case 1:
+
+            //MODIFICA EL NOMBRE DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("NOMBRE");
+            printf("\n\n");
+
+            printf("Ingrese el nuevo Nombre: \n");
+            char nuevoNombre[30];
+            fflush(stdin);
+            gets(nuevoNombre);
+            flag = modificaNombre(AR_CLIENTE,cliente, nuevoNombre);
+
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
+            break;
+
+        case 2:
+
+            //MODIFICA EL APELLIDO DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("APELLIDO");
+            printf("\n\n");
+
+            printf("Ingrese el nuevo Apellido: \n");
+            char nuevoApellido[30];
+            fflush(stdin);
+            gets(nuevoApellido);
+
+            flag = modificaApellido(AR_CLIENTE,cliente,nuevoApellido);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+            break;
+
+       case 3:
+
+            //MODIFICA DNI DEL CLIENTE
+            system ("cls");
+            imprimirCabecera("DNI");
+            printf("\n\n");
+            printf("Ingrese el nuevo DNI: \n");
+            char nuevoDni[10];
+            fflush(stdin);
+            gets(nuevoDni);
+
+            flag = modificaDni(AR_CLIENTE,cliente,nuevoDni);
+
+            if (flag == 1){
+
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
+            break;
+
+        case 4:
+
+            //MODIFICA EMAIL
+            system ("cls");
+            imprimirCabecera("EMAIL");
+            printf("\n\n");
+            printf("Ingrese el nuevo Mail: \n");
+            char nuevoMail[30];
+            fflush(stdin);
+            gets(nuevoMail);
+
+            flag = modificaMail(AR_CLIENTE,cliente,nuevoMail);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
+            break;
+
+        case 5:
+
+            //MODIFICA DOMICILIO
+            system ("cls");
+            imprimirCabecera("DOMICILIO");
+            printf("\n\n");
+            printf("Ingrese el nuevo Domicilio: \n");
+            char nuevoDomicilio[30];
+            fflush(stdin);
+            gets(nuevoDomicilio);
+
+            flag = modificaDomicilio(AR_CLIENTE,cliente,nuevoDomicilio);
+            if (flag == 1){
+
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
+            break;
+
+        case 6:
+
+            //MODIFICA TELEFONO
+            system("cls");
+            imprimirCabecera("TELEFONO");
+            printf("\n\n");
+            printf("Ingrese el nuevo Telefono: \n");
+            char nuevoTelefono[12];
+            fflush(stdin);
+            gets(nuevoTelefono);
+
+            flag = modificaTelefono(AR_CLIENTE,cliente,nuevoTelefono);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+                opcion = 0;
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
+            break;
+
+        default:
+
+            printf("No podemos procesar la opcion ingresada.\n");
+        }
+    }while(opcion != 0);
+}
 
 void swithcSubMenuCuenta ()
 {
@@ -311,7 +474,16 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("MODIFICACION DE CUENTA");
             printf("\n\n");
-            ///AGREGAR FUNCION CORRESPONDIENTE
+
+            numId = ingresaID();
+
+            int tipoCuenta;
+
+            printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
+            printf("\nIngrese el tipo de cuenta: ");
+            scanf("%d", &tipoCuenta);
+            modificaTipoCuentaPorId(AR_CUENTA, numId,tipoCuenta);
+
             break;
 
         case 4:
@@ -368,6 +540,8 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("ALTA DE MOVIMIENTO");
             printf("\n\n");
+
+            opcionMovimiento(importe,cuenta, AR_MOVIMIENTO,id);
             ///AGREGAR FUNCION CORRESPONDIENTE
             break;
 

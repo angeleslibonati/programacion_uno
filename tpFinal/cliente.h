@@ -27,15 +27,13 @@ void muestraArchivoClientes(char nombreArchivo[]);
 void altaCliente(char archivo[]);
 int bajaCliente (char nombreArchivo[], int numId);
 stCliente buscarClientePorId(char nombreArchivo [], int numId);
-int  modificaNombre(FILE * archi,int id, char nombre[]);
-int  modificaMail(FILE * archi,int id, char mail[]);
-int  modificaApellido(FILE * archi,int id, char apellido[]);
-int  modificaDni(FILE * archi,int id, char dni[]);
-int  modificaDomicilio(FILE * archi,int id, char domicilio[]);
-int  modificaTelefono(FILE *archi,int id, char telefono[]);
+int  modificaNombre(char nombreArchivo[],stCliente cliente, char nombre[]);
+int  modificaMail(char nombreArchivo[],stCliente cliente, char mail[]);
+int  modificaApellido(char nombreArchivo[],stCliente cliente, char apellido[]);
+int  modificaDni(char nombreArchivo[],stCliente cliente, char dni[]);
+int  modificaDomicilio(char nombreArchivo[],stCliente cliente, char domicilio[]);
+int  modificaTelefono(char nombreArchivo[],stCliente cliente, char telefono[]);
 int buscaClientePorDni (FILE * archi, char dni[]);
-void modificaCliente(char nombreArchivo[], int id, int opcion);
-void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion);
 void mostrarClientesDesdeArch(char nombreArchivo []);
 
 
