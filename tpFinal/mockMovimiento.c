@@ -11,7 +11,7 @@
 //campo unico autoincrementable
 int idMovimiento (FILE * archi)
 {
-    int id;
+    int id = 0;
 
     fseek(archi, 0, 2);
 
@@ -68,5 +68,24 @@ int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuent
     escribirMovimiento(nombreArchivo,movBancario,saldoRand);
 
     return saldoRand;
+}
+
+//Carga movimientos en archivo
+void cargaArchivoMovimientos(char nombreArchivo [], int cantidad)
+{
+    stMovimiento movBancario;
+    stCuenta cuenta;
+
+    FILE * archi = fopen(nombreArchivo, "ab");
+
+    if (archi) {
+        for (int i = 0; i < cantidad; i++) {
+
+            movBancario = inicializarMovimiento(archi);
+            fseek(archi, 0, 2);
+            fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
+        }
+        fclose(archi);
+    }
 }
 

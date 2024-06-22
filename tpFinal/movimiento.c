@@ -14,22 +14,46 @@
 #define AR_MOVIMIENTO "movimiento.dat"
 
 
-stMovimiento inicializarMovimiento (FILE * archi, stCuenta cuenta)
+stMovimiento inicializarMovimiento (FILE * archi)
 {
     stMovimiento movBancario;
+    stCuenta cuenta;
 
     movBancario.id = idMovimiento(archi);
+
     movBancario.idCuenta = cuenta.nroCuenta;
-    printf("\nIngrese el detalle de la operacion\n");
+
+    printf("num cuenta: %d\n", cuenta.nroCuenta);
+    printf("num id cuenta. : %d\n", movBancario.idCuenta);
+
+    printf("Ingrese el detalle de la operacion\n");
     fflush(stdin);
     gets(movBancario.detalle);
-    movBancario.importe = 0;
+    movBancario.importe = 0.0;
     movBancario.anio = getAnio();
     movBancario.mes = getMes();
     movBancario.dia = getDia;
     movBancario.eliminado = 0;
-
+    printf("Cargando...\n");
+    system ("pause");
+    system ("cls");
     return movBancario;
+}
+
+void cargarMovimientosToArchivo (char nombreArchivo [])
+{
+    stMovimiento movBancario;
+    stCuenta cuenta;
+    FILE * archi = fopen(nombreArchivo, "ab");
+
+    if (archi){
+
+        movBancario = inicializarMovimiento(archi);
+        fseek(archi,0,2);
+        fwrite(&movBancario, sizeof(stMovimiento),1, archi);
+
+        fclose(archi);
+    }
 }
 
 void mostrarMovimiento (stMovimiento movBancario)
@@ -38,8 +62,8 @@ void mostrarMovimiento (stMovimiento movBancario)
     printf("\nID:...................: %d", movBancario.id);
     printf("\nID Cuenta:............: %d", movBancario.idCuenta);
     printf("\nDetalle:..............: %s", movBancario.detalle);
-    printf("\nImporte:..............: %s", movBancario.importe);
-    printf("\nAA/MM/DD:.............: %d%d%d", movBancario.anio, movBancario.mes, movBancario.dia);
+    printf("\nImporte:..............: %.2f", movBancario.importe);
+    printf("\nAA/MM/DD:.............: %d/ %d/ %d", movBancario.anio, movBancario.mes, movBancario.dia);
     printf("\nEstado:...............: %d", movBancario.eliminado);
     puts("\n_______________________________________\n");
 
@@ -319,4 +343,17 @@ void listadoMovimientoMes (int mes, char nombreArchivo[])
     }
 }
 
+//Listado de todos los moviminetos en Archivo
 
+void mostrarMovimientosDesdeArch(char nombreArchivo [])
+{
+    FILE * archi = fopen(nombreArchivo, "rb");
+    stMovimiento movBancario;
+
+    if (archi) {
+        while(fread(&movBancario, sizeof(stMovimiento), 1, archi) > 0) {
+            mostrarMovimiento(movBancario);
+        }
+        fclose(archi);
+    }
+}

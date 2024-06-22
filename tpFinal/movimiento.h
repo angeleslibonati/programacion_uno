@@ -17,7 +17,8 @@ typedef struct
 }stMovimiento;
 
 void mostrarMovimiento (stMovimiento movBancario);
-stMovimiento inicializarMovimiento (FILE * archi, stCuenta cuenta);
+void cargarMovimientosToArchivo (char nombreArchivo []);
+stMovimiento inicializarMovimiento (FILE * archi);
 void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[]);
 void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario, float importe);
 void escribirMovimiento (char nombreArchivo [], stMovimiento movimiento, float importe);
@@ -28,7 +29,6 @@ int cambioEstadoMovimientoPorId (char nombreArchivo [], int id);
 stMovimiento buscaMovimientoPorId (char nombreArchivo [], int id);
 void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[]);
 void listadoMovimientoMes (int mes, char nombreArchivo[]);
-void muestraUnMovimiento (stMovimiento movBancario);
-
+void mostrarMovimientosDesdeArch(char nombreArchivo []);
 
 #endif // MOVIMIENTO_H_INCLUDED

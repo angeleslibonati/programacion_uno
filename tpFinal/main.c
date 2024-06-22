@@ -18,11 +18,14 @@
 
 int main()
 {
-    stCuenta cuenta;
-    stMovimiento movBancario;
 
     printf("\n\n");
-    movBancario = inicializarMovimiento(AR_MOVIMIENTO,cuenta);
+    //cargaArchivoCuentaRandom(AR_CUENTA,5);
+
+    //cargarMovimientosToArchivo(AR_MOVIMIENTO);
+    //cargaArchivoMovimientos(AR_MOVIMIENTO,3);
+    mostrarMovimientosDesdeArch(AR_MOVIMIENTO);
+    mostrarCuentasDesdeArch(AR_CUENTA);
     iniciarMenu();
 
     return 0;
