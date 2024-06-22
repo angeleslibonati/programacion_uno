@@ -18,9 +18,11 @@
 
 int main()
 {
+    stCuenta cuenta;
+    stMovimiento movBancario;
 
     printf("\n\n");
-    cargaArchivoClientesRandoms(AR_CLIENTE,5);
+    movBancario = inicializarMovimiento(AR_MOVIMIENTO,cuenta);
     iniciarMenu();
 
     return 0;

@@ -65,7 +65,7 @@ int getAnio ()
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta)
 {
     int saldoRand = (rand()% 1000) + 1;
-    extraccionDepositoDinero(nombreArchivo,movBancario, saldoRand,idCuenta);
+    escribirMovimiento(nombreArchivo,movBancario,saldoRand);
 
     return saldoRand;
 }

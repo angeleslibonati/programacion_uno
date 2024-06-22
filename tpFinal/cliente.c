@@ -46,7 +46,7 @@ stCliente cargaCliente()
 //Muestr un cliente
 void muestraCliente(stCliente cliente)
 {
-    printf("_______________________________________\n");
+    puts("_______________________________________\n");
     printf("\nID:...................: %d", cliente.id);
     printf("\nNroCliente:...........: %d", cliente.nroCliente);
     printf("\nNombre:...............: %s", cliente.nombre);
@@ -56,7 +56,7 @@ void muestraCliente(stCliente cliente)
     printf("\nTelefono:.............: %s", cliente.telefono);
     muestraUnDomicilio(cliente.domicilio);
     printf("\nEstado:...............: %d", cliente.eliminado);
-    printf("\n_______________________________________\n");
+    puts("\n_______________________________________\n");
 }
 
 //Cargas el archivo con clientes randoms segun la cantidad pasada por parametro

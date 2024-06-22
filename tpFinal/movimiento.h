@@ -14,13 +14,14 @@ typedef struct
     int dia;  //validar del 1 al... (segun cantidad de dias, por mes)
     int eliminado; // "0" es activo. "1" eliminado.
 
-
-
 }stMovimiento;
 
-
-void extraccionDepositoDinero (char nombreArchivo[],stMovimiento movBancario, float importe, int idCuenta);
-void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int idCuenta);
+void mostrarMovimiento (stMovimiento movBancario);
+stMovimiento inicializarMovimiento (FILE * archi, stCuenta cuenta);
+void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[]);
+void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario, float importe);
+void escribirMovimiento (char nombreArchivo [], stMovimiento movimiento, float importe);
+void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char nombreArchivoCuenta []);
 int modificacionImporte (float importe, char nombreArchivo[], int id);
 stMovimiento buscaMovimiento (int id, FILE * archi);
 int cambioEstadoMovimientoPorId (char nombreArchivo [], int id);

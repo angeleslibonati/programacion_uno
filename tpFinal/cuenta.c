@@ -26,9 +26,9 @@ stCuenta altaCuentaUsuario(FILE *  archi) {
     scanf("%d", &idCliente);
 
     while (tipoCuenta < 1 || tipoCuenta > 3) {
-    printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
-    printf("\nIngrese el tipo de cuenta: ");
-    scanf("%d", &tipoCuenta);
+        printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
+        printf("\nIngrese el tipo de cuenta: ");
+        scanf("%d", &tipoCuenta);
     if (tipoCuenta < 1 || tipoCuenta > 3) {
         printf("\nTipo de cuenta invalida. Por favor reingrese.");
     }

@@ -540,9 +540,10 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("ALTA DE MOVIMIENTO");
             printf("\n\n");
+            stMovimiento movBancario;
 
-            opcionMovimiento(importe,cuenta, AR_MOVIMIENTO,id);
-            ///AGREGAR FUNCION CORRESPONDIENTE
+            opcionMovimiento(movBancario, AR_MOVIMIENTO,AR_CUENTA);
+
             break;
 
         case 2:
@@ -551,8 +552,11 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("BAJA DE MOVIMIENTO");
             printf("\n\n");
+
             numId = ingresaID();
+
             int flag = cambioEstadoMovimientoPorId(AR_MOVIMIENTO,numId);
+
             if(flag){
                 imprimirCabecera("MOVIMIENTO ELIMINADO");
             } else {
@@ -589,8 +593,8 @@ void switchSubMenuMovimiento ()
             imprimirCabecera("CONSULTA DE MOVIMIENTO");
             printf("\n\n");
             numId = ingresaID();
-            stMovimiento movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
-            muestraUnMovimiento(movBancario);
+            movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
+            mostrarMovimiento(movBancario);
 
             break;
 
