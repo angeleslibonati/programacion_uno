@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "domicilio.h"
+#include "mockDomicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
-#include "mockMovimiento.h"
 #include "movimiento.h"
+#include "mockMovimiento.h"
 #include "cuenta.h"
 #include "mockCuenta.h"
 
@@ -109,7 +109,6 @@ int switchMenuPrincipal ()
             system("cls");
             imprimirCabecera("CUENTA");
             printf("\n\n");
-            imprimeOpcionesSubMenu();
             swithcSubMenuCuenta();
             system ("pause");
 
@@ -121,7 +120,6 @@ int switchMenuPrincipal ()
             system ("cls");
             imprimirCabecera("MOVIMIENTOS");
             printf("\n\n");
-            imprimeOpcionesSubMenu();
             switchSubMenuMovimiento();
             system("pause");
 
@@ -266,6 +264,7 @@ void swithcSubMenuCuenta ()
 
     do
     {
+        imprimeOpcionesSubMenu();
         opcion = ingresaOpcion();
         int numId;
 
@@ -331,7 +330,7 @@ void swithcSubMenuCuenta ()
             system("cls");
             imprimirCabecera("LISTADO CUENTAS");
             printf("\n\n");
-            mostrarClientesDesdeArch(AR_CUENTA);
+            mostrarCuentasDesdeArch(AR_CUENTA);
             break;
 
         default:
@@ -340,12 +339,14 @@ void swithcSubMenuCuenta ()
         }
     }while(opcion != 0);
 }
+
 void switchSubMenuMovimiento ()
 {
     int opcion;
 
     do
     {
+        imprimeOpcionesSubMenu();
         opcion = ingresaOpcion();
         int numId;
 

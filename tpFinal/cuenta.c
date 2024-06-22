@@ -2,14 +2,15 @@
 #include <stdlib.h>
 #include "cuenta.h"
 #include "mockCuenta.h"
-#include "mockMovimiento.h"
-#include "domicilio.h"
-#include "cliente.h"
-#include "mockCliente.h"
-#include "mockDomicilio.h"
-#include "menu.h"
 #include "movimiento.h"
 #include "mockMovimiento.h"
+#include "domicilio.h"
+#include "mockDomicilio.h"
+#include "cliente.h"
+#include "mockCliente.h"
+#include "menu.h"
+
+
 
 
 #define AR_CUENTA "cuenta.dat"
@@ -73,7 +74,9 @@ void mostrarDatosCuenta(stCuenta cuenta) {
 
 //campo unico autoincrementable
 int id (FILE * archi) {
-    int id;
+
+    stCuenta cuenta;
+    int id = 0;
 
     fseek(archi, 0, 2);
 
@@ -183,7 +186,8 @@ stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta) {
 
 
 //Comprueba existencia de cuenta. Para calcular numero de cuenta
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta) {
+int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
+{
     int flag = 0;
     stCuenta cuenta;
     rewind(archi);
@@ -197,7 +201,8 @@ int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta) {
 }
 
 //Calcula el costo de mantenimiento según tipo de cuenta
-float costoMantenimiento(int tipoCuenta) {
+float costoMantenimiento(int tipoCuenta)
+{
     float costoMant ;
 
     switch (tipoCuenta) {
@@ -219,7 +224,8 @@ float costoMantenimiento(int tipoCuenta) {
 
 //Consulta cuenta por id
 
-void consultaCuentaPorId(char nombreArchivo [], int id) {
+void consultaCuentaPorId(char nombreArchivo [], int id)
+{
     stCuenta cuenta;
     cuenta = buscaCuentaPorId(nombreArchivo, id);
     mostrarDatosCuenta(cuenta);

@@ -3,9 +3,9 @@
 #include <string.h>
 #include <conio.h>
 #include "domicilio.h"
+#include "mockDomicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
 #include "menu.h"
 #include "movimiento.h"
 #include "mockMovimiento.h"

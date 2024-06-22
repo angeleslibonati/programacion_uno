@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include "cuenta.h"
 #include "mockCuenta.h"
+#include "movimiento.h"
 #include "mockMovimiento.h"
+#include "mockDomicilio.h"
 #include "domicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
 #include "menu.h"
-#include "movimiento.h"
-#include "mockMovimiento.h"
 
 
 stCuenta altaCuentaRandom(FILE * archi) {///modificar cabecera nombre archivo cliente
@@ -41,7 +40,6 @@ void cargaArchivoCuentaRandom(char nombreArchivo [], int cantidad) {
         fclose(archi);
     }
 }
-
 
 //Eleccion ramdom de id cliente
 /*int randomIdCliente(char nombreArchivo []) {

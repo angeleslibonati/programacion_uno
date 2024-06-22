@@ -1,15 +1,15 @@
+#include "movimiento.h"
 #include "mockMovimiento.h"
 #include "domicilio.h"
+#include "mockDomicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
 #include "menu.h"
-#include "movimiento.h"
 #include "cuenta.h"
 #include "mockCuenta.h"
 
 //campo unico autoincrementable
-int id2 (FILE * archi)
+int idMovimiento (FILE * archi)
 {
     int id;
 
@@ -25,7 +25,6 @@ int id2 (FILE * archi)
     {
         id = 1;
     }
-
     return id;
 }
 
@@ -52,20 +51,16 @@ int getDia ()
     return dia;
 }
 
-
-
 int getMes ()
 {
     return (rand()% 12) +1 ;
 }
 
 
-
 int getAnio ()
 {
     return (rand ()% 2024) + 1920;
 }
-
 
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta)
 {

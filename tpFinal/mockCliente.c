@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cliente.h"
 #include <ctype.h>
+#include "cliente.h"
 #include "mockCliente.h"
 #include "domicilio.h"
 #include "mockDomicilio.h"
 #include "menu.h"
 #include "cuenta.h"
 #include "mockCuenta.h"
+#include "movimiento.h"
+#include "mockMovimiento.h"
 
 #define AR_CLIENTE "archivoClientes.dat"
 
@@ -18,9 +20,11 @@ int getId (FILE * archi)
 {
     stCliente cliente;
     int id = 0;
+
     fseek(archi, 0, 2);
+
     int cant = ftell(archi)/sizeof(stCliente);
-    printf("%d", cant);
+
     if(cant > 0)
     {
         id = cant + 1;
@@ -29,10 +33,8 @@ int getId (FILE * archi)
     {
         id = 1;
     }
-
     return id;
 }
-
 
 int getNroCliente(FILE* archi, char dni[])
 {
@@ -40,11 +42,8 @@ int getNroCliente(FILE* archi, char dni[])
     int nCliente;
     stCliente cliente;
 
-
     if(archi)
     {
-
-
         nCliente = atoi(dni);
 
     }
@@ -52,18 +51,19 @@ int getNroCliente(FILE* archi, char dni[])
     return nCliente;
 }
 
-
-void getNombre(char nombre[]) // OKKKK
+void getNombre(char nombre[])
 {
 
-    char nombres[][30]= {"Alejandro","Carlos","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
-                         "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofia","Tomas","Ursula","Victor","Wendy","Ximena","Yago","Zulema","Andres","Belen",
-                         "Camilo","Juana"
-                        };
+    char nombres[][30]=
+    {
+        "Alejandro","Carlos","Carlos","Daniela","Eduardo","Fernanda","Gabriel","Helena","Ignacio","Julieta","Kevin","Lorena","Mateo",
+        "Natalia","Oscar","Patricia","Quentin","Ricardo","Sofia","Tomas","Ursula","Victor","Wendy","Ximena","Yago","Zulema","Andres","Belen",
+        "Camilo","Juana"
+    };
     strcpy(nombre,nombres[rand()%(sizeof(nombres)/30)]);
 }
 
-void getApellido(char apellido[]) //OKKKKK
+void getApellido(char apellido[])
 {
     char apellidos[][30]=
     {
@@ -77,7 +77,7 @@ void getApellido(char apellido[]) //OKKKKK
 
 
 
-//Generador de DNIS randoms OKKK
+//Generador de DNI randoms
 void getDNI(char dni[])
 {
 
@@ -95,14 +95,10 @@ void getDNI(char dni[])
     return strcpy(dni,dniChar);
 }
 
-
-
-//Telefonos randoms FUNCIONANDO !!!!
 void getTelefono(stCliente cliente[])
 {
     int vTelefono = 11;
     char nTelefono[12];
-
 
     int i;
     stCliente nuevoCliente;
@@ -136,7 +132,6 @@ void getTelefono(stCliente cliente[])
     strcpy(cliente, nTelefono);
 }
 
-
 //Muestra de Telefonos
 void mostrarTelefonos(char telefonos[])
 {
@@ -166,7 +161,6 @@ stCliente getClienteRandom(FILE * archi)
 {
     stCliente cliente;
 
-
     cliente.id = getId(archi);
     getNombre(cliente.nombre);
     getApellido(cliente.apellido);
@@ -175,7 +169,6 @@ stCliente getClienteRandom(FILE * archi)
     getTelefono(cliente.telefono);
     getEmail(cliente.email,cliente.nombre,cliente.apellido);
     cliente.domicilio = getDomicilioRandom();
-
 
     return cliente;
 }

@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "domicilio.h"
+#include "mockDomicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
 #include "menu.h"
 #include "movimiento.h"
 #include "mockMovimiento.h"
@@ -18,10 +18,11 @@
 
 int main()
 {
-    printf("Hello world!\n");
-    //cargaArchivoClientesRandoms(AR_CLIENTE,10);
-    mostrarClientesDesdeArch(AR_CLIENTE);
-    //iniciarMenu();
+    cargaArchivoCuentaRandom(AR_CUENTA,5);
+    printf("\n\n");
+
+
+    iniciarMenu();
 
     return 0;
 }

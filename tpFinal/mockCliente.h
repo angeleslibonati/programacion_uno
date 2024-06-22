@@ -2,16 +2,17 @@
 #define MOCKCLIENTE_H_INCLUDED
 #include "cliente.h"
 #include "domicilio.h"
-#include "mockCliente.h"
+#include "mockDomicilio.h"
 
-int getNroCliente(FILE* archi, char dni[]);
+
 int getId (FILE * archi);
-int getNroCliente();
+int getNroCliente(FILE* archi, char dni[]);
 void getNombre(char nombre[]);
 void getApellido(char apellido[]);
 void getDNI(char dni[]);
-void getEmail(char mail[],char nombre[], char apellido[]);
 void getTelefono(stCliente cliente[]);
-stCliente getClienteRandom();
+void mostrarTelefonos(char telefonos[]);
+void getEmail(char mail[],char nombre[], char apellido[]);
+stCliente getClienteRandom(FILE * archi);
 
 #endif // MOCKCLIENTE_H_INCLUDED

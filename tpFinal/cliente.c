@@ -18,7 +18,8 @@
 #define AR_CLIENTE "archivoClientes.dat"
 
 //Cargar un cliente
-stCliente cargaCliente(){
+stCliente cargaCliente()
+{
     stCliente cliente;
 
     printf("\nIngrese el Nombre: ");
@@ -111,7 +112,8 @@ void altaCliente(char archivo[])
 }
 
 //BAJA CLIENTE
-int bajaCliente (char nombreArchivo[], int numId) {
+int bajaCliente (char nombreArchivo[], int numId)
+{
     stCliente cliente;
     int posId;
     int flag = 0;
@@ -139,7 +141,8 @@ int bajaCliente (char nombreArchivo[], int numId) {
 
 
 //Busca cliente por ID. Si cliente.id == 0, el cliente no existe
-stCliente buscarClientePorId(char nombreArchivo [], int numId) {
+stCliente buscarClientePorId(char nombreArchivo [], int numId)
+{
     stCliente cliente;
     cliente.id = 0;
     int flag = 0;
@@ -159,18 +162,23 @@ stCliente buscarClientePorId(char nombreArchivo [], int numId) {
 //modificacion datos
 int  modificaNombre(FILE * archi,int id, char nombre[])
 {
+    int flag = 0;
     stCliente cliente;
+
     if(archi)
     {
         cliente = buscarClientePorId(archi,id);
         strcpy(cliente.nombre, nombre);
         fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,archi);
+        flag = 1;
     }
+    return flag;
 }
 
 int  modificaMail(FILE * archi,int id, char mail[])
 {
+    int flag = 0;
     stCliente cliente;
     if(archi)
     {
@@ -178,12 +186,17 @@ int  modificaMail(FILE * archi,int id, char mail[])
         strcpy(cliente.email, mail);
         fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,archi);
+
+        flag = 1;
     }
+    return flag;
 }
 
 int  modificaApellido(FILE * archi,int id, char apellido[])
 {
+    int flag = 0;
     stCliente cliente;
+
     if(archi)
     {
 
@@ -191,12 +204,17 @@ int  modificaApellido(FILE * archi,int id, char apellido[])
         strcpy(cliente.apellido, apellido);
         fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,archi);
+
+        flag = 1;
     }
+    return flag;
 }
 
 int  modificaDni(FILE * archi,int id, char dni[])
 {
+    int flag = 0;
     stCliente cliente;
+
     if(archi)
     {
         cliente = buscarClientePorId(archi,id);
@@ -209,14 +227,18 @@ int  modificaDni(FILE * archi,int id, char dni[])
             strcpy(cliente.dni, dni);
             fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
             fwrite(&cliente,sizeof(stCliente),1,archi);
-        }
 
+            flag = 1;
+        }
     }
+    return flag;
 }
 
 int  modificaDomicilio(FILE * archi,int id, char domicilio[])
 {
+    int flag = 0;
     stCliente cliente;
+
     if(archi)
     {
 
@@ -225,21 +247,27 @@ int  modificaDomicilio(FILE * archi,int id, char domicilio[])
         fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,archi);
 
+        flag = 1;
     }
+    return flag;
 }
 
 int  modificaTelefono(FILE *archi,int id, char telefono[])
 {
+    int flag = 0;
     stCliente cliente;
+
     if(archi)
     {
         cliente = buscarClientePorId(archi,id);
         strcpy(cliente.telefono, telefono);
         fseek(archi,sizeof(stCliente)*(cliente.id-1),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,archi);
-    }
-}
 
+        flag = 1;
+    }
+    return flag;
+}
 
 // Busca Cliente por dni (retorna flag, 0 = no esta, 1= esta en registro)
 int buscaClientePorDni (FILE * archi, char dni[])
@@ -280,6 +308,7 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
 {
     do
     {
+        int flag = 0;
 
         switch (opcion)
         {
@@ -291,6 +320,7 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             printf("\n\n");
             imprimeOpcionesSubMenu();
             switchSubMenuCliente();
+
             break;
 
         case 1:
@@ -304,9 +334,13 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             fflush(stdin);
             gets(nuevoNombre);
             system("pause");
-            printf("Estoy aca \n");
-            modificaNombre(archi,id,nuevoNombre);
-
+            flag = modificaNombre(archi,id,nuevoNombre);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
             break;
 
         case 2:
@@ -319,7 +353,13 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             char nuevoApellido[30];
             fflush(stdin);
             gets(nuevoApellido);
-            modificaApellido(archi,id,nuevoApellido);
+            flag = modificaApellido(archi,id,nuevoApellido);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
             break;
 
        case 3:
@@ -332,7 +372,14 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             char nuevoDni[10];
             fflush(stdin);
             gets(nuevoDni);
-            modificaDni(archi,id,nuevoDni);
+            flag = modificaDni(archi,id,nuevoDni);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
             break;
 
         case 4:
@@ -345,7 +392,14 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             char nuevoMail[30];
             fflush(stdin);
             gets(nuevoMail);
-            modificaMail(archi,id,nuevoMail);
+            flag = modificaMail(archi,id,nuevoMail);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
             break;
 
         case 5:
@@ -358,7 +412,14 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             char nuevoDomicilio[30];
             fflush(stdin);
             gets(nuevoDomicilio);
-            modificaDomicilio(archi,id,nuevoDomicilio);
+            flag = modificaDomicilio(archi,id,nuevoDomicilio);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
             break;
 
         case 6:
@@ -371,7 +432,14 @@ void swithcSubMenuModificarCliente (FILE* archi, int id, int opcion)
             char nuevoTelefono[12];
             fflush(stdin);
             gets(nuevoTelefono);
-            modificaTelefono(archi,id,nuevoTelefono);
+            flag = modificaTelefono(archi,id,nuevoTelefono);
+            if (flag == 1){
+                printf("\nDato modificado con Exito.\n");
+            }
+            else{
+                printf("\nEl dato no pudo ser modificado.\n");
+            }
+
             break;
 
         default:
@@ -389,7 +457,7 @@ void mostrarClientesDesdeArch(char nombreArchivo [])
     FILE * archi = fopen(nombreArchivo, "rb");
     stCliente cliente;
     if (archi) {
-        while(fread(&cliente, sizeof(stCuenta), 1, archi) > 0) {
+        while(fread(&cliente, sizeof(stCliente), 1, archi) > 0) {
             muestraCliente(cliente);
         }
         fclose(archi);

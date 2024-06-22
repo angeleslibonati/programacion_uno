@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "movimiento.h"
+#include "mockMovimiento.h"
 #include "domicilio.h"
+#include "mockDomicilio.h"
 #include "cliente.h"
 #include "mockCliente.h"
-#include "mockDomicilio.h"
 #include "menu.h"
 #include "cuenta.h"
 #include "mockCuenta.h"
@@ -42,8 +43,6 @@ void extraccionDepositoDinero (char nombreArchivo[],stMovimiento movBancario, fl
     }
 
 }
-
-
 
 void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int idCuenta)
 {
@@ -99,8 +98,6 @@ void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int 
     }
 }
 
-
-
 //Modificaicon de Movimiento (modifica importe en cuenta)
 int modificacionImporte (float importe, char nombreArchivo[], int id)
 {
@@ -108,9 +105,7 @@ int modificacionImporte (float importe, char nombreArchivo[], int id)
     stMovimiento movBancario;
     stMovimiento movActual;
 
-
     FILE * archi = fopen(nombreArchivo, "a+b");
-
 
     if(archi)
     {
@@ -237,9 +232,7 @@ void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[])
         }
         fclose(archi);
     }
-
 }
-
 
 //Listado de Movimentos(Por mes)
 void listadoMovimientoMes (int mes, char nombreArchivo[])
@@ -259,7 +252,6 @@ void listadoMovimientoMes (int mes, char nombreArchivo[])
         }
         fclose(archi);
     }
-
 }
 
 //Muestra 1 movimiento
