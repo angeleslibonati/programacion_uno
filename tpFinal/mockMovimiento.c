@@ -74,7 +74,6 @@ int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuent
 void cargaArchivoMovimientos(char nombreArchivo [], int cantidad)
 {
     stMovimiento movBancario;
-    stCuenta cuenta;
 
     FILE * archi = fopen(nombreArchivo, "ab");
 

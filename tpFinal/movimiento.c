@@ -83,7 +83,7 @@ void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float 
     if (archi)
     {
 
-        fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
+        fwrite(&movBancario.importe, sizeof(stMovimiento), 1, archi);
         fclose(archi);
     }
 
@@ -158,7 +158,7 @@ void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char n
 
         printf("Ingrese el monto para la extraccion.\n");
         scanf ("%f", &monto);
-        int numId = ingresaID();
+        //int numId = ingresaID();
         ejecutarExtraccion(nombreArchivoMov, nombreArchivoCuenta, movBancario,monto);
 
         break;
