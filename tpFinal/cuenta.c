@@ -29,12 +29,12 @@ stCuenta altaCuentaUsuario(FILE *  archi) {
         printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
         printf("\nIngrese el tipo de cuenta: ");
         scanf("%d", &tipoCuenta);
-    if (tipoCuenta < 1 || tipoCuenta > 3) {
-        printf("\nTipo de cuenta invalida. Por favor reingrese.");
-    }
+        if (tipoCuenta < 1 || tipoCuenta > 3) {
+            printf("\nTipo de cuenta invalida. Por favor reingrese.");
+        }
     }
     cuenta.idCliente = idCliente;
-    cuenta.id = id(archi) + 1;
+    cuenta.id = id(archi);
     cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
     cuenta.tipoDeCuenta = tipoCuenta;
     cuenta.costoMensual = costoMantenimiento(tipoCuenta);
@@ -47,7 +47,7 @@ stCuenta altaCuentaUsuario(FILE *  archi) {
 
 //Muestra Datos de la cuenta
 void mostrarDatosCuenta(stCuenta cuenta) {
-    puts("______________________________");
+    puts("\n______________________________");
     printf("\nId Cuenta: %d", cuenta.id);
     printf("\nCliente: %d", cuenta.idCliente);
     printf("\nN%c de Cuenta: %d", 248, cuenta.nroCuenta);
@@ -70,7 +70,6 @@ void mostrarDatosCuenta(stCuenta cuenta) {
     }
     puts("______________________________");
 }
-
 
 //campo unico autoincrementable
 int id (FILE * archi) {
@@ -183,7 +182,26 @@ stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta) {
     return cuenta;
 }
 
+//Busca cuenta por NUMERO DE CUENTA.
+stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta) {
 
+    stCuenta cuenta;
+
+    int flag = 0;
+
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    if (archi) {
+        while (flag == 0 && fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
+
+            if (cuenta.nroCuenta == nroCuenta) {
+                flag = 1;
+            }
+        }
+        fclose(archi);
+    }
+    return cuenta;
+}
 
 //Comprueba existencia de cuenta. Para calcular numero de cuenta
 int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
@@ -197,6 +215,26 @@ int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
             flag = 1;
         }
     }
+    return flag;
+}
+
+//Comprueba existencia de cuenta.
+int existeCuentaNroCuenta(char nombreArchivo[], int numeroCuenta)
+{
+    int flag = 0;
+    stCuenta cuenta;
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    if (archi){
+
+        while(flag == 0 && fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
+            if(cuenta.nroCuenta == numeroCuenta) {
+                flag = 1;
+            }
+        }
+        fclose(archi);
+    }
+
     return flag;
 }
 

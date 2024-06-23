@@ -68,10 +68,11 @@ int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuent
 {
 
     int saldoRand = (rand()% 1000) + 1;
-    escribirMovimiento(nombreArchivo,movBancario,saldoRand);
+    escribirMovimiento(nombreArchivo,movBancario,saldoRand,cuenta);
 
     return saldoRand;
 }
+
 
 //Carga movimientos en archivo
 void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
@@ -86,7 +87,7 @@ void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], i
 
         for (int i = 0; i < cantidad; i++) {
 
-            movBancario = inicializarMovimiento(archi, archiCuenta);
+            movBancario = inicializarMovimiento(cuenta);
 
             fseek(archi, 0, 2);
             fwrite(&movBancario, sizeof(stMovimiento), 1, archi);

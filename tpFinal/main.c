@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "domicilio.h"
 #include "mockDomicilio.h"
 #include "cliente.h"
@@ -18,16 +19,10 @@
 
 int main()
 {
-
+    srand (time (NULL));
     printf("\n\n");
-    //cargaArchivoCuentaRandom(AR_CUENTA,5);
 
-    //cargarMovimientosToArchivo(AR_MOVIMIENTO);
-   //cargaArchivoMovimientos(AR_MOVIMIENTO,AR_CUENTA,);
-
-    mostrarMovimientosDesdeArch(AR_MOVIMIENTO);
-   // mostrarCuentasDesdeArch(AR_CUENTA);
-    //iniciarMenu();
+    iniciarMenu();
 
     return 0;
 }

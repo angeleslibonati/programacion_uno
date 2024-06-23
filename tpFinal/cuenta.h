@@ -22,6 +22,8 @@ void mostrarDatosCuenta(stCuenta cuenta);
 stCuenta altaCuentaUsuario(FILE *  archi);
 float costoMantenimiento(int tipoCuenta);
 stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta);
+stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta);
+int existeCuentaNroCuenta(char nombreArchivo[], int numeroCuenta);
 int cambioEstadoCuentaPorId (char nombreArchivo [], int idCuenta);
 void listarCuentasPorCliente(char nombreArchivo [], int idCliente);
 int contarCantRegistros(char nombreArchivo [], int tamStruc);//ver borrar

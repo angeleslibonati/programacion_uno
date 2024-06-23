@@ -18,10 +18,10 @@ typedef struct
 
 void mostrarMovimiento (stMovimiento movBancario);
 void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta[]);
-stMovimiento inicializarMovimiento (FILE * archi, FILE * archiCuenta);
-void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[]);
-void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario, float importe);
-void escribirMovimiento (char nombreArchivo [], stMovimiento movimiento, float importe);
+stMovimiento inicializarMovimiento ();
+void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[],stCuenta cuenta);
+void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario,stCuenta cuenta, float importe);
+void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float importe, stCuenta cuenta);
 void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char nombreArchivoCuenta []);
 int modificacionImporte (float importe, char nombreArchivo[], int id);
 stMovimiento buscaMovimiento (int id, FILE * archi);

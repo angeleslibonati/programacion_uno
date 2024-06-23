@@ -12,28 +12,22 @@
 
 
 #define AR_MOVIMIENTO "movimiento.dat"
+#define AR_CUENTA "cuenta.dat"
 
 
-stMovimiento inicializarMovimiento (FILE * archi, FILE * archiCuenta)
+stMovimiento inicializarMovimiento (FILE * archi)
 {
     stMovimiento movBancario;
-    stCuenta cuenta;
 
     movBancario.id = idMovimiento(archi);
-    movBancario.idCuenta = cuenta.nroCuenta;
-
-    printf("Ingrese el detalle de la operacion\n");
-    fflush(stdin);
-    gets(movBancario.detalle);
-
+    movBancario.idCuenta = 0;
+    movBancario.detalle;
     movBancario.importe = 0.0;
     movBancario.anio = getAnio();
     movBancario.mes = getMes();
     movBancario.dia = getDia();
     movBancario.eliminado = 0;
-    printf("Cargando...\n");
-    system ("pause");
-    system ("cls");
+
     return movBancario;
 }
 
@@ -41,12 +35,13 @@ void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta
 {
     stMovimiento movBancario;
     stCuenta cuenta;
+
     FILE * archi = fopen(nombreArchivo, "ab");
     FILE * archiCuenta = fopen(nombreArchivoCuenta, "rb");
 
     if (archi){
 
-        movBancario = inicializarMovimiento(archi, archiCuenta);
+        movBancario = inicializarMovimiento(archi);
         fseek(archi,0,2);
         fwrite(&movBancario, sizeof(stMovimiento),1, archi);
 
@@ -68,36 +63,51 @@ void mostrarMovimiento (stMovimiento movBancario)
 
 }
 
+
 //AMBL MOVIMIENTO
 
 //Alta de Movimiento  (realiza extraccion o deposito)
 
-void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float importe)
+void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float importe, stCuenta cuenta)
 {
     FILE * archi = fopen(nombreArchivo, "ab");
 
     if (archi)
     {
         movBancario.importe = importe;
-        fwrite(&movBancario.importe, sizeof(stMovimiento), 1, archi);
+        movBancario.id = idMovimiento(archi);
+        movBancario.idCuenta = cuenta.nroCuenta;
+        movBancario.anio = getAnio ();
+        movBancario.mes = getMes ();
+        movBancario.dia = getDia ();
+        movBancario.eliminado = 0;
+        printf("\nIngrese el detalle de la operacion\n");
+        fflush(stdin);
+        gets(movBancario.detalle);
+
+        fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
+
         fclose(archi);
     }
-
 }
 
-void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario, float importe)
+void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario,stCuenta cuenta, float importe)
 {
     FILE * archiCuenta = fopen(nombreArchivoCuenta, "r+b");
-    stCuenta cuenta;
 
     if (archiCuenta){
-
 
         if (importe <= cuenta.saldo)
         {
             cuenta.saldo = (float) cuenta.saldo - importe;
-            fwrite(&cuenta.saldo, sizeof(stCuenta) * (cuenta.id - 1),1,archiCuenta);
-            escribirMovimiento(nombreArchivoMov,movBancario,importe);
+
+            fseek (archiCuenta, sizeof(stCuenta) * (cuenta.id-1),0);
+            fwrite(&cuenta, sizeof(stCuenta) * (cuenta.id - 1),1,archiCuenta);
+            escribirMovimiento(nombreArchivoMov, movBancario, importe, cuenta);
+
+            system("cls");
+            imprimirCabecera("TICKET");
+            mostrarDatosCuenta(cuenta);
         }
         else
         {
@@ -107,22 +117,29 @@ void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], s
     }
 }
 
-void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[])
+void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[],stCuenta cuenta)
 {
-    stCuenta cuenta;
+    FILE * archiCuenta = fopen(nombreArchivoCuenta,"r+b");
 
-    if (importe <= 0 )
-    {
+    if (archiCuenta){
+        if (importe <= 0 )
+        {
+            printf("El monto ingresado es invalido.\n");
+        }
+        else
+        {
+            cuenta.saldo = (float) cuenta.saldo + importe;
 
-        printf("El saldo ingresado es invalido.\n");
-    }
-    else
-    {
-        cuenta.saldo = (float) cuenta.saldo + importe;
+            fseek (archiCuenta, sizeof(stCuenta) * (cuenta.id-1),0);
+            fwrite (&cuenta,sizeof(stCuenta),1,archiCuenta);
+            escribirMovimiento(nombreArchivoMov,movBancario, importe, cuenta);
 
-        escribirMovimiento(nombreArchivoMov,movBancario, importe);
-        fseek (nombreArchivoCuenta, sizeof(stCuenta) * (cuenta.id-1),0);
-        fwrite (&cuenta.saldo,sizeof(stCuenta),1,nombreArchivoCuenta);
+            system("cls");
+            imprimirCabecera("TICKET");
+            mostrarDatosCuenta(cuenta);
+        }
+
+        fclose(archiCuenta);
     }
 }
 
@@ -130,11 +147,12 @@ void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char n
 {
     float monto = 0;
     int opcion = 0;
+    int numCuenta = 0;
 
 
-    printf("Ingrese 1 para Extraccion.\n");
-    printf("Ingrese 2 para Deposito.\n");
-    printf("Ingrese 0 para Salir.\n");
+    printf("1. EXTRACCION.\n");
+    printf("2. DEPOSITO.\n");
+    printf("3. REGRESAR\n");
     scanf("%d", &opcion);
 
     switch (opcion)
@@ -151,19 +169,46 @@ void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char n
 
     case 1:
 
+        system ("cls");
+        imprimirCabecera("EXTRACCION");
+        printf("\n\n");
+
+        numCuenta = ingresaID();
+
         printf("Ingrese el monto para la extraccion.\n");
         scanf ("%f", &monto);
-        //int numId = ingresaID();
-        ejecutarExtraccion(nombreArchivoMov, nombreArchivoCuenta, movBancario,monto);
+        monto = monto*(-1);
+
+        if (existeCuentaNroCuenta(nombreArchivoCuenta,numCuenta) == 1){
+
+            stCuenta cuenta = buscaCuentaPorNumCuenta(AR_CUENTA,numCuenta);
+            ejecutarExtraccion(nombreArchivoMov, nombreArchivoCuenta, movBancario, cuenta, monto);
+        }
+        else{
+            printf("\Numero de cuenta invalida.\n");
+        }
 
         break;
+
     case 2:
+
+        system ("cls");
+        imprimirCabecera("DEPOSITO");
+        printf("\n\n");
+
+        numCuenta = ingresaID();
 
         printf("Ingrese el monto a Depositar.\n");
         scanf("%f",&monto);
-       //numId = ingresaID();
-        ejecutaDeposito(monto,nombreArchivoMov, movBancario,nombreArchivoCuenta);
 
+        if (existeCuentaNroCuenta (AR_CUENTA, numCuenta) == 1){
+
+            stCuenta cuenta = buscaCuentaPorNumCuenta(AR_CUENTA, numCuenta);
+            ejecutaDeposito(monto, nombreArchivoMov, movBancario, nombreArchivoCuenta, cuenta);
+        }
+        else{
+            printf("\Numero de cuenta invalida.\n");
+        }
         break;
 
     default:

@@ -38,6 +38,7 @@ void imprimeOpcionMenuPrincipal ()
     printf("1. CLIENTE\n");
     printf("2. CUENTA\n");
     printf("3. MOVIMIENTO\n");
+    printf("4. MAS OPCIONES\n");
     printf("0. SALIR\n");
 
 }
@@ -124,6 +125,13 @@ int switchMenuPrincipal ()
             system("pause");
 
             break;
+        case 4:
+            //LLAMA A LAS FUNCIONES DE CARGA AUTOMATICA.
+            system ("cls");
+            imprimirCabecera("MAS OPCIONES");
+            printf("\n\n");
+
+            break;
 
         default:
 
@@ -135,14 +143,94 @@ int switchMenuPrincipal ()
     return opcion;
 }
 
+void imprineOpcionesSubMenuOpciones()
+{
+    printf("\n1. CARGA CLIENTE RANDOM\n");
+    printf("2. CARGA CUENTA RANDOM\n");
+    printf("3. CARGA MOVIMIENTOS RANDOM\n");
+    printf("4. REGRESA\n");
+}
+
+void swithSubMenuOpciones ()
+{
+    int opcion = 0;
+    int cantidad = 0;
+
+    do
+    {
+        imprineOpcionesSubMenuOpciones();
+        opcion = ingresaOpcion();
+
+        switch (opcion)
+        {
+        case 0:
+
+            //volver al menu anterior
+            system ("cls");
+            imprimirCabecera("MENU PRINCIPAL");
+            printf("\n\n");
+            imprimeOpcionMenuPrincipal();
+            switchMenuPrincipal();
+
+            break;
+
+        case 1:
+
+            //carga random de clientes
+            system ("cls");
+            imprimirCabecera("CARGA CLIENTES RANDOM");
+            printf("\n\n");
+            printf("Ingrese la cantidad de clientes que desea cargar\n");
+            fflush(stdin);
+            scanf("%d", &cantidad);
+            cargaArchivoClientesRandoms(AR_CLIENTE, cantidad);
+            system("cls");
+
+            break;
+
+        case 2:
+
+            //carga random de cuentas
+            system ("cls");
+            imprimirCabecera("CARGA CUENTAS RANDOM");
+            printf("\n\n");
+            printf("Ingrese la cantidad de cuentas que desea cargar\n");
+            fflush(stdin);
+            scanf("%d", &cantidad);
+            cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
+            system ("cls");
+
+            break;
+
+        case 3:
+
+            //carga random movimientos
+            system ("cls");
+            imprimirCabecera("CARGA MOVIMIENTOS RANDOM");
+            printf("\n\n");
+            printf("Ingrese la cantidad de movimientos que desea cargar\n");
+            fflush(stdin);
+            scanf("%d", &cantidad);
+
+            //FUNCION DE RANDOM
+
+        default:
+
+            printf("Opcion invalida\n");
+        }
+
+    }while (opcion != 0);
+
+}
+
 void imprimeOpcionesSubMenu ()
 {
-    printf("\n1. Alta\n");
-    printf("2. Eliminar - Activar\n");
-    printf("3. Modificacion\n");
-    printf("4. Consultar\n");
-    printf("5. Listado\n");
-    printf("0. Volver Atras\n");
+    printf("\n1. ALTA\n");
+    printf("2. ELIMINAR - ACTIVAR\n");
+    printf("3. MODIFICAR\n");
+    printf("4. CONSULTAR\n");
+    printf("5. LISTADO\n");
+    printf("0. REGRESAR\n");
 }
 
 void switchSubMenuCliente ()
@@ -459,8 +547,10 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BAJA DE CUENTA");
             printf("\n\n");
+
             numId = ingresaID();
             int flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
+
             if(flag){
                 imprimirCabecera("CUENTA ELIMINADA");
             } else {
@@ -482,6 +572,7 @@ void swithcSubMenuCuenta ()
             printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
             printf("\nIngrese el tipo de cuenta: ");
             scanf("%d", &tipoCuenta);
+
             modificaTipoCuentaPorId(AR_CUENTA, numId,tipoCuenta);
 
             break;
@@ -492,8 +583,11 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BUSCAR UNA CUENTA");
             printf("\n\n");
+
             numId = ingresaID();
+
             consultaCuentaPorId(AR_CUENTA, numId);
+
             break;
 
         case 5:
@@ -502,7 +596,13 @@ void swithcSubMenuCuenta ()
             system("cls");
             imprimirCabecera("LISTADO CUENTAS");
             printf("\n\n");
-            mostrarCuentasDesdeArch(AR_CUENTA);
+
+            printf("Ingrese el ID Cliente\n");
+            fflush(stdin);
+            int idCliente;
+            scanf("%d", &idCliente);
+            listarCuentasPorCliente(AR_CUENTA,idCliente);
+
             break;
 
         default:
@@ -532,6 +632,7 @@ void switchSubMenuMovimiento ()
             printf("\n\n");
             imprimeOpcionMenuPrincipal();
             switchMenuPrincipal();
+
             break;
 
         case 1:
@@ -540,8 +641,8 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("ALTA DE MOVIMIENTO");
             printf("\n\n");
-            stMovimiento movBancario;
 
+            stMovimiento movBancario = inicializarMovimiento();
             opcionMovimiento(movBancario, AR_MOVIMIENTO,AR_CUENTA);
 
             break;
@@ -592,6 +693,7 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("CONSULTA DE MOVIMIENTO");
             printf("\n\n");
+
             numId = ingresaID();
             movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
             mostrarMovimiento(movBancario);
@@ -638,7 +740,7 @@ void switSubMenuListado()
             system ("cls");
             imprimirCabecera("MOVIMIENTOS");
             printf("\n\n");
-            imprimeOpcionesSubMenu();
+
             switchSubMenuMovimiento();
             system ("pause");
             break;
@@ -658,6 +760,7 @@ void switSubMenuListado()
             system ("cls");
             imprimirCabecera("MOVIMIENTO POR MES");
             printf("\n\n");
+
             int mes;
             do{
                 printf("Ingrese el mes para buscar. (1 al 12)\n");
