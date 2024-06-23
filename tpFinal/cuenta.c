@@ -47,28 +47,17 @@ stCuenta altaCuentaUsuario(FILE *  archi) {
 
 //Muestra Datos de la cuenta
 void mostrarDatosCuenta(stCuenta cuenta) {
-    puts("\n______________________________");
+    puts("______________________________");
     printf("\nId Cuenta: %d", cuenta.id);
     printf("\nCliente: %d", cuenta.idCliente);
     printf("\nN%c de Cuenta: %d", 248, cuenta.nroCuenta);
-    switch (cuenta.tipoDeCuenta) {
-        case 1:
-            printf("\nTipo de cuenta: CA $");
-            break;
-        case 2:
-            printf("\nTipo de cuenta: CA U$D");
-            break;
-        case 3:
-            printf("\nTipo de cuenta: CC $");
-    }
+    printf("\nTipo de cuenta: ");
+    tipoDeCuentaString(cuenta.tipoDeCuenta);
     printf("\nSaldo: $%2.f", cuenta.saldo);
     printf("\nCosto de Mantenimiento: $%2.f", cuenta.costoMensual);
-    if(cuenta.eliminado) {
-        printf("\nEstado: Baja\n");
-    } else {
-        printf("\nEstado: Activa\n");
-    }
-    puts("______________________________");
+    printf("\nEstado: ");
+    estado2String(cuenta.eliminado);
+    puts("\n______________________________");
 }
 
 //campo unico autoincrementable
@@ -266,29 +255,57 @@ void consultaCuentaPorId(char nombreArchivo [], int id)
 {
     stCuenta cuenta;
     cuenta = buscaCuentaPorId(nombreArchivo, id);
-    mostrarDatosCuenta(cuenta);
+    if (cuenta.id != 0) {
+        mostrarDatosCuenta(cuenta);
+    } else {
+        imprimirCabecera("ID INVALIDA");
+    }
 }
-
 
 //Modificacion tipo de cuenta// retorna 1 si tuvo exito 0 si no
 int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
     int flag = 0;
     stCuenta cuenta;
-
     cuenta = buscaCuentaPorId(nombreArchivo, id);
-
     FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi) {
-
         cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
         cuenta.tipoDeCuenta = tipoCuenta;
-
-        fseek(archi, sizeof(stCuenta) * (id-1), 0);
+        cuenta.costoMensual = costoMantenimiento(tipoCuenta);
+        fseek(archi, sizeof(stCuenta) * (cuenta.id-1), 0);
         fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         flag = 1;
 
         fclose(archi);
     }
+
     return flag;
 }
+
+//Tipo de cuenta int 2 string
+void tipoDeCuentaString(int tipoCuenta) {
+    switch (tipoCuenta) {
+        case 1:
+            printf("CA $\t\t");
+            break;
+        case 2:
+            printf("CA U$D\t");
+            break;
+        case 3:
+            printf("CC $\t\t");
+    }
+}
+
+//Estado de eliminado a string
+void estado2String(int eliminado) {
+    switch (eliminado) {
+        case 0:
+            printf("Activo");
+            break;
+        case 1:
+            printf("Baja");
+            break;
+    }
+}
+

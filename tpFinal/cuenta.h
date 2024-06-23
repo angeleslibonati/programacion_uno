@@ -29,5 +29,7 @@ void listarCuentasPorCliente(char nombreArchivo [], int idCliente);
 int contarCantRegistros(char nombreArchivo [], int tamStruc);//ver borrar
 int id (FILE* archi);
 int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta);
+void tipoDeCuentaString(int tipoCuenta);
+void estado2String(int eliminado);
 
 #endif // CUENTA_H_INCLUDED
