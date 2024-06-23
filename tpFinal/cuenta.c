@@ -42,7 +42,7 @@ stCuenta altaCuentaUsuario(FILE *  archi, char nombreArchCliente []) {
     }
     cuenta.idCliente = idCliente;
     cuenta.id = id(archi) + 1;
-    cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
+    cuenta.nroCuenta = randomNroCuenta(archi);
     cuenta.tipoDeCuenta = tipoCuenta;
     cuenta.costoMensual = costoMantenimiento(tipoCuenta);
     cuenta.saldo = 0;
@@ -276,7 +276,7 @@ int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
     FILE * archi = fopen(nombreArchivo, "r+b");
 
     if(archi) {
-        cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
+        cuenta.nroCuenta = randomNroCuenta(archi);
         cuenta.tipoDeCuenta = tipoCuenta;
         cuenta.costoMensual = costoMantenimiento(tipoCuenta);
         fseek(archi, sizeof(stCuenta) * (cuenta.id-1), 0);

@@ -183,11 +183,14 @@ void swithSubMenuOpciones ()
             printf("Ingrese la cantidad de clientes que desea cargar\n");
             fflush(stdin);
             scanf("%d", &cantidad);
-            cargaArchivoClientesRandoms(AR_CLIENTE, cantidad);
-            if
-            system("cls");
-            imprimirCabecera("CARGA EXITOSA");
-            printf("\n\n");
+            int flag = cargaArchivoClientesRandoms(AR_CLIENTE, cantidad);
+
+            if (flag == 1){
+
+                system("cls");
+                imprimirCabecera("CARGA EXITOSA");
+                printf("\n\n");
+            }
 
             break;
 
@@ -200,11 +203,14 @@ void swithSubMenuOpciones ()
             printf("Ingrese la cantidad de cuentas que desea cargar\n");
             fflush(stdin);
             scanf("%d", &cantidad);
-            cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
-            if
-            system ("cls");
-            imprimirCabecera("CARGA EXITOSA");
-            printf("\n\n");
+//            flag = cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
+//
+//            if (flag == 1){
+//
+//                system("cls");
+//                imprimirCabecera("CARGA EXITOSA");
+//                printf("\n\n");
+//            }
             break;
 
         case 3:
@@ -216,7 +222,13 @@ void swithSubMenuOpciones ()
             printf("Ingrese la cantidad de movimientos que desea cargar\n");
             fflush(stdin);
             scanf("%d", &cantidad);
-            cargaArchivoMovimientosRandom (AR_MOVIMIENTO,AR_CUENTA,cantidad);
+            flag = cargaArchivoMovimientosRandom (AR_MOVIMIENTO,AR_CUENTA,cantidad);
+            if (flag == 1){
+
+                system("cls");
+                imprimirCabecera("CARGA EXITOSA");
+                printf("\n\n");
+            }
 
             break;
 
@@ -317,14 +329,11 @@ void switchSubMenuCliente ()
             system ("cls");
             imprimirCabecera("BUSCAR UN CLIENTE");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-            consultaClientePorId(AR_CLIENTE, numId);
-=======
+
             numId = imprimirSolicitarDato("\nIngrese el ID");
             cliente = buscarClientePorId(AR_CLIENTE, numId);
             muestraCliente(cliente);
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
+
 
             break;
 
@@ -395,15 +404,10 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BAJA DE CUENTA");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-            int flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
-=======
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
-            flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
+            int flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
 
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
             if(flag){
                 imprimirCabecera("CUENTA ELIMINADA");
             } else {
@@ -417,18 +421,13 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("MODIFICACION DE CUENTA");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-=======
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
 
             int tipoCuenta;
 
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
             printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
             printf("\nIngrese el tipo de cuenta: ");
-            int tipoCuenta;
             scanf("%d", &tipoCuenta);
 
             flag = modificaTipoCuentaPorId(AR_CUENTA, numId, tipoCuenta);
@@ -445,13 +444,9 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BUSCAR UNA CUENTA");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-=======
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
 
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
             consultaCuentaPorId(AR_CUENTA, numId);
             break;
 

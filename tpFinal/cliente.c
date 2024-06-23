@@ -61,8 +61,10 @@ void muestraCliente(stCliente cliente)
 }
 
 //Cargas el archivo con clientes randoms segun la cantidad pasada por parametro
-void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad)
+int cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad)
 {
+    int flag = 0;
+
     FILE* archi = fopen(nombreArchivo, "a+b");
     stCliente cliente;
     int i = 0;
@@ -73,9 +75,11 @@ void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad)
             cliente = getClienteRandom(archi);
             fwrite(&cliente, sizeof(stCliente), 1, archi);
             i++;
+            flag = 1;
         }
         fclose(archi);
     }
+    return flag;
 }
 
 //Mostras el archivo con clientes random de la funcion anterior

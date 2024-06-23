@@ -22,7 +22,7 @@ typedef struct
 
 stCliente cargaCliente();
 void muestraCliente(stCliente cliente);
-void cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad);
+int cargaArchivoClientesRandoms(char nombreArchivo[], int cantidad);
 void muestraArchivoClientes(char nombreArchivo[]);
 void altaCliente(char archivo[]);
 int bajaCliente (char nombreArchivo[], int numId);

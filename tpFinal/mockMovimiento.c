@@ -71,8 +71,9 @@ int getAnio ()
 
 
 //Carga movimientos en archivo
-void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
+int cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
 {
+    int flag = 0;
     stMovimiento movBancario;
     stCuenta cuenta;
 
@@ -93,9 +94,11 @@ void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuent
             if (cuenta.id % 2 == 0 && cuenta.tipoDeCuenta == 3){
 
                 movBancario.importe =((rand ()% 5000) +1)*(-1);
+                flag = 1;
             }
             else {
                 movBancario.importe =(rand ()% 5000) +1;
+                flag = 1;
             }
             cuenta.saldo += movBancario.importe;
 
@@ -110,6 +113,7 @@ void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuent
         fclose(archi);
         fclose(archiCuenta);
     }
+    return flag;
 }
 
 
