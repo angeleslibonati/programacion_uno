@@ -5,6 +5,6 @@ stCuenta altaCuentaRandom(FILE * archi, char nombreArchCliente []);
 void cargaArchivoCuentaRandom(char nombreArchivo [], int cantidad, char nombreArchCliente []);
 int randomTipoCuenta();
 int randomIdCliente(char nombreArchivo []);
-int randomNroCuenta(FILE * archi, int tipoCuenta);
+int randomNroCuenta(FILE * archi);
 
 #endif // MOCKCUENTA_H_INCLUDED

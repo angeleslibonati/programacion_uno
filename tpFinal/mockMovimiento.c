@@ -64,16 +64,19 @@ int getAnio ()
     return (rand ()% 104) + 1920;
 }
 
+<<<<<<< HEAD
 /*int getAltaMovimiento (int cantidad)
 {
 
 
     return ;
 }*/
+=======
+>>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
 
 
 //Carga movimientos en archivo
-void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
+void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
 {
     stMovimiento movBancario;
     stCuenta cuenta;
@@ -86,7 +89,7 @@ void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], i
         for (int i = 0; i < cantidad; i++) {
 
             movBancario = inicializarMovimiento(cuenta);
-
+            getDescripcionMov(movBancario.detalle, movBancario.importe);
             fseek(archi, 0, 2);
             fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
         }

@@ -16,7 +16,7 @@ void imprimirCabecera(char cabecera[]);
 void imprimeOpcionMenuPrincipal ();
 void iniciarMenu();
 int ingresaOpcion ();
-int ingresaID ();
+int imprimirSolicitarDato (char txtDato[]);
 int switchMenuPrincipal ();
 void imprimeOpcionesSubMenu ();
 void switchSubMenuCliente ();

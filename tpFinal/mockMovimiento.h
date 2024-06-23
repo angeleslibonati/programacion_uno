@@ -17,7 +17,11 @@ int getDia ();
 int getMes ();
 int getAnio ();
 int idMovimiento (FILE * archi);
+<<<<<<< HEAD
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta);
+=======
+void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad);
+>>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
 void getDescripcionMov(char descMov[], float importe);
 
 

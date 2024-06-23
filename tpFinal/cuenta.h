@@ -18,7 +18,7 @@ void cargaCuentaUsuario2Arch(char nombreArchivo [], char nombreArchCliente []);
 void mostrarDatosCuenta(stCuenta cuenta);
 void mostrarCuentasDesdeArch(char nombreArchivo []);
 void consultaCuentaPorId(char nombreArchivo [], int id);
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta);
+int existeCuenta(FILE * archi, int numeroCuenta);
 int id (FILE* archi);
 float costoMantenimiento(int tipoCuenta);
 stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta);

@@ -62,13 +62,13 @@ int randomTipoCuenta() {
 }
 
 //Calculo random numero de cuenta. ver numero máximo y posible bucle sin fin
-int randomNroCuenta(FILE * archi, int tipoCuenta) {
+int randomNroCuenta(FILE * archi) {
     int nroCuenta;
     int flag = 1;
 
     while (flag == 1){
         nroCuenta = 94000000 + rand()%999999+1;
-        flag = existeCuenta(archi, tipoCuenta, nroCuenta);
+        flag = existeCuenta(archi, nroCuenta);
     }
     return nroCuenta;
 }

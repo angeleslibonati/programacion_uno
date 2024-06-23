@@ -199,14 +199,14 @@ stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta) {
 }
 
 //Comprueba existencia de cuenta. Para calcular numero de cuenta
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
+int existeCuenta(FILE * archi, int numeroCuenta)
 {
     int flag = 0;
     stCuenta cuenta;
     rewind(archi);
 
     while(flag == 0 && fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
-        if(cuenta.tipoDeCuenta == tipoCuenta && cuenta.nroCuenta == numeroCuenta) {
+        if(cuenta.nroCuenta == numeroCuenta) {
             flag = 1;
         }
     }

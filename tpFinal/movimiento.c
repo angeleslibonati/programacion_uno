@@ -174,7 +174,7 @@ void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char n
         imprimirCabecera("EXTRACCION");
         printf("\n\n");
 
-        numCuenta = ingresaID();
+        numCuenta = imprimirSolicitarDato("\nIngrese el Numero de Cuenta\n");
 
         printf("Ingrese el monto para la extraccion.\n");
         scanf ("%f", &monto);
@@ -197,7 +197,7 @@ void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char n
         imprimirCabecera("DEPOSITO");
         printf("\n\n");
 
-        numCuenta = ingresaID();
+        numCuenta = imprimirSolicitarDato("\nIngrese el Numero de Cuenta\n");
 
         printf("Ingrese el monto a Depositar.\n");
         scanf("%f",&monto);
