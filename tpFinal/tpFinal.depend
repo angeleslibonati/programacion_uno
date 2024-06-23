@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1719173670 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\main.c
+1719182971 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -31,7 +31,7 @@
 	<stdio.h>
 	"cuenta.h"
 
-1719177797 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
+1719183253 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
 	"movimiento.h"
 	"mockMovimiento.h"
 	"domicilio.h"
@@ -111,7 +111,7 @@
 1719175112 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cuenta.h
 	<stdio.h>
 
-1719159999 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.h
+1719182242 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.h
 
 1719175491 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cuenta.c
 	<stdio.h>
@@ -141,7 +141,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719160779 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.c
+1719182191 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockcuenta.c
 	<stdio.h>
 	<stdlib.h>
 	"cuenta.h"

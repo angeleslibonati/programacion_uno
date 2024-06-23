@@ -22,7 +22,9 @@ int main()
     srand (time (NULL));
     printf("\n\n");
 
-    iniciarMenu();
-
+    //iniciarMenu();
+    mostrarMovimientosDesdeArch(AR_MOVIMIENTO);
+    printf("CUENTAS\n");
+    mostrarCuentasDesdeArch(AR_CUENTA);
     return 0;
 }
