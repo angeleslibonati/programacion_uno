@@ -97,3 +97,21 @@ void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], i
     }
 }
 
+///ramdom descripcion movimiento
+
+void getDescripcionMov(char descMov[], float importe)
+{
+    char movPos[][30] =
+    {
+        "Haberes", "Transf. de Cta. Propia", "Transf. de Cta. de Terceros" , "Acred. Plazo Fijo", "Acred. Deposito"
+    };
+    char movNeg[][30] = {
+        "Pago Tarj. Credito", "Transf. a Cta. de Terceros", "Transf. a Cta. Propia", "Deposito Plazo Fijo"
+    };
+
+    if(importe > 0) {
+        strcpy(descMov, movPos[rand()%(sizeof(movPos)/30)]);
+    } else {
+        strcpy(descMov, movNeg[rand()%(sizeof(movPos)/30)]);
+    }
+}
