@@ -184,7 +184,10 @@ void swithSubMenuOpciones ()
             fflush(stdin);
             scanf("%d", &cantidad);
             cargaArchivoClientesRandoms(AR_CLIENTE, cantidad);
+            //if
             system("cls");
+            imprimirCabecera("CARGA EXITOSA");
+            printf("\n\n");
 
             break;
 
@@ -199,7 +202,8 @@ void swithSubMenuOpciones ()
             scanf("%d", &cantidad);
             cargaArchivoCuentaRandom(AR_CUENTA, cantidad, AR_CLIENTE);
             system ("cls");
-
+            imprimirCabecera("CARGA EXITOSA");
+            printf("\n\n");
             break;
 
         case 3:

@@ -41,9 +41,13 @@ int getDia ()
     {
         dia = (rand ()% 28) + 1;
     }
-    else if (movBancario.mes == 4 || movBancario.mes == 6 || movBancario.mes == 9 || movBancario.mes == 11)
+    else if (movBancario.mes == 4)
     {
         dia = (rand ()% 30) + 1;
+    }
+    else if (movBancario.mes == 6)
+    {
+        dia = (rand ()% 23) + 1;
     }
     else
     {
@@ -55,13 +59,13 @@ int getDia ()
 
 int getMes ()
 {
-    return (rand()% 12) +1 ;
+    return (rand()% 6) +1 ;
 }
 
 
 int getAnio ()
 {
-    return (rand ()% 104) + 1920;
+    return 2024;
 }
 
 
@@ -73,23 +77,42 @@ void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuent
     stCuenta cuenta;
 
     FILE * archi = fopen(nombreArchivo, "ab");
-    FILE * archiCuenta = fopen(nombreArchivoCuenta, "rb");
+    FILE * archiCuenta = fopen(nombreArchivoCuenta, "r+b");
 
     if (archi && archiCuenta) {
 
+        int cantidad = cantCuentasArchivo (archiCuenta);
+
         for (int i = 0; i < cantidad; i++) {
 
+            cuenta = cuentasRandomPorCantidad (cantidad,archiCuenta);
+
             movBancario = inicializarMovimiento(archi);
+            movBancario.idCuenta = cuenta.nroCuenta;
+
+            if (cuenta.id % 2 == 0 && cuenta.tipoDeCuenta == 3){
+
+                movBancario.importe =((rand ()% 5000) +1)*(-1);
+            }
+            else {
+                movBancario.importe =(rand ()% 5000) +1;
+            }
+            cuenta.saldo += movBancario.importe;
 
             getDescripcionMov(movBancario.detalle, movBancario.importe);
 
             fseek(archi, 0, 2);
             fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
+
+            fseek(archiCuenta,sizeof(stCuenta)*(cuenta.id - 1),0);
+            fwrite(&cuenta, sizeof(stCuenta), 1, archiCuenta);
         }
         fclose(archi);
         fclose(archiCuenta);
     }
 }
+
+
 
 ///ramdom descripcion movimiento
 

@@ -72,3 +72,26 @@ int randomNroCuenta(FILE * archi) {
     }
     return nroCuenta;
 }
+
+//cant cuentas en archivos
+int cantCuentasArchivo (FILE * archiCuenta)
+{
+    int cantidad = 0;
+
+    fseek(archiCuenta,0,2);
+    cantidad = ftell(archiCuenta)/sizeof(stCuenta);
+
+    return cantidad;
+}
+
+stCuenta cuentasRandomPorCantidad (int cantidad, FILE * archiCuenta)
+{
+    stCuenta cuenta;
+
+    int posicion = (rand ()% cantidad) + 1;
+
+    fseek(archiCuenta, (sizeof(stCuenta)* (posicion - 1)),0);
+    fread(&cuenta,sizeof(stCuenta),1,archiCuenta);
+
+    return cuenta;
+}
