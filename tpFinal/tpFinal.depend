@@ -14,7 +14,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719176908 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
+1719178468 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
 	<stdio.h>
 	<stdlib.h>
 	"movimiento.h"
@@ -27,11 +27,11 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719173670 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
+1719178160 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
 	<stdio.h>
 	"cuenta.h"
 
-1719176162 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
+1719177797 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
 	"movimiento.h"
 	"mockMovimiento.h"
 	"domicilio.h"
@@ -55,7 +55,7 @@
 	"mockCuenta.h"
 	"movimiento.h"
 
-1719176869 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
+1719178179 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -78,7 +78,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719175522 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.c
+1719178468 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -55,7 +55,7 @@ void muestraCliente(stCliente cliente)
     printf("\nEMAIL:................: %s", cliente.email);
     printf("\nTelefono:.............: %s", cliente.telefono);
     muestraUnDomicilio(cliente.domicilio);
-    printf("\nEstado:...............: %d");
+    printf("\nEstado:...............: ");
     estado2String(cliente.eliminado);
     puts("\n_______________________________________\n");
 }

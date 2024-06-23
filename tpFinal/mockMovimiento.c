@@ -79,8 +79,10 @@ void cargaArchivoMovimientosRandom(char nombreArchivo [],char nombreArchivoCuent
 
         for (int i = 0; i < cantidad; i++) {
 
-            movBancario = inicializarMovimiento(cuenta);
+            movBancario = inicializarMovimiento(archi);
+
             getDescripcionMov(movBancario.detalle, movBancario.importe);
+
             fseek(archi, 0, 2);
             fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
         }
