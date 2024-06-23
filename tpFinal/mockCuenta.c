@@ -17,7 +17,7 @@ stCuenta altaCuentaRandom(FILE * archi, char nombreArchCliente []) {
     cuenta.id = id(archi) ;
     cuenta.idCliente = randomIdCliente(nombreArchCliente);
     cuenta.tipoDeCuenta = randomTipoCuenta();
-    cuenta.nroCuenta = randomNroCuenta(archi, cuenta.tipoDeCuenta);
+    cuenta.nroCuenta = randomNroCuenta(archi);
     cuenta.costoMensual = costoMantenimiento(cuenta.tipoDeCuenta);
     cuenta.saldo = 0;
     cuenta.eliminado = 0;

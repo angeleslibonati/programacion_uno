@@ -29,6 +29,7 @@ int id (FILE* archi);
 int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta);
 void tipoDeCuentaString(int tipoCuenta);
 void estado2String(int eliminado);
+stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta);
 //void listadoCuentas(char nombreArchivo []); Listar tipo listado
 
 

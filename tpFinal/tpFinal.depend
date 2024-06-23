@@ -13,15 +13,13 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-<<<<<<< HEAD
-1718940809 D
+1719178179 D
 
-1719176908 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
+1719178468 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
 
 1719175491 cb08e93a2b14037ed41dc5da476b552651a83
-=======
-1719178468 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.c
->>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
+
+1719178468 2f33f20f1383bd7e8448b1aaa804827dc4da4
 	<stdio.h>
 	<stdlib.h>
 	"movimiento.h"
@@ -33,15 +31,6 @@
 	"menu.h"
 	"cuenta.h"
 	"mockCuenta.h"
-<<<<<<< HEAD
-=======
-
-1719178160 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
-	<stdio.h>
-	"cuenta.h"
-
-1719177797 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
->>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
 	"movimiento.h"
 	"mockMovimiento.h"
 	"domicilio.h"
@@ -62,11 +51,6 @@
 	"cuenta.h"
 	"mockCuenta.h"
 	"movimiento.h"
-<<<<<<< HEAD
-=======
-
-1719178179 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
->>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -86,11 +70,6 @@
 	"movimiento.h"
 	"cuenta.h"
 	"mockCuenta.h"
-<<<<<<< HEAD
-=======
-
-1719178468 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.c
->>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -121,16 +100,18 @@
 1719021719 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\movimiento.h
 	<stdio.h>
 	"cuenta.h"
+	<stdio.h>
+	"cuenta.h"
 
 1719176162 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.c
 
-1719176162 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.h
-
 1719176869 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.c
 
-1719176481 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.h
-
 1719175522 source:c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.c
+
+1719176162 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\mockmovimiento.h
+
+1719176481 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\menu.h
 
 1719021711 c:\users\benve\onedrive\escritorio\utn\primercuatri\programaciona\tpfinal\programacion_uno\tpfinal\cliente.h
 	<stdio.h>
@@ -210,7 +191,7 @@
 	"movimiento.h"
 	"mockMovimiento.h"
 
-1719175695 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cliente.c
+1719179041 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -226,7 +207,7 @@
 	"movimiento.h"
 	"mockMovimiento.h"
 
-1719176459 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cliente.h
+1719180897 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cliente.h
 	<stdio.h>
 	"domicilio.h"
 	"mockDomicilio.h"
@@ -250,7 +231,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719177532 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockmovimiento.h
+1719179569 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockmovimiento.h
 	<stdio.h>
 	<stdlib.h>
 	"time.h"
@@ -263,16 +244,16 @@
 	"mockCuenta.h"
 	"movimiento.h"
 
-1719177599 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.h
+1719180785 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.h
 	<stdio.h>
 
 1719177684 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockcuenta.h
 
-1719024248 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\movimiento.h
+1719179317 c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\movimiento.h
 	<stdio.h>
 	"cuenta.h"
 
-1719176356 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.c
+1719179760 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\cuenta.c
 	<stdio.h>
 	<stdlib.h>
 	"cuenta.h"
@@ -315,7 +296,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719105990 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\menu.c
+1719183789 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -343,7 +324,7 @@
 	"movimiento.h"
 	"mockMovimiento.h"
 
-1719103786 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockcuenta.c
+1719179797 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockcuenta.c
 	<stdio.h>
 	<stdlib.h>
 	"cuenta.h"
@@ -371,7 +352,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719024248 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockmovimiento.c
+1719179253 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\mockmovimiento.c
 	"movimiento.h"
 	"mockMovimiento.h"
 	"domicilio.h"
@@ -382,7 +363,7 @@
 	"cuenta.h"
 	"mockCuenta.h"
 
-1719024248 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\movimiento.c
+1719180356 source:c:\users\feder\onedrive\documentos\github\programacion_uno\tpfinal\movimiento.c
 	<stdio.h>
 	<stdlib.h>
 	"movimiento.h"
