@@ -170,6 +170,7 @@ stCliente getClienteRandom(FILE * archi)
     getEmail(cliente.email,cliente.nombre,cliente.apellido);
     cliente.domicilio = getDomicilioRandom();
     cliente.eliminado = 0;
+
     return cliente;
 }
 

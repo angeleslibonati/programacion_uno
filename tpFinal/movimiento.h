@@ -14,7 +14,10 @@ typedef struct
     int dia;  //validar del 1 al... (segun cantidad de dias, por mes)
     int eliminado; // "0" es activo. "1" eliminado.
 
+
+
 }stMovimiento;
+
 
 void mostrarMovimiento (stMovimiento movBancario);
 void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta[]);
@@ -29,6 +32,7 @@ int cambioEstadoMovimientoPorId (char nombreArchivo [], int id);
 stMovimiento buscaMovimientoPorId (char nombreArchivo [], int id);
 void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[]);
 void listadoMovimientoMes (int mes, char nombreArchivo[]);
-void mostrarMovimientosDesdeArch(char nombreArchivo []);
+void muestraUnMovimiento (stMovimiento movBancario);
+
 
 #endif // MOVIMIENTO_H_INCLUDED

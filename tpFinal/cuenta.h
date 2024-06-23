@@ -13,17 +13,15 @@ int eliminado;
 
 } stCuenta;
 
-void consultaCuentaPorId(char nombreArchivo [], int id);
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta);
-void mostrarCuentasDesdeArch(char nombreArchivo []);
-int cargaCuentaUsuario2Arch(char nombreArchivo []);
-int id (FILE* archi);
+stCuenta altaCuentaUsuario(FILE *  archi, char nombreArchCliente []);
+void cargaCuentaUsuario2Arch(char nombreArchivo [], char nombreArchCliente []);
 void mostrarDatosCuenta(stCuenta cuenta);
-stCuenta altaCuentaUsuario(FILE *  archi);
+void mostrarCuentasDesdeArch(char nombreArchivo []);
+void consultaCuentaPorId(char nombreArchivo [], int id);
+int existeCuenta(FILE * archi, int numeroCuenta);
+int id (FILE* archi);
 float costoMantenimiento(int tipoCuenta);
 stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta);
-stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta);
-int existeCuentaNroCuenta(char nombreArchivo[], int numeroCuenta);
 int cambioEstadoCuentaPorId (char nombreArchivo [], int idCuenta);
 void listarCuentasPorCliente(char nombreArchivo [], int idCliente);
 int contarCantRegistros(char nombreArchivo [], int tamStruc);//ver borrar
@@ -31,5 +29,7 @@ int id (FILE* archi);
 int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta);
 void tipoDeCuentaString(int tipoCuenta);
 void estado2String(int eliminado);
+//void listadoCuentas(char nombreArchivo []); Listar tipo listado
+
 
 #endif // CUENTA_H_INCLUDED

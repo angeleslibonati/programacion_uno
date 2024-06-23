@@ -17,30 +17,36 @@
 
 
 //Alta cuenta con intervención del usuario
-stCuenta altaCuentaUsuario(FILE *  archi) {
+stCuenta altaCuentaUsuario(FILE *  archi, char nombreArchCliente []) {
     stCuenta cuenta;
     int idCliente = 0;
+    int existeCliente;
     int tipoCuenta = 0;
 
-    printf("\nIngrese el numero de ID del Cliente: ");
-    scanf("%d", &idCliente);
+    do {
+        printf("\nIngrese el numero de ID del Cliente: ");
+        scanf("%d", &idCliente);
+        existeCliente = buscarClientePorId(nombreArchCliente, idCliente).id;
+        if(existeCliente == 0) {
+            puts("\nNumero de ID de cliente invalido. Reintente.");
+        }
+    } while (existeCliente == 0);
 
     while (tipoCuenta < 1 || tipoCuenta > 3) {
-        printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
-        printf("\nIngrese el tipo de cuenta: ");
-        scanf("%d", &tipoCuenta);
-        if (tipoCuenta < 1 || tipoCuenta > 3) {
-            printf("\nTipo de cuenta invalida. Por favor reingrese.");
-        }
+    printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
+    printf("\nIngrese el tipo de cuenta: ");
+    scanf("%d", &tipoCuenta);
+    if (tipoCuenta < 1 || tipoCuenta > 3) {
+        printf("\nTipo de cuenta invalida. Por favor reingrese.");
+    }
     }
     cuenta.idCliente = idCliente;
-    cuenta.id = id(archi);
+    cuenta.id = id(archi) + 1;
     cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
     cuenta.tipoDeCuenta = tipoCuenta;
     cuenta.costoMensual = costoMantenimiento(tipoCuenta);
     cuenta.saldo = 0;
     cuenta.eliminado = 0;
-
 
     return cuenta;
 }
@@ -83,19 +89,16 @@ int id (FILE * archi) {
 }
 
 //Carga cuenta Usuario en archivo
-int cargaCuentaUsuario2Arch(char nombreArchivo []) {
+void cargaCuentaUsuario2Arch(char nombreArchivo [], char nombreArchCliente []) {
     FILE * archi = fopen(nombreArchivo, "ab");
     stCuenta cuenta;
-    int flag = 0;
 
     if(archi) {
-        cuenta = altaCuentaUsuario(archi);
+        cuenta = altaCuentaUsuario(archi, nombreArchCliente);
         fseek(archi, 0, 2);
         fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         fclose(archi);
-        flag = 1;
     }
-    return flag;
 }
 
 //Listado de todas cuentas desde archivo
@@ -196,14 +199,14 @@ stCuenta buscaCuentaPorNumCuenta (char nombreArchivo [], int nroCuenta) {
 }
 
 //Comprueba existencia de cuenta. Para calcular numero de cuenta
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
+int existeCuenta(FILE * archi, int numeroCuenta)
 {
     int flag = 0;
     stCuenta cuenta;
     rewind(archi);
 
     while(flag == 0 && fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
-        if(cuenta.tipoDeCuenta == tipoCuenta && cuenta.nroCuenta == numeroCuenta) {
+        if(cuenta.nroCuenta == numeroCuenta) {
             flag = 1;
         }
     }

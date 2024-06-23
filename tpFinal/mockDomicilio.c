@@ -18,8 +18,8 @@ void getCalleMarDelPlata(char marDelPlata[])
 {
     char calles[][30] =
     {
-        "Avenida Colon", "Avenida Independencia", "Avenida Juan B. Justo", "San Martin","Avenida Luro", "Guemes", "Rivadavia", "Avenida Constitucion", "Alberti", "Alem",
-        "Castelli", "Rawson", "Moreno", "Cordoba", "Jujuy","Avenida Juan José Paso", "Gascon", "Falucho", "Avenida Mario Bravo", "Olavarria",
+        "Av Colon", "Av Independencia", "Av Juan B. Justo", "San Martin","Av Luro", "Guemes", "Rivadavia", "Av Constitucion", "Alberti", "Alem",
+        "Castelli", "Rawson", "Moreno", "Cordoba", "Jujuy","Av Juan José Paso", "Gascon", "Falucho", "Av Mario Bravo", "Olavarria",
         "Mitre", "Salta", "La Rioja", "Buenos Aires", "Hipolito Yrigoyen","Alvarado", "Balcarce", "Tucuman", "Garay", "Primera Junta"
     };
 
@@ -30,7 +30,7 @@ void getCalleMiramar(char miramar[])
 {
     char calles[][30] =
     {
-        "Av 9", "Av 26", "Avenida 23", "Av Costanera", "Calle 21","Calle 22", "Calle 23",
+        "Av 9", "Av 26", "Av23", "Av Costanera", "Calle 21","Calle 22", "Calle 23",
         "Calle 24", "Calle 25","Calle 26","Calle 27", "Calle 28", "Calle 29", "Calle 30", "Calle 31","Calle 32",
         "Calle 33","Calle 34", "Calle 35","Calle 36","Calle 37", "Calle 38", "Calle 39", "Calle 40", "Calle 41",
         "Calle 42", "Calle 43","Calle 44", "Calle 45","Calle 46"
@@ -42,9 +42,9 @@ void getCalleLaPlata(char laPlata[])
 {
     char calles[][30] =
     {
-        "Avenida 7", "Avenida 13", "Avenida 44", "Avenida 51", "Avenida 60","Calle 8", "Calle 9", "Calle 10",
+        "Av 7", "Av 13", "Av 44", "Av51", "Av 60","Calle 8", "Calle 9", "Calle 10",
         "Calle 11", "Calle 12","Calle 14", "Calle 15", "Calle 16", "Calle 17", "Calle 18","Calle 19", "Calle 20", "Calle 21",
-        "Calle 22", "Calle 23","Avenia 44","Avenia 520"
+        "Calle 22", "Calle 23","Av44","Av 520"
     };
 
     strcpy(laPlata, calles[rand()%(sizeof(calles)/30)]);
@@ -53,7 +53,7 @@ void getCalleSantaClaraDelMar(char santaClaraDelMar[])
 {
     char calles[][30] =
     {
-        "Av Montevideo", "Av Tucuman", "Av San Martin", "Avenida Punta Mogotes", "Entre Rios",
+        "Av Montevideo", "Av Tucuman", "Av San Martin", "AvPunta Mogotes", "Entre Rios",
         "Misiones", "Buenos Aires", "Cordoba", "Corrientes", "Santa Fe","Mendoza","Chaco", "Formosa", "San Juan", "Salta",
         "Santiago del Estero", "Tierra del Fuego", "Catamarca", "La Rioja", "San Luis"
     };
