@@ -297,6 +297,9 @@ void tipoDeCuentaString(int tipoCuenta) {
             break;
         case 3:
             printf("CC $\t\t");
+            break;
+        default:
+            printf("Tipo Invalido\n");
     }
 }
 

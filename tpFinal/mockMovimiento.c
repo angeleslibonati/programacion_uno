@@ -64,13 +64,11 @@ int getAnio ()
     return (rand ()% 104) + 1920;
 }
 
-int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta)
+int getAltaMovimiento (int cantidad)
 {
 
-    int saldoRand = (rand()% 1000) + 1;
-    escribirMovimiento(nombreArchivo,movBancario,saldoRand,cuenta);
 
-    return saldoRand;
+    return ;
 }
 
 

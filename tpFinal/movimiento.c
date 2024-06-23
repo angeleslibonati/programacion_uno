@@ -58,7 +58,8 @@ void mostrarMovimiento (stMovimiento movBancario)
     printf("\nDetalle:..............: %s", movBancario.detalle);
     printf("\nImporte:..............: %.2f", movBancario.importe);
     printf("\nAA/MM/DD:.............: %d/ %d/ %d", movBancario.anio, movBancario.mes, movBancario.dia);
-    printf("\nEstado:...............: %d", movBancario.eliminado);
+    printf("\nEstado:...............: %d");
+    estado2String(movBancario.eliminado);
     puts("\n_______________________________________\n");
 
 }
