@@ -64,12 +64,12 @@ int getAnio ()
     return (rand ()% 104) + 1920;
 }
 
-int getAltaMovimiento (int cantidad)
+/*int getAltaMovimiento (int cantidad)
 {
 
 
     return ;
-}
+}*/
 
 
 //Carga movimientos en archivo

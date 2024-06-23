@@ -11,11 +11,11 @@
 #include "menu.h"
 
 
-stCuenta altaCuentaRandom(FILE * archi) {///modificar cabecera nombre archivo cliente
+stCuenta altaCuentaRandom(FILE * archi, char nombreArchCliente []) {
     stCuenta cuenta;
 
-    cuenta.id = id(archi);
-    cuenta.idCliente = 1; ///cuando esté unido utilizar funcion int randomIdCliente(char nombreArchivo [])
+    cuenta.id = id(archi) ;
+    cuenta.idCliente = randomIdCliente(nombreArchCliente);
     cuenta.tipoDeCuenta = randomTipoCuenta();
     cuenta.nroCuenta = randomNroCuenta(archi, cuenta.tipoDeCuenta);
     cuenta.costoMensual = costoMantenimiento(cuenta.tipoDeCuenta);
@@ -27,13 +27,13 @@ stCuenta altaCuentaRandom(FILE * archi) {///modificar cabecera nombre archivo cl
 
 
 //Carga cuentas en archivo Random
-void cargaArchivoCuentaRandom(char nombreArchivo [], int cantidad) {
+void cargaArchivoCuentaRandom(char nombreArchivo [], int cantidad, char nombreArchCliente []) {
     stCuenta cuenta;
     FILE * archi = fopen(nombreArchivo, "ab");
 
     if (archi) {
         for (int i = 0; i < cantidad; i++) {
-            cuenta = altaCuentaRandom(archi);
+            cuenta = altaCuentaRandom(archi, nombreArchCliente);
             fseek(archi, 0, 2);
             fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         }
@@ -42,20 +42,19 @@ void cargaArchivoCuentaRandom(char nombreArchivo [], int cantidad) {
 }
 
 //Eleccion ramdom de id cliente
-/*int randomIdCliente(char nombreArchivo []) {
+int randomIdCliente(char nombreArchivo []) {
     FILE * archi = fopen(nombreArchivo, "rb");
-    stCliente = cliente;
+    int cantClientes = 1;
     int idCliente = 1;
 
     if(archi) {
-        fseek(archi, sizeof(stCliente) * -1, SEEK_END);
-        fread(&cliente, sizeof(stCliente), 1, archi);
-        idCliente = rand()%cliente.id+1;
+        cantClientes = getId(archi) - 1;
+        idCliente = rand()%cantClientes+1;
         fclose(archi);
     }
 
     return idCliente;
-}*/
+}
 
 //Calculo random de tipo de cuenta
 int randomTipoCuenta() {

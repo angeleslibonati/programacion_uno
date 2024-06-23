@@ -19,8 +19,11 @@
 
 int main()
 {
-    srand (time (NULL));
+    srand(time(NULL));
+    //cargaArchivoCuentaRandom(AR_CUENTA,10, AR_CLIENTE);
+    //cargaArchivoClientesRandoms(AR_CLIENTE, 5);
     printf("\n\n");
+
 
     iniciarMenu();
 

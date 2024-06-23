@@ -14,21 +14,20 @@ typedef struct
     int dia;  //validar del 1 al... (segun cantidad de dias, por mes)
     int eliminado; // "0" es activo. "1" eliminado.
 
+
+
 }stMovimiento;
 
-void mostrarMovimiento (stMovimiento movBancario);
-void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta[]);
-stMovimiento inicializarMovimiento ();
-void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[],stCuenta cuenta);
-void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario,stCuenta cuenta, float importe);
-void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float importe, stCuenta cuenta);
-void opcionMovimiento (stMovimiento movBancario, char nombreArchivoMov[], char nombreArchivoCuenta []);
+
+void extraccionDepositoDinero (char nombreArchivo[],stMovimiento movBancario, float importe, int idCuenta);
+void opcionMovimiento (float importe, stCuenta cuenta, char nombreArchivo[],int idCuenta);
 int modificacionImporte (float importe, char nombreArchivo[], int id);
 stMovimiento buscaMovimiento (int id, FILE * archi);
 int cambioEstadoMovimientoPorId (char nombreArchivo [], int id);
 stMovimiento buscaMovimientoPorId (char nombreArchivo [], int id);
 void listadoMovimientoCuenta (int idCuenta, char nombreArchivo[]);
 void listadoMovimientoMes (int mes, char nombreArchivo[]);
-void mostrarMovimientosDesdeArch(char nombreArchivo []);
+void muestraUnMovimiento (stMovimiento movBancario);
+
 
 #endif // MOVIMIENTO_H_INCLUDED
