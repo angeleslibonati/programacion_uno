@@ -83,16 +83,19 @@ int id (FILE * archi) {
 }
 
 //Carga cuenta Usuario en archivo
-void cargaCuentaUsuario2Arch(char nombreArchivo []) {
+int cargaCuentaUsuario2Arch(char nombreArchivo []) {
     FILE * archi = fopen(nombreArchivo, "ab");
     stCuenta cuenta;
+    flag = 0;
 
     if(archi) {
         cuenta = altaCuentaUsuario(archi);
         fseek(archi, 0, 2);
         fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         fclose(archi);
+        flag = 1;
     }
+    return flag;
 }
 
 //Listado de todas cuentas desde archivo

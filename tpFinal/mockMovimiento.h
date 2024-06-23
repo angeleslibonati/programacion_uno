@@ -19,5 +19,6 @@ int getAnio ();
 int idMovimiento (FILE * archi);
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta);
 void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad);
+void getDescripcionMov(char descMov[], float importe);
 
 #endif // MOCKMOVIMIENTO_H_INCLUDED
