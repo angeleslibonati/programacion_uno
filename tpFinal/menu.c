@@ -203,6 +203,7 @@ void swithSubMenuOpciones ()
             printf("Ingrese la cantidad de cuentas que desea cargar\n");
             fflush(stdin);
             scanf("%d", &cantidad);
+<<<<<<< HEAD
 //            flag = cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
 //
 //            if (flag == 1){
@@ -211,6 +212,13 @@ void swithSubMenuOpciones ()
 //                imprimirCabecera("CARGA EXITOSA");
 //                printf("\n\n");
 //            }
+=======
+            cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
+            if
+            system ("cls");
+            imprimirCabecera("CARGA EXITOSA");
+            printf("\n\n");
+>>>>>>> be7afba (actualizacion menu)
             break;
 
         case 3:

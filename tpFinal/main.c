@@ -24,8 +24,6 @@ int main()
     //cargaArchivoClientesRandoms(AR_CLIENTE, 5);
     printf("\n\n");
 
-
     iniciarMenu();
-
     return 0;
 }
