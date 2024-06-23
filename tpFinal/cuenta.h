@@ -16,7 +16,7 @@ int eliminado;
 void consultaCuentaPorId(char nombreArchivo [], int id);
 int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta);
 void mostrarCuentasDesdeArch(char nombreArchivo []);
-void cargaCuentaUsuario2Arch(char nombreArchivo []);
+int cargaCuentaUsuario2Arch(char nombreArchivo []);
 int id (FILE* archi);
 void mostrarDatosCuenta(stCuenta cuenta);
 stCuenta altaCuentaUsuario(FILE *  archi);

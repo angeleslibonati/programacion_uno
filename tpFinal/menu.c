@@ -537,7 +537,18 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("ALTA DE CUENTA");
             printf("\n\n");
-            cargaCuentaUsuario2Arch(AR_CUENTA);
+
+            int flag = cargaCuentaUsuario2Arch(AR_CUENTA);
+
+            if (flag == 1){
+
+                imprimirCabecera("CREACION EXITOSA");
+            }
+            else{
+
+                imprimirCabecera("ERROR CREACION");
+            }
+
 
             break;
 
@@ -549,7 +560,7 @@ void swithcSubMenuCuenta ()
             printf("\n\n");
 
             numId = ingresaID();
-            int flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
+            flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
 
             if(flag){
                 imprimirCabecera("CUENTA ELIMINADA");
