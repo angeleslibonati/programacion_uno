@@ -23,10 +23,11 @@ int main()
     //cargaArchivoCuentaRandom(AR_CUENTA,5);
 
     //cargarMovimientosToArchivo(AR_MOVIMIENTO);
-    //cargaArchivoMovimientos(AR_MOVIMIENTO,3);
+   //cargaArchivoMovimientos(AR_MOVIMIENTO,AR_CUENTA,);
+
     mostrarMovimientosDesdeArch(AR_MOVIMIENTO);
-    mostrarCuentasDesdeArch(AR_CUENTA);
-    iniciarMenu();
+   // mostrarCuentasDesdeArch(AR_CUENTA);
+    //iniciarMenu();
 
     return 0;
 }

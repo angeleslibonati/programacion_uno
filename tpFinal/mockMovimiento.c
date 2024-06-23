@@ -30,16 +30,18 @@ int idMovimiento (FILE * archi)
 
 int getDia ()
 {
+    stMovimiento movBancario;
+
     int dia = 0;
     int mes = 0;
 
-    mes = getMes();
+    movBancario.mes = getMes();
 
-    if (mes == 2)
+    if (movBancario.mes == 2)
     {
         dia = (rand ()% 28) + 1;
     }
-    else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
+    else if (movBancario.mes == 4 || movBancario.mes == 6 || movBancario.mes == 9 || movBancario.mes == 11)
     {
         dia = (rand ()% 30) + 1;
     }
@@ -59,11 +61,12 @@ int getMes ()
 
 int getAnio ()
 {
-    return (rand ()% 2024) + 1920;
+    return (rand ()% 104) + 1920;
 }
 
 int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuenta cuenta, char nombreArchivo[], int idCuenta)
 {
+
     int saldoRand = (rand()% 1000) + 1;
     escribirMovimiento(nombreArchivo,movBancario,saldoRand);
 
@@ -71,20 +74,25 @@ int getAltaMovimiento (int getMes, int getDia, stMovimiento movBancario, stCuent
 }
 
 //Carga movimientos en archivo
-void cargaArchivoMovimientos(char nombreArchivo [], int cantidad)
+void cargaArchivoMovimientos(char nombreArchivo [],char nombreArchivoCuenta[], int cantidad)
 {
     stMovimiento movBancario;
+    stCuenta cuenta;
 
     FILE * archi = fopen(nombreArchivo, "ab");
+    FILE * archiCuenta = fopen(nombreArchivoCuenta, "rb");
 
-    if (archi) {
+    if (archi && archiCuenta) {
+
         for (int i = 0; i < cantidad; i++) {
 
-            movBancario = inicializarMovimiento(archi);
+            movBancario = inicializarMovimiento(archi, archiCuenta);
+
             fseek(archi, 0, 2);
             fwrite(&movBancario, sizeof(stMovimiento), 1, archi);
         }
         fclose(archi);
+        fclose(archiCuenta);
     }
 }
 

@@ -17,8 +17,8 @@ typedef struct
 }stMovimiento;
 
 void mostrarMovimiento (stMovimiento movBancario);
-void cargarMovimientosToArchivo (char nombreArchivo []);
-stMovimiento inicializarMovimiento (FILE * archi);
+void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta[]);
+stMovimiento inicializarMovimiento (FILE * archi, FILE * archiCuenta);
 void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[]);
 void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], stMovimiento movBancario, float importe);
 void escribirMovimiento (char nombreArchivo [], stMovimiento movimiento, float importe);

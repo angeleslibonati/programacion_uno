@@ -14,25 +14,22 @@
 #define AR_MOVIMIENTO "movimiento.dat"
 
 
-stMovimiento inicializarMovimiento (FILE * archi)
+stMovimiento inicializarMovimiento (FILE * archi, FILE * archiCuenta)
 {
     stMovimiento movBancario;
     stCuenta cuenta;
 
     movBancario.id = idMovimiento(archi);
-
     movBancario.idCuenta = cuenta.nroCuenta;
-
-    printf("num cuenta: %d\n", cuenta.nroCuenta);
-    printf("num id cuenta. : %d\n", movBancario.idCuenta);
 
     printf("Ingrese el detalle de la operacion\n");
     fflush(stdin);
     gets(movBancario.detalle);
+
     movBancario.importe = 0.0;
     movBancario.anio = getAnio();
     movBancario.mes = getMes();
-    movBancario.dia = getDia;
+    movBancario.dia = getDia();
     movBancario.eliminado = 0;
     printf("Cargando...\n");
     system ("pause");
@@ -40,19 +37,21 @@ stMovimiento inicializarMovimiento (FILE * archi)
     return movBancario;
 }
 
-void cargarMovimientosToArchivo (char nombreArchivo [])
+void cargarMovimientosToArchivo (char nombreArchivo [], char nombreArchivoCuenta[])
 {
     stMovimiento movBancario;
     stCuenta cuenta;
     FILE * archi = fopen(nombreArchivo, "ab");
+    FILE * archiCuenta = fopen(nombreArchivoCuenta, "rb");
 
     if (archi){
 
-        movBancario = inicializarMovimiento(archi);
+        movBancario = inicializarMovimiento(archi, archiCuenta);
         fseek(archi,0,2);
         fwrite(&movBancario, sizeof(stMovimiento),1, archi);
 
         fclose(archi);
+        fclose(archiCuenta);
     }
 }
 
@@ -67,10 +66,7 @@ void mostrarMovimiento (stMovimiento movBancario)
     printf("\nEstado:...............: %d", movBancario.eliminado);
     puts("\n_______________________________________\n");
 
-
 }
-
-
 
 //AMBL MOVIMIENTO
 
@@ -82,7 +78,7 @@ void escribirMovimiento (char nombreArchivo [], stMovimiento movBancario, float 
 
     if (archi)
     {
-
+        movBancario.importe = importe;
         fwrite(&movBancario.importe, sizeof(stMovimiento), 1, archi);
         fclose(archi);
     }
@@ -109,7 +105,6 @@ void ejecutarExtraccion (char nombreArchivoMov [], char nombreArchivoCuenta[], s
         }
         fclose(archiCuenta);
     }
-
 }
 
 void ejecutaDeposito (float importe, char nombreArchivoMov[], stMovimiento movBancario, char nombreArchivoCuenta[])
