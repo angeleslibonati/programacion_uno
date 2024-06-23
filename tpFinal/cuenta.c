@@ -2,15 +2,35 @@
 #include <stdlib.h>
 #include "cuenta.h"
 #include "mockCuenta.h"
+#include "movimiento.h"
+#include "mockMovimiento.h"
+#include "domicilio.h"
+#include "mockDomicilio.h"
+#include "cliente.h"
+#include "mockCliente.h"
+#include "menu.h"
+
+
+#define AR_CUENTA "cuenta.dat"
+#define AR_CLIENTE "archivoClientes.dat"
+
+
 
 //Alta cuenta con intervención del usuario
-stCuenta altaCuentaUsuario(FILE *  archi) {
+stCuenta altaCuentaUsuario(FILE *  archi, char nombreArchCliente []) {
     stCuenta cuenta;
     int idCliente = 0;
+    int existeCliente;
     int tipoCuenta = 0;
 
-    printf("\nIngrese el numero de ID del Cliente: ");
-    scanf("%d", &idCliente);
+    do {
+        printf("\nIngrese el numero de ID del Cliente: ");
+        scanf("%d", &idCliente);
+        existeCliente = buscarClientePorId(nombreArchCliente, idCliente).id;
+        if(existeCliente == 0) {
+            puts("\nNumero de ID de cliente invalido. Reintente.");
+        }
+    } while (existeCliente == 0);
 
     while (tipoCuenta < 1 || tipoCuenta > 3) {
     printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
@@ -28,7 +48,6 @@ stCuenta altaCuentaUsuario(FILE *  archi) {
     cuenta.saldo = 0;
     cuenta.eliminado = 0;
 
-
     return cuenta;
 }
 
@@ -38,30 +57,20 @@ void mostrarDatosCuenta(stCuenta cuenta) {
     printf("\nId Cuenta: %d", cuenta.id);
     printf("\nCliente: %d", cuenta.idCliente);
     printf("\nN%c de Cuenta: %d", 248, cuenta.nroCuenta);
-    switch (cuenta.tipoDeCuenta) {
-        case 1:
-            printf("\nTipo de cuenta: CA $");
-            break;
-        case 2:
-            printf("\nTipo de cuenta: CA U$D");
-            break;
-        case 3:
-            printf("\nTipo de cuenta: CC $");
-    }
+    printf("\nTipo de cuenta: ");
+    tipoDeCuentaString(cuenta.tipoDeCuenta);
     printf("\nSaldo: $%2.f", cuenta.saldo);
     printf("\nCosto de Mantenimiento: $%2.f", cuenta.costoMensual);
-    if(cuenta.eliminado) {
-        printf("\nEstado: Baja\n");
-    } else {
-        printf("\nEstado: Activa\n");
-    }
-    puts("______________________________");
+    printf("\nEstado: ");
+    estado2String(cuenta.eliminado);
+    puts("\n______________________________");
 }
 
 
 //campo unico autoincrementable
 int id (FILE * archi) {
-    int id;
+
+    int id = 0;
 
     fseek(archi, 0, 2);
 
@@ -80,12 +89,12 @@ int id (FILE * archi) {
 }
 
 //Carga cuenta Usuario en archivo
-void cargaCuentaUsuario2Arch(char nombreArchivo []) {
+void cargaCuentaUsuario2Arch(char nombreArchivo [], char nombreArchCliente []) {
     FILE * archi = fopen(nombreArchivo, "ab");
     stCuenta cuenta;
 
     if(archi) {
-        cuenta = altaCuentaUsuario(archi);
+        cuenta = altaCuentaUsuario(archi, nombreArchCliente);
         fseek(archi, 0, 2);
         fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         fclose(archi);
@@ -161,6 +170,8 @@ stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta) {
         while (flag == 0 && fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
             if (cuenta.id == idCuenta) {
                 flag = 1;
+            } else {
+                cuenta.id = 0;
             }
         }
         fclose(archi);
@@ -171,7 +182,8 @@ stCuenta buscaCuentaPorId (char nombreArchivo [], int idCuenta) {
 
 
 //Comprueba existencia de cuenta. Para calcular numero de cuenta
-int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta) {
+int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta)
+{
     int flag = 0;
     stCuenta cuenta;
     rewind(archi);
@@ -185,7 +197,8 @@ int existeCuenta(FILE * archi, int tipoCuenta, int numeroCuenta) {
 }
 
 //Calcula el costo de mantenimiento según tipo de cuenta
-float costoMantenimiento(int tipoCuenta) {
+float costoMantenimiento(int tipoCuenta)
+{
     float costoMant ;
 
     switch (tipoCuenta) {
@@ -205,6 +218,19 @@ float costoMantenimiento(int tipoCuenta) {
     return costoMant;
 }
 
+//Consulta cuenta por id
+
+void consultaCuentaPorId(char nombreArchivo [], int id)
+{
+    stCuenta cuenta;
+    cuenta = buscaCuentaPorId(nombreArchivo, id);
+    if (cuenta.id != 0) {
+        mostrarDatosCuenta(cuenta);
+    } else {
+        imprimirCabecera("ID INVALIDA");
+    }
+}
+
 //Modificacion tipo de cuenta// retorna 1 si tuvo exito 0 si no
 int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
     int flag = 0;
@@ -215,7 +241,8 @@ int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
     if(archi) {
         cuenta.nroCuenta = randomNroCuenta(archi, tipoCuenta);
         cuenta.tipoDeCuenta = tipoCuenta;
-        fseek(archi, sizeof(stCuenta) * (id-1), 0);
+        cuenta.costoMensual = costoMantenimiento(tipoCuenta);
+        fseek(archi, sizeof(stCuenta) * (cuenta.id-1), 0);
         fwrite(&cuenta, sizeof(stCuenta), 1, archi);
         flag = 1;
 
@@ -225,10 +252,48 @@ int modificaTipoCuentaPorId(char nombreArchivo [], int id, int tipoCuenta) {
     return flag;
 }
 
-
-//Consulta cuenta por id
-void consultaCuentaPorId(char nombreArchivo [], int id) {
-    stCuenta cuenta;
-    cuenta = buscaCuentaPorId(nombreArchivo, id);
-    mostrarDatosCuenta(cuenta);
+//Tipo de cuenta int 2 string
+void tipoDeCuentaString(int tipoCuenta) {
+    switch (tipoCuenta) {
+        case 1:
+            printf("CA $\t\t");
+            break;
+        case 2:
+            printf("CA U$D\t");
+            break;
+        case 3:
+            printf("CC $\t\t");
+    }
 }
+
+//Estado de eliminado a string
+void estado2String(int eliminado) {
+    switch (eliminado) {
+        case 0:
+            printf("Activo");
+            break;
+        case 1:
+            printf("Baja");
+            break;
+    }
+}
+
+//Listar cuentas tipo listado
+/*void listadoCuentas(char nombreArchivo []) {
+    stCuenta cuenta;
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    if(archi) {
+        puts("\nId \t| Id Cliente\t| Num Cuenta\t| Tipo Cuenta\t| Saldo\t\t| Cost. Mant\t| Estado");
+        puts("----------------------------------------------------------------------------------------------------------");
+        while(fread(&cuenta, sizeof(stCuenta), 1, archi) > 0) {
+            printf("%d\t| %d\t\t| %d\t|  ", cuenta.id, cuenta.idCliente, cuenta.nroCuenta);
+            tipoDeCuentaString(cuenta.tipoDeCuenta);
+            printf("| %.2f \t\t| %.2f  \t| ",cuenta.saldo, cuenta.costoMensual);
+            estadoCuenta2String(cuenta.eliminado);
+            puts("");
+
+        }
+        fclose(archi);
+    }
+}*/
