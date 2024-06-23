@@ -67,10 +67,10 @@ int ingresaOpcion ()
     return opcion;
 }
 
-int ingresaID ()
+int imprimirSolicitarDato (char txtDato[])
 {
     int numId = 0;
-    printf("\nIngese el ID.\n");
+    printf("\n%s\n", txtDato);
     fflush(stdin);
     scanf("%d", &numId);
 
@@ -90,7 +90,7 @@ int switchMenuPrincipal ()
         case 0:
             // SALE DEL PROGRAMA.
             printf("\nHasta la proxima.\n");
-            exit(0);                            //ver como funciona
+            exit(0);
 
             break;
         case 1:
@@ -211,8 +211,9 @@ void swithSubMenuOpciones ()
             printf("Ingrese la cantidad de movimientos que desea cargar\n");
             fflush(stdin);
             scanf("%d", &cantidad);
+            cargaArchivoMovimientosRandom (AR_MOVIMIENTO,AR_CUENTA,cantidad);
 
-            //FUNCION DE RANDOM
+            break;
 
         default:
 
@@ -273,7 +274,7 @@ void switchSubMenuCliente ()
             imprimirCabecera("ESTADO CLIENTE");
             printf("\n\n");
 
-            int numId = ingresaID();
+            int numId = imprimirSolicitarDato("\nIngrese el ID");
 
             int flag = bajaCliente(AR_CLIENTE,numId);
 
@@ -293,7 +294,7 @@ void switchSubMenuCliente ()
             imprimirCabecera("MODIFICACION DE CLIENTE");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
 
             stCliente cliente;
             cliente = buscarClientePorId(AR_CLIENTE,numId);
@@ -310,7 +311,7 @@ void switchSubMenuCliente ()
             system ("cls");
             imprimirCabecera("BUSCAR UN CLIENTE");
             printf("\n\n");
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
             cliente = buscarClientePorId(AR_CLIENTE, numId);
             muestraCliente(cliente);
 
@@ -559,7 +560,7 @@ void swithcSubMenuCuenta ()
             imprimirCabecera("BAJA DE CUENTA");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
             flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
 
             if(flag){
@@ -576,7 +577,7 @@ void swithcSubMenuCuenta ()
             imprimirCabecera("MODIFICACION DE CUENTA");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
 
             int tipoCuenta;
 
@@ -595,7 +596,7 @@ void swithcSubMenuCuenta ()
             imprimirCabecera("BUSCAR UNA CUENTA");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
 
             consultaCuentaPorId(AR_CUENTA, numId);
 
@@ -665,7 +666,7 @@ void switchSubMenuMovimiento ()
             imprimirCabecera("BAJA DE MOVIMIENTO");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
 
             int flag = cambioEstadoMovimientoPorId(AR_MOVIMIENTO,numId);
 
@@ -683,7 +684,7 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("MODIFICACION DEL IMPORTE");
             printf("\n\n");
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
             printf("Ingrese el importe para modificar.\n");
             float nuevoImporte;
             fflush(stdin);
@@ -705,7 +706,7 @@ void switchSubMenuMovimiento ()
             imprimirCabecera("CONSULTA DE MOVIMIENTO");
             printf("\n\n");
 
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el ID");
             movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
             mostrarMovimiento(movBancario);
 
@@ -762,7 +763,7 @@ void switSubMenuListado()
             system ("cls");
             imprimirCabecera("MOVIMIENTO POR NUM. CUENTA");
             printf("\n\n");
-            numId = ingresaID();
+            numId = imprimirSolicitarDato("\nIngrese el Numero de Cuenta");
             listadoMovimientoCuenta(numId, AR_MOVIMIENTO);
 
             break;
