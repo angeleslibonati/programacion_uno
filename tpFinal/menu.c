@@ -204,6 +204,7 @@ void swithSubMenuOpciones ()
             fflush(stdin);
             scanf("%d", &cantidad);
 <<<<<<< HEAD
+<<<<<<< HEAD
 //            flag = cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
 //
 //            if (flag == 1){
@@ -215,6 +216,9 @@ void swithSubMenuOpciones ()
 =======
             cargaArchivoCuentaRandom(AR_CUENTA, cantidad);
             if
+=======
+            cargaArchivoCuentaRandom(AR_CUENTA, cantidad, AR_CLIENTE);
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
             system ("cls");
             imprimirCabecera("CARGA EXITOSA");
             printf("\n\n");
@@ -322,11 +326,7 @@ void switchSubMenuCliente ()
             stCliente cliente;
             cliente = buscarClientePorId(AR_CLIENTE,numId);
             muestraCliente(cliente);
-            imprimeOpcionSubMenuModificar ();
-            opcion = ingresaOpcion ();
-            modificaCliente(AR_CLIENTE, id, opcion);
-            system ("cls");
-            muestraCliente(cliente);
+
             system ("pause");   //prestar atencion por si tenemos q sacarlo.
 
             break;
@@ -337,11 +337,17 @@ void switchSubMenuCliente ()
             system ("cls");
             imprimirCabecera("BUSCAR UN CLIENTE");
             printf("\n\n");
+<<<<<<< HEAD
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
             cliente = buscarClientePorId(AR_CLIENTE, numId);
             muestraCliente(cliente);
 
+=======
+            numId = imprimirSolicitarDato("\nIngrese el ID");
+            cliente = buscarClientePorId(AR_CLIENTE, numId);
+            muestraCliente(cliente);
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
 
             break;
 
@@ -412,7 +418,10 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BAJA DE CUENTA");
             printf("\n\n");
+<<<<<<< HEAD
 
+=======
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
             numId = imprimirSolicitarDato("\nIngrese el ID");
             int flag = cambioEstadoCuentaPorId(AR_CUENTA, numId);
 
@@ -429,13 +438,21 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("MODIFICACION DE CUENTA");
             printf("\n\n");
+<<<<<<< HEAD
 
+=======
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
             numId = imprimirSolicitarDato("\nIngrese el ID");
-
             int tipoCuenta;
+<<<<<<< HEAD
 
             printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
             printf("\nIngrese el tipo de cuenta: ");
+=======
+            printf("\n 1. Caja de Ahorro en Pesos, 2. Caja de Ahorro en U$D, 3. Cta Cte en $");
+            printf("\nIngrese el tipo de cuenta: ");
+            tipoCuenta;
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
             scanf("%d", &tipoCuenta);
 
             flag = modificaTipoCuentaPorId(AR_CUENTA, numId, tipoCuenta);
@@ -452,9 +469,13 @@ void swithcSubMenuCuenta ()
             system ("cls");
             imprimirCabecera("BUSCAR UNA CUENTA");
             printf("\n\n");
+<<<<<<< HEAD
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
 
+=======
+            numId = imprimirSolicitarDato("\nIngrese el ID");
+>>>>>>> c853dc6004c81f9a15e61af058ee865522d34322
             consultaCuentaPorId(AR_CUENTA, numId);
             break;
 
@@ -501,13 +522,7 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("ALTA DE MOVIMIENTO");
             printf("\n\n");
-<<<<<<< HEAD
-            ///AGREGAR FUNCION CORRESPONDIENTE
-=======
-
             opcionMovimiento(AR_MOVIMIENTO,AR_CUENTA);
-
->>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
             break;
 
         case 2:
@@ -516,13 +531,7 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("BAJA DE MOVIMIENTO");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-=======
-
             numId = imprimirSolicitarDato("\nIngrese el ID");
-
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
             int flag = cambioEstadoMovimientoPorId(AR_MOVIMIENTO,numId);
             if(flag){
                 imprimirCabecera("MOVIMIENTO ELIMINADO");
@@ -559,16 +568,9 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("CONSULTA DE MOVIMIENTO");
             printf("\n\n");
-<<<<<<< HEAD
-            numId = ingresaID();
-            stMovimiento movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
-            muestraUnMovimiento(movBancario);
-=======
-
             numId = imprimirSolicitarDato("\nIngrese el ID");
             stMovimiento movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
             mostrarMovimiento(movBancario);
->>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
 
             break;
 

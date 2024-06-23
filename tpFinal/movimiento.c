@@ -186,8 +186,9 @@ void opcionMovimiento ( char nombreArchivoMov[], char nombreArchivoCuenta [])
 
         if (existeCuentaNroCuenta(nombreArchivoCuenta,numCuenta) == 1){
 
-            stCuenta cuenta = buscaCuentaPorNumCuenta(AR_CUENTA,numCuenta);
+            stCuenta cuenta = buscaCuentaPorNumCuenta(AR_CUENTA, numCuenta);
             ejecutarExtraccion(nombreArchivoMov, nombreArchivoCuenta, cuenta, monto);
+
         }
         else{
             printf("\Numero de cuenta invalida.\n");

@@ -73,6 +73,7 @@ int randomNroCuenta(FILE * archi) {
     return nroCuenta;
 }
 
+//cant cuentas en archivos
 int cantCuentasArchivo (FILE * archiCuenta)
 {
     int cantidad = 0;
