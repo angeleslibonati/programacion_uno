@@ -124,6 +124,14 @@ int switchMenuPrincipal ()
             system("pause");
 
             break;
+        case 4:
+            //LLAMA A LAS FUNCIONES DE CARGA AUTOMATICA.
+            system ("cls");
+            imprimirCabecera("MAS OPCIONES");
+            printf("\n\n");
+            swithSubMenuOpciones();
+
+            break;
 
         default:
 
@@ -142,7 +150,7 @@ void imprineOpcionesSubMenuOpciones()
     printf("\n1. CARGA CLIENTE RANDOM\n");
     printf("2. CARGA CUENTA RANDOM\n");
     printf("3. CARGA MOVIMIENTOS RANDOM\n");
-    printf("4. REGRESA\n");
+    printf("0. REGRESA\n");
 }
 
 void swithSubMenuOpciones ()
@@ -488,7 +496,13 @@ void switchSubMenuMovimiento ()
             system ("cls");
             imprimirCabecera("ALTA DE MOVIMIENTO");
             printf("\n\n");
+<<<<<<< HEAD
             ///AGREGAR FUNCION CORRESPONDIENTE
+=======
+
+            opcionMovimiento(AR_MOVIMIENTO,AR_CUENTA);
+
+>>>>>>> 64c2f33f20f1383bd7e8448b1aaa804827dc4da4
             break;
 
         case 2:
@@ -547,7 +561,7 @@ void switchSubMenuMovimiento ()
 =======
 
             numId = imprimirSolicitarDato("\nIngrese el ID");
-            movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
+            stMovimiento movBancario = buscaMovimientoPorId(AR_MOVIMIENTO, numId);
             mostrarMovimiento(movBancario);
 >>>>>>> c9bcb08e93a2b14037ed41dc5da476b552651a83
 
